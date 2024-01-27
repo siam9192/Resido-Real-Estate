@@ -1,0 +1,224 @@
+:root {
+    --primary: #0fca98;
+}
+
+
+/*===============================================
+	All Colors Option 
+================================================ */
+
+.red-skin .btn-theme-2,
+.red-skin .top-header,
+.red-skin .pricing-bottom .btn-pricing,
+.green-skin .btn-theme-2,
+.green-skin .top-header,
+.green-skin .pricing-bottom .btn-pricing,
+.blue-skin .btn-theme-2,
+.blue-skin .top-header,
+.blue-skin .pricing-bottom .btn-pricing,
+.yellow-skin .btn-theme-2,
+.yellow-skin .top-header,
+.yellow-skin .pricing-bottom .btn-pricing,
+.darkblue-skin .btn-theme-2,
+.darkblue-skin .top-header,
+.darkblue-skin .pricing-bottom .btn-pricing,
+.oceangreen-skin .btn-theme-2,
+.oceangreen-skin .top-header,
+.oceangreen-skin .pricing-bottom .btn-pricing,
+.purple-skin .btn-theme-2,
+.purple-skin .top-header,
+.purple-skin .pricing-bottom .btn-pricing,
+.goodred-skin .btn-theme-2,
+.goodred-skin .top-header,
+.goodred-skin .pricing-bottom .btn-pricing,
+.goodgreen-skin .btn-theme-2,
+.goodgreen-skin .top-header,
+.goodgreen-skin .pricing-bottom .btn-pricing,
+.blue2-skin .btn-theme-2,
+.blue2-skin .top-header,
+.blue2-skin .pricing-bottom .btn-pricing {
+    background-color: #252c41;
+    background: #252c41;
+    border-color: #252c41;
+}
+
+.red-skin .hero-search h1,
+.green-skin .hero-search h1,
+.blue-skin .hero-search h1,
+.yellow-skin .hero-search h1,
+.darkblue-skin .hero-search h1,
+.oceangreen-skin .hero-search h1,
+.purple-skin .hero-search h1,
+.goodred-skin .hero-search h1,
+.goodgreen-skin .hero-search h1,
+.blue2-skin .hero-search h1 {
+    color: #2D3954 !important;
+}
+
+
+/*-------------- Color Option --------------------*/
+
+.theme-bg,
+.property-search-type label:hover,
+.property-search-type label.active,
+li.login-attri.theme-log a,
+.range-slider .ui-slider .ui-slider-handle,
+.range-slider .ui-widget-header,
+.pricing-bottom .btn-pricing:hover,
+.pricing-bottom .btn-pricing:focus .select2-container--default .select2-results__option--highlighted[aria-selected],
+.pagination li:first-child a,
+.btn.btn-theme,
+.btn.btn-theme:hover,
+.btn.btn-theme:focus,
+.btn.search-btn,
+.btn-theme-2:hover,
+.btn-theme-2:focus,
+.btn-outline-theme:hover,
+.btn-outline-theme:focus,
+.btn.search-btn,
+.simple-search-wrap .pk-input-group .pk-subscribe-submit,
+.btn.search-btn-outline:hover,
+.btn.search-btn-outline:focus,
+.property-listing.property-1 .listing-detail-btn .more-btn,
+.home-slider-desc .read-more,
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active,
+.checkbox-custom:checked+.checkbox-custom-label:before,
+.radio-custom:checked+.radio-custom-label:before,
+.btn.pop-login,
+.cl-register-user-form button,
+#loginform input[type=submit],
+#cl-login-user-form input[type=submit],
+.single-widgets.widget_search form button,
+.single-widgets.widget_tag_cloud .widget-inner .tagcloud a:hover,
+.single-widgets.widget_tag_cloud .widget-inner .tagcloud a:focus,
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover,
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination>div>a:hover,
+.pagination>div>span:hover,
+.pagination>div>.current,
+.pagination>div>.current:hover {
+    background-color: var(--primary);
+    background: var(--primary);
+}
+
+a.link:hover,
+a.link:focus,
+a:hover,
+a:focus,
+.theme-cl,
+.btn.btn-theme-light,
+.bl-continue,
+.header-dark-transparent.header-fixed .attributes li.submit-attri a,
+nav .menu li a.active,
+nav .menu li.dropdown.open>a,
+nav .menu .mg-menu li a i,
+nav .menu li a:hover,
+.recommended .pr-value,
+.btn-outline-theme,
+.btn.search-btn-outline,
+.dw-proprty-info li,
+.ps-trep .ps-type,
+.d-navigation ul li.active a,
+span.mod-close,
+.blog-page .blog-details blockquote .icon,
+.single-post-pagination .post-pagination-center-grid a,
+.blog-page .blog-details .comment-area .all-comments article .comment-details .comment-meta .comment-left-meta .comment-date,
+.cn-info-icon i,
+.client-info h5,
+.listing-card-info-price,
+.blog-page .blog-details .post-bottom-meta .post-share .list li a:hover,
+.listing-price-with-compare h4,
+.lpc-right i {
+    color: var(--primary);
+}
+
+.pagination>.active>a,
+.pagination>.active>a:focus,
+.pagination>.active>a:hover,
+.pagination>.active>span,
+.pagination>.active>span:focus,
+.pagination>.active>span:hover,
+.pagination>li>a:focus,
+.pagination>li>a:hover,
+.pagination li:first-child a,
+.range-slider .ui-slider .ui-slider-handle,
+.attributes li.submit-attri.theme-log a,
+.header-dark-transparent.header-fixed .attributes li.submit-attri a,
+.btn.btn-theme,
+.btn-theme-2:hover,
+.btn-theme-2:focus,
+.btn.btn-theme:hover,
+.btn.btn-theme:focus,
+.btn-outline-theme:hover,
+.btn-outline-theme:focus,
+.btn-outline-theme,
+.simple-search-wrap .pk-input-group .pk-subscribe-submit,
+.btn.search-btn-outline,
+.btn.search-btn-outline:hover,
+.btn.search-btn-outline:focus,
+.property-listing.property-1 .listing-detail-btn .more-btn,
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active,
+.btn.pop-login,
+.single-widgets.widget_tag_cloud .widget-inner .tagcloud a:hover,
+.single-widgets.widget_tag_cloud .widget-inner .tagcloud a:focus,
+.post-password-form input[type=submit]:hover,
+.pagination>div>a:hover,
+.pagination>div>span:hover,
+.pagination>div>.current,
+.pagination>div>.current:hover,
+.pagination>div>a:first-child {
+    border-color: var(--primary);
+}
+
+li.login-attri.theme-log a {
+    box-shadow: 0 8px 5px rgba(240, 44, 45, 0.2);
+    -webkit-box-shadow: 0 8px 5px rgba(240, 44, 45, 0.2);
+}
+
+.single-widgets.widget_tag_cloud .widget-inner .tagcloud a:hover {
+    color: white;
+}
+
+.widget_recent_comments ul li .comment-author-link a,
+.widget_tag_cloud a:hover,
+.pagination-wrapper .pagination .nav-links .page-numbers:hover,
+.pagination-wrapper .pagination .nav-links .current,
+.page-links>*,
+.wp-calendar-nav-prev a,
+.wp-calendar-nav-next a,
+.widget_meta ul li a:hover,
+.widget_nav_menu ul li a:hover,
+.widget_pages ul li a:hover,
+.widget_archive ul li a:hover,
+.widget_categories ul li a:hover,
+.widget_archive ul li:hover:before,
+.widget_categories ul li:hover:before,
+.sticky_post_icon,
+.wp-calendar-table td a {
+    color: var(--primary);
+}
+
+.top-header,
+.pagination-wrapper .pagination .nav-links .next,
+.pagination-wrapper .pagination .nav-links .prev,
+.page-links .current,
+.page-links a:hover,
+.widget_categories ul li a:after,
+.widget_meta ul li a:after,
+.widget_nav_menu ul li a:after,
+.widget_pages ul li a:after,
+.comment-area .comment-reply-title small a,
+.comment-reply-title small a,
+.pagination>div>a:first-child,
+.wp-calendar-table #today,
+.wp-calendar-table #today a {
+    background: var(--primary);
+}

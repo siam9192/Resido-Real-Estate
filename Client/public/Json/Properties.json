@@ -1,0 +1,63 @@
+[
+    {
+      "title": "Modern 2-Bedroom Apartment",
+      "images": ["https://i.ibb.co/KDDBRG4/2f4619bcd5858dee872685a8cd2e24dc9e7a71b6.webp", "image2.jpg", "image3.jpg"],
+      "location": "Prime District",
+      "address": "123 Main Street",
+      "city": "Metropolis",
+      "area": "Central Business District",
+      "price": 600,
+      "type": "Apartment",
+      "bedrooms": 2,
+      "bathrooms": 2
+    },
+    {
+      "title": "Luxury Townhouse with Garden",
+      "images": ["https://i.ibb.co/KDDBRG4/2f4619bcd5858dee872685a8cd2e24dc9e7a71b6.webp", "image5.jpg", "image6.jpg"],
+      "location": "Exclusive Suburb",
+      "address": "456 Oak Avenue",
+      "city": "Serenityville",
+      "area": "Residential Area",
+      "price": 700,
+      "type": "Townhouse",
+      "bedrooms": 3,
+      "bathrooms": 2.5
+    },
+    {
+      "title": "Cozy Studio in the Arts District",
+      "images": ["https://i.ibb.co/KDDBRG4/2f4619bcd5858dee872685a8cd2e24dc9e7a71b6.webp", "image8.jpg", "image9.jpg"],
+      "location": "Arts District",
+      "address": "789 Artist Lane",
+      "city": "Creativity City",
+      "area": "Cultural Hub",
+      "price": 800,
+      "type": "Studio",
+      "bedrooms": 1,
+      "bathrooms": 1
+    },
+    {
+      "title": "Modern 2-Bedroom Apartment",
+      "images": ["https://i.ibb.co/KDDBRG4/2f4619bcd5858dee872685a8cd2e24dc9e7a71b6.webp", "image2.jpg", "image3.jpg"],
+      "location": "Prime District",
+      "address": "123 Main Street",
+      "city": "Metropolis",
+      "area": "Central Business District",
+      "price": 1000,
+      "type": "Apartment",
+      "bedrooms": 2,
+      "bathrooms": 2
+    },
+    {
+      "title": "Modern 2-Bedroom Apartment",
+      "images": ["https://i.ibb.co/KDDBRG4/2f4619bcd5858dee872685a8cd2e24dc9e7a71b6.webp", "image2.jpg", "image3.jpg"],
+      "location": "Prime District",
+      "address": "123 Main Street",
+      "city": "Metropolis",
+      "area": "Central Business District",
+      "price": 2000,
+      "type": "Apartment",
+      "bedrooms": 2,
+      "bathrooms": 2
+    }
+  ]
+

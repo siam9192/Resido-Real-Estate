@@ -1,0 +1,106 @@
+[
+      {
+        "name": "John Smith",
+        "agency": "Elite Realty Group",
+        "contact": "+1 (555) 123-4567",
+        "email": "john.smith@example.com",
+        "location": "Cityville, CA",
+        "image": "https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/team-1.jpg",
+        "properties": [
+          {
+            "property_id": "123ABC",
+            "type": "Apartment",
+            "location": "Downtown",
+            "price": "$2,500/month"
+          },
+          {
+            "property_id": "456DEF",
+            "type": "House",
+            "location": "Suburbia",
+            "price": "$3,000/month"
+          }
+        ]
+      },
+      {
+        "name": "Emily Davis",
+        "agency": "Premier Properties",
+        "contact": "+1 (555) 234-5678",
+        "email": "emily.davis@example.com",
+        "location": "Suburbia, TX",
+        "image": "https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/user-8.jpg",
+        "properties": [
+          {
+            "property_id": "789GHI",
+            "type": "Condo",
+            "location": "City View",
+            "price": "$2,800/month"
+          }
+        ]
+      },
+      {
+        "name": "Alex Turner",
+        "agency": "Metro Homes Inc.",
+        "contact": "+1 (555) 345-6789",
+        "email": "alex.turner@example.com",
+        "location": "Downtown, NY",
+        "image": "https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/user-8.jpg",
+        "properties": [
+          {
+            "property_id": "ABC123",
+            "type": "Loft",
+            "location": "Arts District",
+            "price": "$3,200/month"
+          }
+        ]
+      },
+      {
+        "name": "Jessica Parker",
+        "agency": "Sunset Realty",
+        "contact": "+1 (555) 456-7890",
+        "email": "jessica.parker@example.com",
+        "location": "Seaside, FL",
+        "image": "https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/user-8.jpg",
+        "properties": [
+          {
+            "property_id": "DEF456",
+            "type": "Beach House",
+            "location": "Oceanfront",
+            "price": "$4,500/month"
+          }
+        ]
+      },
+      {
+        "name": "Brian Thompson",
+        "agency": "Skyline Estates",
+        "contact": "+1 (555) 567-8901",
+        "email": "brian.thompson@example.com",
+        "location": "Hilltop, CO",
+        "image": "https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/user-8.jpg",
+        "properties": [
+          {
+            "property_id": "GHI789",
+            "type": "Mountain Cabin",
+            "location": "Scenic View",
+            "price": "$3,800/month"
+          }
+        ]
+      },
+      {
+        "name": "Megan Harris",
+        "agency": "Harbor Homes Realty",
+        "contact": "+1 (555) 678-9012",
+        "email": "megan.harris@example.com",
+        "location": "Lakeside, WA",
+        "image": "https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/user-8.jpg",
+        "properties": [
+          {
+            "property_id": "JKL012",
+            "type": "Lakefront Cottage",
+            "location": "Serene Lakeside",
+            "price": "$3,300/month"
+          }
+        ]
+      }
+    ]
+  
+  
