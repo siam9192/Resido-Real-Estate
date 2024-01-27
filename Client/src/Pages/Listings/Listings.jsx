@@ -26,7 +26,8 @@ const Listings = () => {
         },[scrollY])
     return (
         <div className='min-h-[120vh]'>
-           <div className='lg:block : hidden'><Navbar2 isNavbar={isNavbar}></Navbar2></div>
+         
+           <div className=''><Navbar2 isNavbar={isNavbar}></Navbar2></div>
            <Navbar isNavbar={isNavbar}></Navbar>
             <div className='lg:py-14 md:py-10 py-5 bg-[#3f47b7] font-jost'>
 

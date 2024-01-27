@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { LuMinus } from "react-icons/lu";
+import ResponsiveNavbar from './ResponsiveNavbar';
 const Navbar2 = ({isNavbar}) => {
+    const [isResponsive,setResponsive] = useState(false)
     const navLinks = [
         {
             name:'Home',path:'/'
@@ -15,7 +17,11 @@ const Navbar2 = ({isNavbar}) => {
             name:'Agencies and Agents',path:'/features'
         }
     ]
+    const handler = (value)=>{
+        setResponsive(value)
+    }
     return (
+        <>
      <div className={`border border-gray-200 px-10 ${isNavbar ? 'hidden' : 'block'}`}>
            <div className='py-6 flex justify-between items-center font-jost '>
         
@@ -37,11 +43,14 @@ const Navbar2 = ({isNavbar}) => {
          <Link className='flex items-center gap-2 text-color_primary font-semibold'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
          <button className=' bg-color_dark text-white py-4 bg-opacity-70 px-5 rounded-md flex items-center gap-2'><AiOutlineUser></AiOutlineUser><p>Sign in</p> </button>
         </div>
-        <div className='text-4xl text-black lg:hidden'>
+        <div className='text-4xl text-black lg:hidden' onClick={()=>handler(true)}>
             <BiMenu></BiMenu>
         </div>
     </div>
+  
      </div>
+      
+       </>
     );
 }
 

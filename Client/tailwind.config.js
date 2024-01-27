@@ -16,7 +16,8 @@ export default {
   color_danger: "#dc3545",
   color_light: "#f8f9fa",
   color_dark: "#212529",
-  color_text_normal:"#2f405e"
+  color_text_normal:"#2f405e",
+  color_bg_green:"#f3f7fd"
       },
       fontFamily:{
         mooli:"Mooli', sans-serif",
