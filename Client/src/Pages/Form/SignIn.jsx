@@ -10,7 +10,7 @@ const SignIn = () => {
      
 
         const user = {username,password}
-       console.log(user)
+       
     }
     return (
         <div className='flex justify-center  md:py-20 py-20 font-jost lg:px-0 px-2'>

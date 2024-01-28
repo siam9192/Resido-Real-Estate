@@ -6,12 +6,19 @@ import {getAuth} from 'firebase/auth'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCM9oynz7exHpu62bTVlTiM8UUAj-KaMuQ",
-  authDomain: "find-house-f6fad.firebaseapp.com",
-  projectId: "find-house-f6fad",
-  storageBucket: "find-house-f6fad.appspot.com",
-  messagingSenderId: "175584841973",
-  appId: "1:175584841973:web:267f05a5735d676a64f5bc"
+
+  apiKey: "AIzaSyASC33EE1vPg8cfL9IRNrdeNzCwZneDrFk",
+
+  authDomain: "resido-real-state-9878.firebaseapp.com",
+
+  projectId: "resido-real-state-9878",
+
+  storageBucket: "resido-real-state-9878.appspot.com",
+
+  messagingSenderId: "471740266847",
+
+  appId: "1:471740266847:web:5a5f1afbb64dfc654d5eea"
+
 };
 
 // Initialize Firebase

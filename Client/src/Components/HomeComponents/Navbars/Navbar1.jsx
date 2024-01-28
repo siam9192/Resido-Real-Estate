@@ -58,7 +58,7 @@ const Navbar1 = ({bg}) => {
         </div>
     </div>
     <div className={`${toggle ? 'max-h-[600px]' : 'max-h-0'} overflow-hidden transition-all ease-in duration-500 lg:hidden block z-50`}>
-  <div className='p-10 rounded-md lg:none block mx-5 mb-5 bg-white   shadow-lg '>
+  <div className='p-10 rounded-md lg:hidden block  bg-white w-full  shadow-lg font-jost'>
    <ul className='flex flex-col  text-xl gap-2'>
    {
                 navLinks.map((link,index)=>{
