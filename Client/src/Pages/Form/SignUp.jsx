@@ -24,6 +24,10 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const conPass = form.conPass.value;
+        const accountStatus = {
+            isBan: false
+        }
+        const role = 'client'
         if(firstName.length < 2 || lastName.length < 2 ){
           setError('First Name & Last Name At least 3 character')
           return;
@@ -37,7 +41,7 @@ const SignUp = () => {
             return;
         }
       
-        const user = { firstName,lastName,username,photo,password,conPass}
+        const user = {firstName,lastName,username,role,photo,password,accountStatus}
         createUser(email,password)
         .then(res =>{
             updateProfile(auth.currentUser,{
