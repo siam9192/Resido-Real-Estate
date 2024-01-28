@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AiOutlineUser } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { LuMinus } from "react-icons/lu";
+import WidthContainer from '../../Reuse/WidthContainer/WidthContainer';
 const Navbar = ({isNavbar}) => {
     
     const navLinks = [
@@ -19,8 +20,9 @@ const Navbar = ({isNavbar}) => {
    
 
     return (
-     <div className={`borde border-gray-200 px-10 fixed transition-all ease-in-out duration-300  ${isNavbar ? 'top-0' :'-top-[200%]'} shadow-md lg:block hidden w-full bg-white z-40`}>
-           <div className='py-6 lg:flex justify-between items-center font-jost '>
+     <div className={`borde border-gray-200 lg:px-0 px-2 fixed transition-all ease-in-out duration-300  ${isNavbar ? 'top-0' :'-top-[200%]'} shadow-md lg:block hidden w-full bg-white z-40`}>
+          <WidthContainer>
+          <div className='py-6 lg:flex justify-between items-center font-jost '>
         
         <div className='flex items-center gap-6'>
         <div>
@@ -44,6 +46,8 @@ const Navbar = ({isNavbar}) => {
             <BiMenu></BiMenu>
         </div>
     </div>
+  
+          </WidthContainer>
      </div>
     );
 }

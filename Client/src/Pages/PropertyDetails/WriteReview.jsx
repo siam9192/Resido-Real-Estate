@@ -30,13 +30,13 @@ const WriteReview = ({property}) => {
     return (
         <div className='p-5 bg-white rounded-md'>
         <div className='flex justify-between items-center'>
-        <h1 className='text-xl text-color_text_normal font-semibold'>Description</h1>
+        <h1 className='text-xl text-color_text_normal font-semibold'>Write a review</h1>
         <div className='bg-gray-200 p-2 text-xl rounded-full font-semibold hover:cursor-pointer' onClick={handler}>
         <IoIosArrowDown className={`transition-transform duration-300 ${toggle?'-rotate-180' : ' rotate-0'}`}></IoIosArrowDown>
         </div>
         </div>
         <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[2000px] opacity-100' : 'max-h-[0]  opacity-100 '}`}>
-        <div className='p-5'>
+        <div className='md:p-5 p-2'>
             <div className='grid md:grid-cols-3 gap-10'>
                 <div className='space-y-3'>
             <div className='space-y-2'>

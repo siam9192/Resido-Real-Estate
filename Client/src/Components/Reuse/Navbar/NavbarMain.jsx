@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import ResponsiveNavbar from './ResponsiveNavbar';
-import { RxCross1 } from 'react-icons/rx';
-const Navbar1 = ({bg}) => {
-    const [toggle,setToggle] = useState(false);
+const NavbarMain = ({bg}) => {
+    const [isResponsiveNavbar,setResponsive] = useState(false)
     const navLinks = [
         {
             name:'Home',path:'/'
@@ -17,17 +16,9 @@ const Navbar1 = ({bg}) => {
             name:'Agencies and Agents',path:'/features'
         }
     ]
-    useEffect(()=>{
-        const handleScroll = ()=>{
-         setToggle(false)
-          }
-        window.addEventListener('scroll',handleScroll)
-        return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
-        },[scrollY])
-    const handleToggle = ()=>{
-        setToggle(!toggle)
+
+    const handler = (value)=>{
+        setResponsive(value)
     }
     return (
      <div className={`border-b border-gray-500 px-10 ${bg?'bg-white' : 'bg-transparent'}`}>
@@ -51,29 +42,22 @@ const Navbar1 = ({bg}) => {
          <Link className='flex items-center gap-2 text-white'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
          <Link to='/sign-up'><button className=' bg-color_dark text-white py-4 bg-opacity-70 px-5 rounded-md flex items-center gap-2'><AiOutlineUser></AiOutlineUser><p>Sign in</p> </button></Link>
         </div>
-        <div className='text-4xl text-white lg:hidden hover:cursor-pointer' onClick={handleToggle}>
-        {
-            toggle ? <RxCross1 className={`transition-all ease-in duration-300 -rotate-180`}></RxCross1> :  <BiMenu className={`transition-all duration-500 -rotate-180 `}></BiMenu>
-           }
+        <div className='text-4xl text-white lg:hidden' onClick={()=> handler(true)}>
+            <BiMenu></BiMenu>
         </div>
     </div>
-    <div className={`${toggle ? 'max-h-[600px]' : 'max-h-0'} overflow-hidden transition-all ease-in duration-500 lg:hidden block z-50`}>
-  <div className='p-10 rounded-md lg:none block mx-5 mb-5 bg-white   shadow-lg '>
-   <ul className='flex flex-col  text-xl gap-2'>
-   {
+    <div className='py-10 px-5 bg-white lg:hidden block'>
+    <ul className='flex items-center gap-3 font-semibold mt-3 '>
+            {
                 navLinks.map((link,index)=>{
                    return <Link to={link.path} key={index}>{link.name}</Link>
                 })
-                
             }
-            <Link>Add to Property</Link>
-            <button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md '>Sign In</button>
-   </ul>
+        </ul>
     </div>
-  </div>
-    
+    {/* <ResponsiveNavbar isResponsiveNavbar={isResponsiveNavbar} handler={handler}></ResponsiveNavbar> */}
      </div>
     );
 }
 
-export default Navbar1;
+export default NavbarMain;

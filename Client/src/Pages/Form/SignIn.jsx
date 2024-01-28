@@ -30,7 +30,7 @@ const SignIn = () => {
                     
             </div>
            <div className='flex md:flex-row flex-col-reverse justify-between md:items-center'>
-            <p>Already Have An Account ? <Link className='text-color_primary font-semibold' to={'/sign-in'}>Sign in</Link></p>
+            <p>Dont't Have An Account ? <Link className='text-color_primary font-semibold' to={'/sign-up'}>Sign up</Link></p>
            <button className='py-3 px-  bg-color_primary md:w-1/2 w-full text-white text-xl rounded-md'>Sign In</button>
            </div>
             </form>

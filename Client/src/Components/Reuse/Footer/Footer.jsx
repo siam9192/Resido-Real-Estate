@@ -75,7 +75,7 @@ const Footer = () => {
             <div>
                 <h3 className='text-xl text-white font-semibold'>Navigations</h3>
                 <ul className='pt-3 space-y-4 flex flex-col'>
-                <div className='flex items-center gap-1 border p-3 rounded-md lg:w-full w-1/2'>
+                <div className='flex items-center gap-1 border p-3 rounded-md lg:1/2'>
                         <div className='text-4xl text-color_primary'>
                        <FaGooglePlay></FaGooglePlay>
                         </div>
@@ -84,7 +84,7 @@ const Footer = () => {
                             <p>Get it Now</p>
                         </div>
                     </div>
-                    <div className='flex items-center gap-1 border rounded-md p-3 lg:w-full w-1/2'>
+                    <div className='flex items-center gap-1 border rounded-md p-3 lg:w-1/2'>
                         <div className='text-4xl text-color_primary'>
                         <FaApple></FaApple>
                         </div>

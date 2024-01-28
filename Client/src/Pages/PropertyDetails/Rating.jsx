@@ -30,7 +30,7 @@ const PropertyRating = ({property}) => {
         </div>
         <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[700px] opacity-100' : 'max-h-[0]  opacity-100 '}`}>
          <div className='px-5 py-5 md:py-10 md:flex gap-5'>
-            <div className='md:w-1/2 px-5 border-r-2 border-color_text_normal flex flex-col items-center '>
+            <div className='md:w-1/2 md:px-5 border-r-2 border-color_text_normal flex flex-col items-center '>
                 <h1 className='text-6xl font-semibold'>{4.8}</h1>
                 <p>out of 5</p>
                 <Rating initialRating={4.5} 
