@@ -3,8 +3,10 @@ import { FaLocationArrow } from 'react-icons/fa6';
 import { IoBedOutline } from "react-icons/io5";
 import { LuBath } from "react-icons/lu";
 import { TbArrowAutofitHeight } from "react-icons/tb";
+import { Link } from 'react-router-dom';
 const ListCard = ({property}) => {
     return (
+        <Link to='/listings/property/details/1'>
         <div className='font-jost border rounded-lg md:flex '>
             <div className='md:w-[40%] w-[80%]'>
             <img src={property.images[0]} alt="" className='h-52  w-full rounded-l-lg'/>
@@ -33,6 +35,7 @@ const ListCard = ({property}) => {
        </div>
         </div>
         </div>
+        </Link>
     );
 }
 

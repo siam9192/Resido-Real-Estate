@@ -5,6 +5,7 @@ import Listings from "../Pages/Listings/Listings";
 import SignIn from "../Pages/Form/Signin";
 import SignUp from "../Pages/Form/SignUp";
 import AgentDetails from "../Pages/AgentDetails/AgentDetails";
+import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 
 const Router = createBrowserRouter([
     {
@@ -17,10 +18,17 @@ const Router = createBrowserRouter([
             }
         ]
     },
+
     {
         path:'/listings',
         element:<Listings></Listings>
     },
+    {
+    path:'/listings/property/details/:id',
+    element:<PropertyDetails></PropertyDetails>
+
+    },
+
     {
         path:'/sign-in',
         element:<SignIn></SignIn>

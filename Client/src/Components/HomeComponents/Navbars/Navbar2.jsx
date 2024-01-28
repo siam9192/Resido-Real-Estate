@@ -22,7 +22,7 @@ const Navbar2 = ({isNavbar}) => {
     }
     return (
         <>
-     <div className={`border border-gray-200 px-10 ${isNavbar ? 'hidden' : 'block'}`}>
+     <div className={`border border-gray-200 px-10 ${isNavbar ? 'hidden' : 'block'} bg-white`}>
            <div className='py-6 flex justify-between items-center font-jost '>
         
         <div className='flex items-center gap-6'>
@@ -47,7 +47,7 @@ const Navbar2 = ({isNavbar}) => {
             <BiMenu></BiMenu>
         </div>
     </div>
-  
+    
      </div>
       
        </>

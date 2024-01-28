@@ -45,7 +45,7 @@ const SearchBox = () => {
         "Swimming Pool",
         "Window Covering"
       ]
-      
+    //   lassName={`grid overflow-hidden transition-all duration-${300*index} ease-in-out  ${isLocationOpen ? 'grid-rows-[1fr] ' : 'hidden grid-rows-[0fr] '}`} key={index}
       
       
       const handleIsLocation = ()=>{
@@ -79,10 +79,10 @@ const SearchBox = () => {
                     isLocationOpen ? <AiOutlineMinus className=' duration-300 rotate-180'></AiOutlineMinus> : <AiOutlinePlus></AiOutlinePlus>
                 }</div>
                     </div>
-                    <div  className={`py-3 grid overflow-hidden h-fit transition-all duration-300 ease-in-out ${isLocationOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'} `} >
+                    <div  className={`py-3  overflow-hidden transition-all duration-700 ease-in  ${isLocationOpen ? 'max-h-[3000px] opacity-100' : 'max-h-[0]  transition-[max-height] duration-700 ease-out opacity-100 '}`} >
                     {
                         locations.map((location,index)=>{
-                           return <div className={`grid overflow-hidden transition-all duration-${300*index} ease-in-out  ${isLocationOpen ? 'grid-rows-[1fr] ' : 'hidden grid-rows-[0fr] '}`} key={index}>
+                           return <div c>
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== locations.length-1 ? 'border-b' : ''}`}
                        >
                                 <h2>{location}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
@@ -99,10 +99,10 @@ const SearchBox = () => {
                     isProperTypeOpen ? <AiOutlineMinus className=' duration-300 rotate-180'></AiOutlineMinus> : <AiOutlinePlus></AiOutlinePlus>
                 }</div>
                     </div>
-                    <div  className={`py-3 grid overflow-hidden h-fit transition-all duration-300 ease-in-out ${isProperTypeOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'} `} >
+                    <div  className={`py-3 overflow-hidden  transition-all duration-700 ease-in-out ${isProperTypeOpen ? 'max-h-[3000px] opacity-100' : 'max-h-[0]  transition-[max-height] duration-700 ease-out opacity-100 '} `} >
                     {
                        propertyTypes.map((type,index)=>{
-                           return <div className={`grid overflow-hidden transition-all duration-${300*index} ease-in-out  ${isProperTypeOpen ? 'grid-rows-[1fr] ' : 'hidden grid-rows-[0fr] '}`} key={index}>
+                           return <div >
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== propertyTypes.length-1 ? 'border-b' : ''}`}
                        >
                                 <h2>{type}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
@@ -119,10 +119,10 @@ const SearchBox = () => {
                     isStatusOpen ? <AiOutlineMinus className=' duration-300 rotate-180'></AiOutlineMinus> : <AiOutlinePlus></AiOutlinePlus>
                 }</div>
                     </div>
-                    <div  className={`py-3 grid overflow-hidden h-fit transition-all duration-300 ease-in-out ${isStatusOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'} `} >
+                    <div  className={`py-3 overflow-hidden  transition-all duration-700 ease-in-out ${isStatusOpen ? 'max-h-[3000px] opacity-100' : 'max-h-[0]  transition-[max-height] duration-700 ease-out opacity-100 '} `} >
                     {
                         propertyStatus.map((status,index)=>{
-                           return <div className={`grid overflow-hidden transition-all duration-${300*index} ease-in-out  ${isStatusOpen ? 'grid-rows-[1fr] ' : 'hidden grid-rows-[0fr] '}`} key={index}>
+                           return <div >
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== propertyStatus.length-1 ? 'border-b' : ''}`}
                        >
                                 <h2>{status}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
@@ -139,10 +139,10 @@ const SearchBox = () => {
                     isFeatureOpen ? <AiOutlineMinus className=' duration-300 rotate-180'></AiOutlineMinus> : <AiOutlinePlus></AiOutlinePlus>
                 }</div>
                     </div>
-                    <div  className={`py-3 grid overflow-hidden h-fit transition-all duration-300 ease-in-out ${isFeatureOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'} `} >
+                    <div  className={`py-3  overflow-hidden  transition-all duration-700 ease-in-out ${isFeatureOpen ? 'max-h-[3000px] opacity-100' : 'max-h-[0]  transition-[max-height] duration-700 ease-out opacity-100 '} `} >
                     {
                         features.map((feature,index)=>{
-                           return <div className={`grid overflow-hidden transition-all duration-${300*index} ease-in-out  ${isFeatureOpen ? 'grid-rows-[1fr] ' : 'hidden grid-rows-[0fr] '}`} key={index}>
+                           return <div >
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== features.length-1 ? 'border-b' : ''}`}
                        >
                                 <h2>{feature}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>

@@ -49,7 +49,7 @@ const MainListBox = () => {
                 }
             </div>
             :
-            <div className='py-5 space-y-10'>
+            <div className='py-5 grid grid-cols-1 gap-10'>
             {
                 properties.map((property,index)=>{
                     return <ListCard property={property} key={index}></ListCard>
@@ -62,7 +62,7 @@ const MainListBox = () => {
             <div className='flex items-center gap-2'>
             {
                 pages.map((page,index)=>{
-                    return <div className='px-4 py-2 bg-white text-color_text_normal shadow-lg'>{page}</div>
+                    return <div className='px-4 py-2 bg-white text-color_text_normal shadow-lg' key={index}>{page}</div>
                 })
             }
             </div>
