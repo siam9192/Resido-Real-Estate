@@ -4,8 +4,12 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import ResponsiveNavbar from './ResponsiveNavbar';
 import { RxCross1 } from 'react-icons/rx';
+import { IoIosArrowDown } from "react-icons/io";
+import UserAuth from '../../../Authentication/userAuth/userAuth';
 const Navbar1 = ({bg}) => {
     const [toggle,setToggle] = useState(false);
+    const {user} = UserAuth();
+    
     const navLinks = [
         {
             name:'Home',path:'/'
@@ -29,6 +33,8 @@ const Navbar1 = ({bg}) => {
     const handleToggle = ()=>{
         setToggle(!toggle)
     }
+
+    console.log(user)
     return (
      <div className={`border-b border-gray-500 px-10 ${bg?'bg-white' : 'bg-transparent'}`}>
            <div className='py-6 flex justify-between items-center font-pop '>
@@ -49,7 +55,20 @@ const Navbar1 = ({bg}) => {
         </div>
         <div className='lg:flex items-center justify-between gap-3 lg:block hidden'>
          <Link className='flex items-center gap-2 text-white'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
-         <Link to='/sign-up'><button className=' bg-color_dark text-white py-4 bg-opacity-70 px-5 rounded-md flex items-center gap-2'><AiOutlineUser></AiOutlineUser><p>Sign in</p> </button></Link>
+         {
+            !user ?<button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md'>Sign In</button>
+            :
+         <div className='flex items-center gap-3 text-white'>
+           
+               <div className='py-3 px-5 text-xl bg-black text-white font-bold rounded-full border-info'>
+                {user.displayName[0].toUpperCase()}
+            </div>
+           <div className='text-xl '>
+           <IoIosArrowDown ></IoIosArrowDown>
+           
+           </div>
+         </div>
+          }
         </div>
         <div className='text-4xl text-white lg:hidden hover:cursor-pointer' onClick={handleToggle}>
         {
@@ -67,7 +86,13 @@ const Navbar1 = ({bg}) => {
                 
             }
             <Link>Add to Property</Link>
-            <button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md '>Sign In</button>
+          {
+            !user ?<button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md'>Sign In</button>
+            :
+            <div className='px-4 py-3 bg-black text-white font-bold'>
+                {user.displayName[0].toUpperCase()}
+            </div>
+          }
    </ul>
     </div>
   </div>

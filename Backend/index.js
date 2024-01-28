@@ -38,16 +38,8 @@ async function run() {
       const filter = {
         username
       }
-    })
-    app.post('/check-accountStatus',async(req,res)=>{
-      const email = req.body.email;
-      const filter = {
-        email
-      }
-      const result = await users.findOne(filter);
-      res.send({status:false})
-    })
-    
+  
+   
     const result = await users.findOne(filter);
     if(result){
       res.send({status:true})
@@ -55,6 +47,16 @@ async function run() {
     else{
       res.send({status:false})
     }
+  })
+  app.post('/check-accountStatus',async(req,res)=>{
+    const email = req.body.email;
+    const filter = {
+      email
+    }
+    const result = await users.findOne(filter);
+    res.send({status:false})
+  })
+  
     app.post('/user-registration',async(req,res)=>{
      const user = req.body;
      const result = await users.insertOne(user);

@@ -31,7 +31,7 @@ const RecentProperty = () => {
     const handleSingleSlideNext = ()=>{
 
           const next = slideIndex+1;
-        if(next === properties.length){
+        if(next > properties.length-1){
             setSlideIndex(0)
             return;
         }
@@ -55,15 +55,15 @@ const RecentProperty = () => {
             <WidthContainer>
                 <SectionHeading heading={'Recent Property For Rent '} title={`"Current Rentals: Find Your Perfect Home Today - Browse Our Latest Listings!"
 `}></SectionHeading>
-<div className='flex justify-end gap-3' onClick={handleSlidePrev}>
-    <div className=' bg-color_primary px-4 py-2 text-xl text-white'>
+<div className='flex justify-end gap-3 py-5' >
+    <div className=' bg-color_primary px-4 py-2 text-xl text-white' onClick={handleSlidePrev}>
         <FaArrowLeftLong></FaArrowLeftLong>
     </div>
     <div className=' bg-color_primary px-4 py-2 text-xl text-white' onClick={handleSingleSlideNext}>
         <FaArrowRightLong></FaArrowRightLong>
     </div>
 </div>
-<div className='pt-4  grid-cols-3 relative h-[500px]  overflow-x-hidden'>
+<div className='pt-4  relative h-[550px]  overflow-hidden'>
     {
 properties.map((property,index)=>{
     return <SliderCard property={property} index={index} slideIndex={slideIndex} key={index}></SliderCard>
