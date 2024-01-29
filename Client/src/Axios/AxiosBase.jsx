@@ -4,6 +4,8 @@ import React from 'react';
 const AxiosBase = () => {
   const base = axios.create({
     // https://find-house-backend-pgeno1uvi-siam-hasans-projects.vercel.app/api/v1
+    // dashboard
+    // https://griya.dexignzone.com/react/demo/dashboard 
     baseURL:'http://localhost:5000'
   })
   return base;

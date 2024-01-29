@@ -17,7 +17,9 @@ export default {
   color_light: "#f8f9fa",
   color_dark: "#212529",
   color_text_normal:"#2f405e",
-  color_bg_green:"#f3f7fd"
+  color_bg_green:"#f3f7fd",
+  dashboard_primary:"#216fed",
+  dashboard_text_primary:"#deeafc"
       },
       fontFamily:{
         mooli:"Mooli', sans-serif",

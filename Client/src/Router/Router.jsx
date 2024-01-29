@@ -6,6 +6,10 @@ import SignIn from "../Pages/Form/Signin";
 import SignUp from "../Pages/Form/SignUp";
 import AgentDetails from "../Pages/AgentDetails/AgentDetails";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
+import DashboardOutlet from '../Pages/DashboardPages/DashboardOutlet/DashboardOutlet'
+import AddProperty from '../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties'
+import Dashboard from '../Pages/DashboardPages/DashboardRoutes/Dashboard/Dashboard'
+
 
 const Router = createBrowserRouter([
     {
@@ -41,6 +45,25 @@ const Router = createBrowserRouter([
     {
         path:'/sign-up',
         element:<SignUp></SignUp>
+    },
+    {
+        path:'/dashboard',
+        element:<DashboardOutlet></DashboardOutlet>,
+        children:[
+            {
+                path:"/dashboard",
+                element: <Dashboard></Dashboard>
+            },
+            // {
+            //     path:'/dashboard/my-properties',
+            
+            // },
+            {
+             path:"/dashboard/add-property",
+             element:<AddProperty></AddProperty>
+            
+            }
+        ]
     }
 ])
 

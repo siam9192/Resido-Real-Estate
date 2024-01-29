@@ -1,0 +1,31 @@
+import React from 'react';
+import { TiThMenu } from "react-icons/ti";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { AiOutlineSearch } from "react-icons/ai";
+import { FiBell } from "react-icons/fi";
+const DashNavbar = () => {
+    return (
+        <div className='flex h-[80px] font-jost '>
+            <div className='w-[30%]  bg-dashboard_primary border-b p-2 flex justify-between items-center'>
+            <h1 className='text-5xl font-bold text-white'>Resido</h1>
+            <div>
+<HiOutlineMenuAlt3 className='text-5xl text-white'></HiOutlineMenuAlt3>
+            </div>
+            </div>
+            <div className='w-full flex justify-between items-center px-5 shadow-lg'>
+                <div className='flex items-center gap-2'>
+                 <AiOutlineSearch></AiOutlineSearch> <input type="text" className='w-52 outline-none border p-2 rounded-lg' placeholder='Search..' />
+                </div>
+                <div className='flex items-center gap-2'>
+                    <div className='p-2 bg-gray-200 rounded-lg relative'>
+                        <FiBell></FiBell>
+                        <div className='w-2 h-2 rounded-full bg-color_danger absolute -top-0 -right-1'></div>
+                    </div>
+                    <img src={"https://resido-v2.smartdemowp.com/wp-content/uploads/2022/08/team-1.jpg"} alt="" className='w-8 h-8 rounded-lg'/>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+export default DashNavbar;
