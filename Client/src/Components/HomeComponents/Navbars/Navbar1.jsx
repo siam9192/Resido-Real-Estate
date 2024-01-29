@@ -85,7 +85,7 @@ const Navbar1 = ({bg}) => {
                 })
                 
             }
-            <Link>Add to Property</Link>
+            <Link to={'/dashboard'}>Add to Property</Link>
           {
             !user ?<button className=' bg-color_dark text-white px-8 py-3 w-fit rounded-md'>Sign In</button>
             :

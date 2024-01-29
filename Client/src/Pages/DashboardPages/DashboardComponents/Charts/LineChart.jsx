@@ -3,60 +3,60 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } fro
 
 const data = [
   {
-    name: 'Page A',
+    name: 'Jan',
     uv: 4000,
     pv: 2400,
     amt: 2400,
   },
   {
-    name: 'Page B',
+    name: 'Feb',
     uv: 3000,
     pv: 1398,
     amt: 2210,
   },
   {
-    name: 'Page C',
+    name: 'Mar',
     uv: 2000,
     pv: 9800,
     amt: 2290,
   },
   {
-    name: 'Page D',
+    name: 'Apr',
     uv: 2780,
     pv: 3908,
     amt: 2000,
   },
   {
-    name: 'Page E',
+    name: 'Jun',
     uv: 1890,
     pv: 4800,
     amt: 2181,
   },
   {
-    name: 'Page F',
+    name: 'Jul',
     uv: 2390,
     pv: 3800,
     amt: 2500,
   },
   {
-    name: 'Page G',
+    name: 'Aug',
     uv: 3490,
     pv: 4300,
     amt: 2100,
   },
 ];
 
-export default class Example extends PureComponent {
+export default class DashBoardLineChart extends PureComponent {
   static demoUrl = 'https://codesandbox.io/s/line-chart-of-different-axis-intervals-er37wm';
 
   chart = (interval) => (
     <ResponsiveContainer height={250} width="100%">
       <LineChart data={data} margin={{ right: 25, top: 10 }}>
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="2 2" />
         <XAxis dataKey="name" interval={interval} />
         <YAxis interval={interval} />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="pv" stroke="#0d6efd" activeDot={{ r: 10}} />
+        {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
       </LineChart>
     </ResponsiveContainer>
   );
@@ -64,11 +64,11 @@ export default class Example extends PureComponent {
   render() {
     return (
       <>
-        {this.chart('preserveEnd')}
+        {/* {this.chart('preserveEnd')} */}
         {this.chart('preserveStart')}
-        {this.chart('preserveStartEnd')}
+        {/* {this.chart('preserveStartEnd')}
         {this.chart('equidistantPreserveStart')}
-        {this.chart(1)}
+        {this.chart(1)} */}
       </>
     );
   }

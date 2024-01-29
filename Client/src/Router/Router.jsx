@@ -7,10 +7,11 @@ import SignUp from "../Pages/Form/SignUp";
 import AgentDetails from "../Pages/AgentDetails/AgentDetails";
 import PropertyDetails from "../Pages/PropertyDetails/PropertyDetails";
 import DashboardOutlet from '../Pages/DashboardPages/DashboardOutlet/DashboardOutlet'
-import AddProperty from '../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties'
+// import AddProperty from '../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties'
 import Dashboard from '../Pages/DashboardPages/DashboardRoutes/Dashboard/Dashboard'
+import AddProperties from "../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties";
 
-
+// https://html.creativegigstf.com/homy/homy/dashboard/dashboard-index.html
 const Router = createBrowserRouter([
     {
         path:'/',
@@ -54,13 +55,14 @@ const Router = createBrowserRouter([
                 path:"/dashboard",
                 element: <Dashboard></Dashboard>
             },
-            // {
-            //     path:'/dashboard/my-properties',
+            {
+                path:'/dashboard/my-properties',
+                element:<AddProperties></AddProperties>
             
-            // },
+            },
             {
              path:"/dashboard/add-property",
-             element:<AddProperty></AddProperty>
+             element:<AddProperties></AddProperties>
             
             }
         ]

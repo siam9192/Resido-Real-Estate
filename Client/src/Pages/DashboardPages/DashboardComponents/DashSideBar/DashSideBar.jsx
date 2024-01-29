@@ -52,7 +52,7 @@ const DashSideBar = () => {
         navigate(path)
     }
     return (
-        <div className='h-full bg-dashboard_primary  py-5  w-full font-jost'>
+        <div className='h-full bg-dashboard_primary  py-5  font-jost'>
            <div className='space-y-5'>
             {
                 dashboardRoutes.map((item,index)=>{

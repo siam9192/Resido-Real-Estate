@@ -74,7 +74,7 @@ const Navbar2 = ({isNavbar}) => {
                 })
                 
             }
-            <Link>Add to Property</Link>
+            <Link to={'/dashboard'}>Add to Property</Link>
            <Link to={'/sign-in'}><button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md '>Sign In</button></Link>
    </ul>
     </div>
