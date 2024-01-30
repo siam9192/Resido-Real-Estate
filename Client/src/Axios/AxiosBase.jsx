@@ -6,7 +6,7 @@ const AxiosBase = () => {
     // https://find-house-backend-pgeno1uvi-siam-hasans-projects.vercel.app/api/v1
     // dashboard
     // https://griya.dexignzone.com/react/demo/dashboard 
-    baseURL:'https://resido-estate-iol4x4b6f-siam-hasans-projects.vercel.app'
+    baseURL:'http://localhost:5000'
   })
   return base;
 }

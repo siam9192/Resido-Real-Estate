@@ -12,6 +12,8 @@ import Dashboard from '../Pages/DashboardPages/DashboardRoutes/Dashboard/Dashboa
 import AddProperties from "../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties";
 import MyProperties from '../Pages/DashboardPages/DashboardRoutes/MyProperties/MyProperties'
 import Profile from "../Pages/DashboardPages/DashboardRoutes/Profile/Profile";
+import Membership from "../Pages/DashboardPages/DashboardRoutes/Membership/Membership";
+import PrivateRoutes1 from "../Components/PrivateRoutes/PrivateRoutes1";
 // https://html.creativegigstf.com/homy/homy/dashboard/dashboard-index.html
 const Router = createBrowserRouter([
     {
@@ -50,7 +52,7 @@ const Router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<DashboardOutlet></DashboardOutlet>,
+        element:<PrivateRoutes1><DashboardOutlet></DashboardOutlet></PrivateRoutes1>,
         children:[
             {
                 path:"/dashboard",
@@ -69,6 +71,11 @@ const Router = createBrowserRouter([
             {
                 path:"/dashboard/profile",
                 element:<Profile></Profile>
+               
+               },
+               {
+                path:"/dashboard/membership",
+                element:<Membership></Membership>
                
                }
         ]

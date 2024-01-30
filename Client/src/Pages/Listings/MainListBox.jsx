@@ -4,15 +4,17 @@ import { BsGrid } from "react-icons/bs";
 import { CiCircleList } from "react-icons/ci";
 import GridCard from '../../Components/Reuse/Cards/GridCard';
 import ListCard from '../../Components/Reuse/Cards/ListCard';
+import AxiosBase from '../../Axios/AxiosBase';
 const MainListBox = () => {
     const [cardType,setCardType] = useState('grid') ;
     const[ properties,setProperties ] = useState([])
     const [pages,setPages] = useState([1,2,3,4])
     useEffect(()=>{
         setCardType(localStorage.getItem('card-type'|| 'grid') )
-        axios.get('/Json/Properties.json')
+        AxiosBase().get('/properties/get')
         .then(res =>{
             setProperties(res.data)
+           
         })
     },[])
     const handleCardType = (value)=>{

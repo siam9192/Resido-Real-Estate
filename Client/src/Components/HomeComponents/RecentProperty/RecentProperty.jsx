@@ -5,6 +5,7 @@ import axios from 'axios';
 import SliderCard from '../../Reuse/Cards/SliderCard';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
+import AxiosBase from '../../../Axios/AxiosBase';
 const RecentProperty = () => {
     const[ properties,setProperties ] = useState([]);
     const [cardIndex,setCardIndex] = useState(0);
@@ -13,7 +14,7 @@ const RecentProperty = () => {
     const [slidePages,setSlidePages] = useState([]);
     const [slidingType,setSlidingType] = useState('multiple');
     useEffect(()=>{
-        axios.get('/Json/Properties.json')
+        AxiosBase().get('/property/recent')
         .then(res =>{
             setProperties(res.data)
             const pageCount = Math.ceil(res.data.length/3);

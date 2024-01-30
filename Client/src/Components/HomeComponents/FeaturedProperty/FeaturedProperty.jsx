@@ -3,11 +3,12 @@ import WidthContainer from '../../Reuse/WidthContainer/WidthContainer';
 import SectionHeading from '../../Reuse/SectionHeading/SectionHeading';
 import axios from 'axios';
 import ListCard from '../../Reuse/Cards/ListCard';
+import AxiosBase from '../../../Axios/AxiosBase';
 
 const FeaturedProperty = () => {
     const[ properties,setProperties ] = useState([])
     useEffect(()=>{
-        axios.get('/Json/Properties.json')
+        AxiosBase().get('/property/recent')
         .then(res =>{
             setProperties(res.data)
         })

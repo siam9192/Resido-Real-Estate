@@ -18,19 +18,19 @@ const ListCard = ({property}) => {
         <p className=' bg-[#ffb1b1] px-4 py-1 text-[14px] rounded-full w-fit '>{'Rent'}</p>
         </div>
         <div>
-            <h1 className='text-2xl text-color_primary font-bold'>${property.price}</h1>
+            <h1 className='text-2xl text-color_primary font-bold'>${property.propertyStatus.listingIn==='Rent' ? property.propertyStatus.rentAmount : property.propertyStatus.salePrice}</h1>
         </div>
        </div>
        <div className='flex md:flex-row flex-col md:justify-end gap-2 md:items-center py-3 border-b'>
  <div className='flex items-center gap-2'>
-        <div className='p-2 bg-gray-200 rounded-full'><IoBedOutline></IoBedOutline></div><p>{property.bedrooms} Beds</p></div>
+        <div className='p-2 bg-gray-200 rounded-full'><IoBedOutline></IoBedOutline></div><p>{property.details.features.bedrooms} Beds</p></div>
         <div className='flex items-center gap-2'>
-        <div className='p-2 bg-gray-200 rounded-full'><LuBath></LuBath></div><p>{property.bathrooms} Baths</p></div>
+        <div className='p-2 bg-gray-200 rounded-full'><LuBath></LuBath></div><p>{property.details.features.bathrooms} Baths</p></div>
         <div className='flex items-center gap-2'>
         <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{1200} Sqft</p></div>
        </div>
        <div className='pt-2 flex justify-between items-center'>
-        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.address}</h3></p></div>
+        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>
         <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button>
        </div>
         </div>
