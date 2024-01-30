@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { TiThMenu } from "react-icons/ti";
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FiBell } from "react-icons/fi";
+import { RxCross1 } from "react-icons/rx";
+import { NavbarHandlingContext } from '../../DashboardOutlet/DashboardOutlet';
 const DashNavbar = () => {
+    const {toggle,handleToggle} = useContext(NavbarHandlingContext);
    
     return (
         <div className='flex h-[80px] font-jost relative'>
@@ -14,8 +17,10 @@ const DashNavbar = () => {
             </div>
             </div>
             <div className='w-full flex justify-between items-center px-5 shadow-lg'>
-                <div className='text-black text-5xl lg:hidden'>
-                    <HiOutlineMenuAlt3></HiOutlineMenuAlt3>
+                <div className='text-black text-5xl lg:hidden hover:cursor-pointer' onClick={()=>handleToggle(!toggle)}>
+                {
+                toggle ? <RxCross1 ></RxCross1> : <HiOutlineMenuAlt3></HiOutlineMenuAlt3>
+                }
                 </div>
                 <div className='lg:block hidden lg:flex items-center gap-2  border p-2 rounded-lg'>
                  <AiOutlineSearch></AiOutlineSearch> <input type="text" className='w-52 outline-none' placeholder='Search..' />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { CgArrowsExpandDownLeft } from "react-icons/cg";
 import { BiSolidHomeSmile } from "react-icons/bi"
 import { MdAddHomeWork } from "react-icons/md";
@@ -6,11 +6,17 @@ import { BiSolidHomeHeart } from "react-icons/bi";
 import { BsChat } from "react-icons/bs";
 import { FaUserEdit } from "react-icons/fa";
 import { FaUserCog } from "react-icons/fa";
+import { IoBagHandle } from "react-icons/io5";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { NavbarHandlingContext } from '../../DashboardOutlet/DashboardOutlet';
 const DashSideBar = () => {
     const [activeRoute,setActiveRoute] = useState(0);
     const {pathname} = useLocation();
     const navigate = useNavigate();
+    const {toggle,handleToggle} = useContext(NavbarHandlingContext);
+    // https://html.creativegigstf.com/homy/homy/dashboard/favourites.html
+    // https://griya.dexignzone.com/react/demo/login
+    // https://hously-admin-next.vercel.app/
     const dashboardRoutes = [
     {
         display:'Dashboard',
@@ -42,6 +48,11 @@ const DashSideBar = () => {
         path:'/dashboard/account-setting',
         icon:<FaUserCog></FaUserCog>
     },
+    {
+        display:'Membership',
+        path:'/dashboard/membership',
+        icon:<IoBagHandle></IoBagHandle>
+    }
     ]
 
 

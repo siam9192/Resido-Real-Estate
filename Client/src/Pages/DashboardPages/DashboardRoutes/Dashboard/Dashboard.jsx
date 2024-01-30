@@ -36,26 +36,41 @@ const Dashboard = () => {
     const viewsByAges = [{by:'18-30',value:30},{by:'31-45',value:55},{by:'46-80',value:15}]
     // https://hously-admin-next.vercel.app/
     return (
-        <div className='p-5 font-jost'>
+        <div className='md:p-5 p-2 font-jost'>
          <div className='space-y-2'>
          <h1 className='text-2xl font-semibold'>Hello,{user?.displayName.split(' ')[0]}</h1>
          <p className=' text-color_secondary font-semibold'>Welcome back!</p>
          </div>
+         
          <div className='space-y-5'>
-          <div className='py-5 grid lg:grid-cols-4 grid-cols-2 gap-5'>
+          <div className='py-5 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5'>
           {
             showCards.map((card,index)=>{
-                return <div className='px-5 pt-5 pb-10 text-center bg-white shadow-md flex md:flex-row flex-col-reverse items-center justify-between rounded-md border'>
+                return <div className='px-5 pt-5 pb-10 text-center bg-white shadow-md flex md:flex-row flex-col-reverse items-center justify-between rounded-md border' key={index}>
                     <div className='space-y-2'>
                         <h1 className=' text-color_text_normal  font-semibold'>{card.name}</h1>
                         <h1 className=' text-black text-2xl font-semibold'>{card.value}</h1>
                     </div>
                    <div className='lg:text-4xl text-6xl text-color_primary p-2 bg-gray-100 rounded-md'> {
                         card.icon
-                    }</div>
+                    }
+                  
+                    </div>
                 </div>
             })
            }
+           <div className='px-5 pt-5 pb-10 text-center bg-white shadow-md lex hidden rounded-md border' >
+                    <div className='space-y-2'>
+                       <div className='w-full'>
+                       <div className='w-[80%] h-44 border-[40px] border-black rounded-full bg-transparent'>
+                        <div className='border-[10px] border-color_primary rounded-full h-full '></div>
+                       </div>
+                       </div>
+                        <h1 className=' text-color_text_normal  font-semibold'>{showCards[0].name}</h1>
+                        <h1 className=' text-black text-2xl font-semibold'>{showCards[0].value}</h1>
+                    </div>
+                  
+                </div>
           </div>
           <div className='md:grid grid-cols-6 gap-5 space-y-5'>
             <div className=' col-span-4 bg-white p-5 shadow-md rounded-md'>

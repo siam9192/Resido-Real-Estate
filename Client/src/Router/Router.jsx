@@ -10,7 +10,8 @@ import DashboardOutlet from '../Pages/DashboardPages/DashboardOutlet/DashboardOu
 // import AddProperty from '../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties'
 import Dashboard from '../Pages/DashboardPages/DashboardRoutes/Dashboard/Dashboard'
 import AddProperties from "../Pages/DashboardPages/DashboardRoutes/AddProperties/AddProperties";
-
+import MyProperties from '../Pages/DashboardPages/DashboardRoutes/MyProperties/MyProperties'
+import Profile from "../Pages/DashboardPages/DashboardRoutes/Profile/Profile";
 // https://html.creativegigstf.com/homy/homy/dashboard/dashboard-index.html
 const Router = createBrowserRouter([
     {
@@ -57,14 +58,19 @@ const Router = createBrowserRouter([
             },
             {
                 path:'/dashboard/my-properties',
-                element:<AddProperties></AddProperties>
+                element:<MyProperties></MyProperties>
             
             },
             {
              path:"/dashboard/add-property",
              element:<AddProperties></AddProperties>
             
-            }
+            },
+            {
+                path:"/dashboard/profile",
+                element:<Profile></Profile>
+               
+               }
         ]
     }
 ])
