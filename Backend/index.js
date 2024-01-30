@@ -35,6 +35,7 @@ async function run() {
   try {
     app.post('/check-username',async(req,res)=>{
       const username = req.body.username;
+     
       const filter = {
         username
       }
@@ -61,6 +62,31 @@ async function run() {
      const user = req.body;
      const result = await users.insertOne(user);
      res.send(result)
+    })
+
+    // add property;
+    app.post('/property/add',async(req,res)=>{
+      const property = req.body;
+      const result = await listings.insertOne(property);
+      res.send(result)
+      console.log(result,property)
+    })
+
+    app.get('/properties/get',async(req,res)=>{
+      const result = await listings.find().toArray();
+      res.send(result);
+    })
+    app.get('/property/single/get/:id',async(req,res)=>{
+      const id = req.params.id;
+      const query = {
+        _id: new ObjectId(id)
+      }
+      const result = listings.findOne(query);
+      res.send(result)
+    })
+    app.get('/property/recent',async(req,res)=>{
+      const result = (await listings.find().toArray()).slice(0,6)
+      res.send(result)
     })
   }
   finally{
