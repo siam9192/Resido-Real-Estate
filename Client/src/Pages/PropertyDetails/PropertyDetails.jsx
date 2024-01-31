@@ -20,18 +20,24 @@ import Reviews from './Reviews';
 import GallerySlider from './GalleySlider';
 import PropertyRating from './Rating';
 import Footer from '../../Components/Reuse/Footer/Footer';
+import { useLocation, useParams } from 'react-router-dom';
+import AxiosBase from '../../Axios/AxiosBase';
+import SideComponents from './SideComponents';
+import { useQuery } from '@tanstack/react-query';
 
 const PropertyDetails = () => {
     const [isNavbar,setIsNavbar] = useState(false);
     const[ property,setProperty ] = useState({})
     const [pages,setPages] = useState([1,2,3,4])
+    const {id} = useParams()
     useEffect(()=>{
       
-        axios.get('/Json/Properties.json')
+        AxiosBase().get(`/property/single/get/${id}`)
         .then(res =>{
-            setProperty(res.data[0])
+            setProperty(res.data)
         })
     },[])
+  
     useEffect(()=>{
         const handleScroll = ()=>{
           if(window.scrollY > 100){
@@ -48,44 +54,53 @@ const PropertyDetails = () => {
           window.removeEventListener('scroll', handleScroll);
         };
         },[scrollY])
+      const {data:reviews=[],isLoading,refetch:refetchReviews} = useQuery({
+        queryKey:['Reviews'],
+        queryFn:async()=>{
+         const res = await AxiosBase().get(`/listing/reviews/get/${id}`)
+         return res.data;
+        }
+      })
     return (
         <div className='min-h-[120vh] font-jost bg-color_bg_green'>
          <div className=''><Navbar2 isNavbar={isNavbar}></Navbar2></div>
            <Navbar isNavbar={isNavbar}></Navbar>
-           <GallerySlider></GallerySlider>
+           <GallerySlider images={property.images}></GallerySlider>
              <WidthContainer>
             
-<div className='flex lg:flex-row flex-col mt-20'>
-    <div className='lg:w-[70%] space-y-10'>
+<div className='flex lg:flex-row flex-col gap-5 mt-20'>
+    <div className='lg:w-[70%]  space-y-10'>
         <div className='p-5 bg-white rounded-md'>
             <div className='space-y-2'>
-            <p className=' bg-[#f8cbcb] text-color_danger px-4 py-1 text-[14px] rounded-full w-fit '>{'Rent'}</p>
-            <h1 className='text-2xl font-semibold text-color_text_normal'>{property.title}</h1>
-            <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.address}</h3></p></div>
-            <h1 className='text-2xl text-color_primary font-bold'>${property.price}</h1>
+            <p className=' bg-[#f8cbcb] text-color_danger px-4 py-1 text-[14px] rounded-full w-fit '>{property?.propertyStatus?.listingIn}</p>
+            <h1 className='text-2xl font-semibold text-color_text_normal'>{property?.title}</h1>
+            <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property?.details?.address.address}</h3></p></div>
+            <h1 className='text-2xl text-color_primary font-bold'>${property?.propertyStatus?.listingIn==='Rent' ? property?.propertyStatus?.rentAmount : property?.propertyStatus?.salePrice}</h1>
             </div>
             <div className='flex md:flex-row flex-col  gap-2 md:items-center pt-5'>
  <div className='flex items-center gap-2'>
-        <div className='p-2 bg-gray-200 rounded-full'><IoBedOutline></IoBedOutline></div><p>{property.bedrooms} Beds</p></div>
+        <div className='p-2 bg-gray-200 rounded-full'><IoBedOutline></IoBedOutline></div><p>{property?.details?.features?.bedrooms} Beds</p></div>
         <div className='flex items-center gap-2'>
-        <div className='p-2 bg-gray-200 rounded-full'><LuBath></LuBath></div><p>{property.bathrooms} Baths</p></div>
+        <div className='p-2 bg-gray-200 rounded-full'><LuBath></LuBath></div><p>{property?.details?.features?.bathrooms} Baths</p></div>
         <div className='flex items-center gap-2'>
-        <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{1200} Sqft</p></div>
+        <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{property?.details?.area} Sqft</p></div>
        </div>
         </div>
 
         <Details property={property}></Details>
-        <Description></Description>
-        <Amenities></Amenities>
+        <Description property={property}></Description>
+        <Amenities amenities={property?.details?.amenities||[]}></Amenities>
         <PropertyVideo></PropertyVideo>
         <FloorPlane></FloorPlane>
-        <Gallery></Gallery>
+        <Gallery images = {property?.images||[]}></Gallery>
         <PropertyRating></PropertyRating>
-        <WriteReview></WriteReview>
-        <Reviews></Reviews>
+        <WriteReview refetch={refetchReviews}></WriteReview>
+        <Reviews reviews={reviews}></Reviews>
 
     </div>
-    <div className='lg:w-[30%]'></div>
+    <div className='lg:w-[30%]'>
+      <SideComponents></SideComponents>
+    </div>
 </div>
 
              </WidthContainer>

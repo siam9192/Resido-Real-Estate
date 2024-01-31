@@ -1,8 +1,13 @@
 import { Rating } from '@mui/material';
 import React, { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-const WriteReview = ({property}) => {
+import UserAuth from '../../Authentication/userAuth/userAuth';
+import toast from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
+import AxiosBase from '../../Axios/AxiosBase';
+const WriteReview = ({refetch}) => {
     const [toggle,setToggle] = useState(true);
+    const {user} = UserAuth();
     const handler = ()=>{
         setToggle(!toggle)
     }
@@ -13,19 +18,40 @@ const WriteReview = ({property}) => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        if(!user){
+            toast.error('Please Login first')
+            return;
+        }
         const form = e.target;
-        const name = form.value;
-        const email = form.value;
-        const message = form.value;
+        const name = form.name.value;
+        const email = user?.email;
+        const message = form.message.value;
         const review = {
-         name,email,message,
+         name,email,
+         userPhoto:user.photoURL || 'https://i.ibb.co/TH1W6TG/default-Pic.png',
+         message,
+
          ratting:{
             property:propertyRatting,
+            location:locationRatting,
             cost:valueRatting,
-            support:supportRatting
+            support:supportRatting,
+            averageRatting: (propertyRatting+locationRatting+valueRatting + supportRatting)/4
          }
         }
-        console.log(review)
+    AxiosBase().post('/listing/review/post',review)
+    .then(res =>{
+        if(res.data.insertedId){
+          toast.success('Thanks for your valuable review')
+          refetch()
+        }
+        else{
+            toast.error('Something went wrong')
+        }
+    })
+    .catch(err =>{
+        toast.error('Something went wrong')
+    })
     }
     return (
         <div className='p-5 bg-white rounded-md'>
@@ -86,16 +112,20 @@ const WriteReview = ({property}) => {
                 </div>
             </div>
             <form className='space-y-4 text-normal font-normal pt-5' onSubmit={handleSubmit}>
-            <textarea  className='w-full h-72 bg-color_bg_green border p-2' placeholder='Message'></textarea>
+            <textarea  className='w-full h-72 bg-color_bg_green border p-2' name='message' placeholder='Message'></textarea>
             <div className='grid lg:grid-cols-2 gap-5'>
                
-                <input className='w-full py-3 bg-color_bg_green  border rounded-md px-2' placeholder='Your Name'/>
-                <input className='w-full py-3 bg-color_bg_green  border rounded-md px-2' placeholder='Your Email'/>
+                <input className='w-full py-3 bg-color_bg_green  border rounded-md px-2' name='name' readOnly value={user?.displayName||''} placeholder='Your Name'/>
+                <input className='w-full py-3 bg-color_bg_green  border rounded-md px-2' value={user?.email||''} placeholder='Your Email'/>
             </div>
             <button className='bg-[#e7faf4] px-6 py-3 border-2 border-[#b5efdf] rounded-md  text-color_primary font-semibold text-xl'>Submit Review</button>
             </form>
         </div>
         </div>
+        <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
         </div>
     );
 }

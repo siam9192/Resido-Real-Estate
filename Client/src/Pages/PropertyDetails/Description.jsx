@@ -14,7 +14,9 @@ const Description = ({property}) => {
         </div>
         </div>
         <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[700px] opacity-100' : 'max-h-[0]  opacity-100 '}`}>
-        <p className='font-pop font-normal'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit necessitatibus, eius numquam minus cum repellat, cumque nisi aperiam velit laboriosam voluptate magnam similique laborum possimus! Cumque deserunt ad consequuntur et corrupti ex assumenda incidunt voluptates, harum necessitatibus sit deleniti magni nam rem error accusantium sed? Inventore eos ea itaque velit, labore possimus, repellat sequi blanditiis ipsam atque, delectus unde explicabo aliquam saepe natus ipsa. Dolore eos, quam maiores quod, quos eveniet, voluptate quae sapiente asperiores obcaecati saepe quas a aut!</p>
+        <p className='font-pop font-normal'>
+            {property?.description}
+        </p>
         </div>
         </div>
     );

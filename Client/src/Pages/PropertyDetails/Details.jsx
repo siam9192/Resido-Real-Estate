@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import PropertyRating from './Rating';
 const Details = ({property}) => {
     const [toggle,setToggle] = useState(false);
     const handler = ()=>{
@@ -14,10 +15,10 @@ const Details = ({property}) => {
         </div>
         </div>
         <div className={`space-y-4 pt-3 font-semibold transition-[max-height] duration-500 ease-in-out overflow-hidden ${toggle ? 'max-h-[1000px]' : 'max-h-0 transition-[max-height] duration-500'}`}>
-        <h3>Garage : <span>{1}</span></h3>
-        <h3>Area Size (sqft) : <span>{1200}</span></h3>
-        <h3>Bedroom : <span>{4}</span></h3>
-        <h3>Bathroom : <span>{3}</span></h3>
+        <h3>Garage : <span>{property?.details?.garages}</span></h3>
+        <h3>Area Size (sqft) : <span>{property?.details?.features.area}</span></h3>
+        <h3>Bedrooms : <span>{property?.details?.features?.bedrooms}</span></h3>
+        <h3>Bathrooms : <span>{property?.details?.features?.bathrooms}</span></h3>
         </div>
         </div>
     );
