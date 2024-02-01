@@ -5,9 +5,11 @@ import UserAuth from '../../Authentication/userAuth/userAuth';
 import toast from 'react-hot-toast';
 import  { Toaster } from 'react-hot-toast';
 import AxiosBase from '../../Axios/AxiosBase';
+import { useParams } from 'react-router-dom';
 const WriteReview = ({refetch}) => {
     const [toggle,setToggle] = useState(true);
     const {user} = UserAuth();
+    const {id} = useParams()
     const handler = ()=>{
         setToggle(!toggle)
     }
@@ -15,7 +17,7 @@ const WriteReview = ({refetch}) => {
     const [locationRatting,setLocationRatting] = useState(3)
     const [valueRatting,setValueRatting] = useState(3) 
     const [supportRatting,setSupportRatting] = useState(3) 
-
+    
     const handleSubmit = (e)=>{
         e.preventDefault();
         if(!user){
@@ -25,11 +27,22 @@ const WriteReview = ({refetch}) => {
         const form = e.target;
         const name = form.name.value;
         const email = user?.email;
-        const message = form.message.value;
+        const reviewText = form.message.value;
         const review = {
+         listingId:id, 
          name,email,
          userPhoto:user.photoURL || 'https://i.ibb.co/TH1W6TG/default-Pic.png',
-         message,
+         reviewText,
+         date:{
+          time:{
+            hour: new Date().getHours(),
+            minute: new Date().getMinutes(),
+            second: new Date().getSeconds()
+          },
+          day: new Date().getDate(),
+          month: new Date().getMonth(),
+          year: new Date().getFullYear()
+         },
 
          ratting:{
             property:propertyRatting,

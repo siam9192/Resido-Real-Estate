@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TbShare3 } from "react-icons/tb";
 import { FaLocationArrow, FaRegHeart } from "react-icons/fa";
 import UserAuth from '../../Authentication/userAuth/userAuth';
@@ -9,6 +9,16 @@ const SideComponents = () => {
     const {user} = UserAuth();
     const [saveStatus,setSaveStatus] = useState('Save');
     const {id} = useParams();
+
+
+    useEffect(()=>{
+      if(user){
+        AxiosBase().get(`/listing/single/isChecked?id=${id}&email=${user.email}'`)
+        .then(res=> setSaveStatus(res.data.status))
+      }
+    },[user])
+
+
     const sendMessage = (e)=>{
         e.preventDefault()
         const form = e.target;
@@ -17,7 +27,6 @@ const SideComponents = () => {
         const description = form.description.value;
        if(!user){
        toast.error('Please Log in First')
-       
         return;
        }
         const Message = {

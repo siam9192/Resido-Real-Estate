@@ -68,7 +68,7 @@ const PropertyDetails = () => {
            <GallerySlider images={property.images}></GallerySlider>
              <WidthContainer>
             
-<div className='flex lg:flex-row flex-col gap-5 mt-20'>
+<div className='flex lg:flex-row flex-col gap-5 py-20 '>
     <div className='lg:w-[70%]  space-y-10'>
         <div className='p-5 bg-white rounded-md'>
             <div className='space-y-2'>
