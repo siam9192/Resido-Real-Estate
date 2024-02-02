@@ -2,15 +2,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { SlOptionsVertical } from "react-icons/sl";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import AxiosBase from '../../../../Axios/AxiosBase'
+import UserAuth from '../../../../Authentication/userAuth/userAuth';
 const MyProperties = () => {
     const [properties,setProperties] = useState([]);
     const shortBy = ['Newest','Views H-L','Views L-H','Price H-L','Price L-H']
     const [pages,setPages] = useState([1,2,3,4,5,6,7,8])
     const [currentPage,setCurrentPage] = useState(1)
+    const {user} = UserAuth()
     useEffect(()=>{
-        axios.get('/Json/Properties.json')
+        if(user){
+          AxiosBase().get(`user/listings?email=${user.email}`)
         .then(res => setProperties(res.data))
-    },[])
+        }
+    },[user])
     return (
         <div className='font-jost lg:p-5 p-2'>
         <h1 className='lg:text-5xl text-3xl text-black'>My Properties</h1>
@@ -46,12 +51,12 @@ const MyProperties = () => {
             <div className='space-y-2'>
               <h1 className='text-xl text-black font-semibold'>{property.title}</h1>
             <p className=''>{property.address}</p>
-            <h1 className='text-xl text-black font-semibold'>${property.price}</h1>
+            <h1 className='text-xl text-black font-semibold'>${property?.propertyStatus.salePrice||property?.propertyStatus.rentAmount}</h1>
             </div>
           </td>
           <td>13 Jan,2023</td>
-          <td>{220}</td>
-          <td><h2 className='py-1 px-3 bg-[#bef3cb]  text-color_success text-center rounded-full'>{'Active'}</h2></td>
+          <td>{property.views||0}</td>
+          <td><h2 className='py-1 px-3 bg-[#bef3cb]  text-color_success text-center rounded-full capitalize'>{property.details.approveStatus.approve_status||'pending'}</h2></td>
            <td className='text-gray-700 hover:text-color_danger  text-end text-xl hover:cursor-pointer'><SlOptionsVertical></SlOptionsVertical> </td>
         </tr>
         

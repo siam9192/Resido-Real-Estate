@@ -72,7 +72,7 @@ const Dashboard = () => {
                   
                 </div>
           </div>
-          <div className='md:grid grid-cols-6 gap-5 space-y-5'>
+          <div className='md:grid grid-cols-6 gap-5 lg:space-y-0 space-y-5'>
             <div className=' col-span-4 bg-white p-5 shadow-md rounded-md'>
                 <h1 className='text-xl text-color_text_normal font-semibold pb-5'>View Analytics</h1>
              <DashBoardLineChart></DashBoardLineChart>
@@ -85,7 +85,7 @@ const Dashboard = () => {
            <h2 className=' font-semibold text-black pb-1'>Gender</h2>
             {
                 viewsData.map((item,index)=>{
-                    return <div className='space-y-2'>
+                    return <div className='space-y-2' key={index}>
                        <div className='flex justify-between items-center'> <h1 className=' text-color_secondary'>{item.by}</h1> <h3 className='text-black'>{item.value}%</h3></div>
                         <div className='bg-gray-200 rounded-full'>
                             <div className=' bg-color_primary rounded-r-full py-1 rounded-full' style={{width:`${item.value}%`}}></div>

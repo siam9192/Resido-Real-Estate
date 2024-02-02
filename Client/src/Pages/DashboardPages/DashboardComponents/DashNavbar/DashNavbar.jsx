@@ -9,7 +9,7 @@ const DashNavbar = () => {
     const {toggle,handleToggle} = useContext(NavbarHandlingContext);
    
     return (
-        <div className='flex h-[80px] font-jost relative'>
+        <div className='flex h-[80px] font-jost sticky top-0'>
             <div className='w-[30%] lg:block hidden  bg-dashboard_primary border-b p-2 lg:flex justify-between items-center '>
             <h1 className='text-5xl font-bold text-white'>Resido</h1>
             <div className='lg:hidden block'>

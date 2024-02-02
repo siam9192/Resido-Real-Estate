@@ -6,6 +6,7 @@ import AxiosBase from '../../../../Axios/AxiosBase';
 import storage from '../../../../Authentication/Firebase/Firebase.storage.config';
 import { v4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { updateCurrentUser, updateProfile } from 'firebase/auth';
 import auth from '../../../../Authentication/Firebase/Firebase.config';
 
 const Profile = () => {
@@ -70,7 +71,7 @@ const Profile = () => {
         setChangedImage([file,url])
     }
 
-    const updateProfile = (e)=>{
+    const handleUpdateProfile = (e)=>{
         e.preventDefault();
         const form = e.target;
         const firstName = form.firstName.value;
@@ -92,11 +93,12 @@ const Profile = () => {
             }
         }
         let imageUrl;
-        console.log(changedImage)
+      
        if(changedImage[0]){
+        
         const imageRef =   ref(storage,`/images/users/${(changedImage[0].name + '_'+  v4())}`)
          
-                uploadBytes(imageRef,changeImage[0])
+                uploadBytes(imageRef,changedImage[0])
                 .then((snapshot)=>{
                     getDownloadURL(imageRef)
                     .then(url=>{
@@ -109,23 +111,27 @@ const Profile = () => {
                             contact
                         }
                       }
-                  updateProfile(auth.currentUser,{
-                    displayName:firstName + ' ' + lastName,photoURL:url
-                  })
-                  .then(res =>{
-                    AxiosBase().put('/user/profile/update',{email:user.email,updatedProfile})
-                    .then(res =>{
-                      if(res.data.modifiedCount)
-                      {
-                          // window.location.reload();
-                      }
-                    })
-                    .catch(err=>console.log(err))
-                  })
-                  .catch(err=> {
-                    console.log(err)
-                  })
-                  
+                      updateProfile(auth.currentUser,{
+                        displayName:firstName + ' ' + lastName,photoURL:url
+                     
+                      })
+                      .then(res=>{
+                        AxiosBase().put('/user/profile/update',{email:user.email,updatedProfile})
+                        .then(res =>{
+                          if(res.data.modifiedCount)
+                          {
+                              window.location.reload();
+                          }
+
+                        })
+                        .catch(err=>{
+
+                        })
+                      })
+                      .catch(err=>{
+
+                      })
+
                     })
                     .catch((error) => {
                         console.error('Error getting download URL:', error.message);
@@ -143,13 +149,27 @@ const Profile = () => {
                     contact
                 }
               }
-              AxiosBase().put('/user/profile/update',{email:user.email,updatedProfile})
-              .then(res =>{
-                if(res.data.modifiedCount)
-                {
-                    window.location.reload();
-                }
+              updateProfile(auth.currentUser,{
+                displayName:firstName + ' ' + lastName
+             
               })
+              .then(res=>{
+                AxiosBase().put('/user/profile/update',{email:user.email,updatedProfile})
+                .then(res =>{
+                  if(res.data.modifiedCount)
+                  {
+                      window.location.reload();
+                  }
+
+                })
+                .catch(err=>{
+
+                })
+              })
+              .catch(err=>{
+
+              })
+
         }
 
     }
@@ -170,7 +190,7 @@ const Profile = () => {
                             <h2>{profileDetails?.about?.profession|| 'N/A'}</h2>
                         </div>
                         <div className='mt-2 space-y-1'>
-                            <h2 className='text-gray-600 text-xl'>hello@mail.com</h2>
+                            <h2 className='text-gray-600 text-xl'>{user?.email}</h2>
                             <h3>Email</h3>
                         </div>
                 </div>
@@ -192,7 +212,7 @@ const Profile = () => {
                   <div className='space-y-2'>
                   <h1 className=' text-color_primary text-xl font-semibold'>About Me</h1>
                         <p>{
-                            profileDetails?.about?.aboutDescription ? profileDetails?.about?.aboutDescription :
+                            profileDetails?.about?.aboutSelf ? profileDetails?.about.aboutSelf :
                             'Write something about yourself from edit tab...'
                             }</p>
                   </div>
@@ -224,17 +244,17 @@ const Profile = () => {
                        <div className='space-y-3'>
                         <h1 className='text-black font-semibold'>Email: <span className='text-[12px] text-gray-600'>{profileDetails?.about?.contact?.email||'N/A'}</span></h1>
                         <h1 className='text-black font-semibold'>Phone: <span className='text-[12px] text-gray-600'>{profileDetails?.about?.contact?.phone||'N/A'}</span></h1>
-                        <h1 className='text-black font-semibold'>City: <span className='text-[12px] text-gray-600'>{profileDetails?.about?.address?.city||'N/A'}</span></h1>
-                        <h1 className='text-black font-semibold'>Address: <span className='text-[12px] text-gray-600'>{profileDetails?.about?.address?.address||'N/A'}</span></h1>
+                        <h1 className='text-black font-semibold'>City: <span className='text-[12px] text-gray-600'>{profileDetails?.about?.contact?.addressDetails?.city||'N/A'}</span></h1>
+                        <h1 className='text-black font-semibold'>Address: <span className='text-[12px] text-gray-600'>{profileDetails?.about?.contact?.addressDetails?.address||'N/A'}</span></h1>
                         
                        </div>
                   </div>
                     </div>
                     :
-                    <form className='mt-5 space-y-3' onSubmit={updateProfile}>
+                    <form className='mt-5 space-y-3' onSubmit={handleUpdateProfile}>
                         <h1 className='text-xl text-color_text_normal font-semibold'>Edit Profile</h1>
                         <div className='flex items-center gap-3'>
-                            <img src={changedImage[1] || "https://griya.dexignzone.com/react/demo/static/media/cover.3b17b4bcd4008640868a.jpg"}  alt="" className='w-20 h-20 rounded-full' />
+                            <img src={changedImage[1] || user?.photoURL ||"https://griya.dexignzone.com/react/demo/static/media/cover.3b17b4bcd4008640868a.jpg"}  alt="" className='w-20 h-20 rounded-full' />
                             <div className='border-2 border-color_info text-black w-fit py-3 px-6 rounded-lg hover:bg-color_dark hover:text-white hover:cursor-pointer transition-all duration-200 ease-in-out ' onClick={changeImage}>Upload Photo</div>
                             <input type="file" ref={imageInput} className='hidden' onChange={handleChangedImage}/>
                         </div>
@@ -297,7 +317,7 @@ const Profile = () => {
                             </div>
                     <div className='space-y-2'>
                         <h1 className='text-black font-semibold'>About*</h1>
-                        <textarea name='aboutSelf' placeholder='Write Something About Your Self' defaultValue={profileDetails?.about?.aboutDescription} className='h-[250px] w-full p-2 border rounded-lg  bg-white outline-color_primary'></textarea>
+                        <textarea name='aboutSelf' placeholder='Write Something About Your Self' defaultValue={profileDetails?.about?.aboutSelf} className='h-[250px] w-full p-2 border rounded-lg  bg-white outline-color_primary'></textarea>
                         </div>
 
                         </div>
@@ -310,7 +330,7 @@ const Profile = () => {
                     </div>
                     <div className='space-y-2'>
                         <h1 className='text-black font-semibold'>City*</h1>
-                        <input type="text" name='city' placeholder='Your City Name' defaultValue={profileDetails?.about?.contact?.addressDetails?.address} className='w-full py-4 border rounded-lg px-2 bg-white outline-color_primary'/>
+                        <input type="text" name='city' placeholder='Your City Name' defaultValue={profileDetails?.about?.contact?.addressDetails?.city} className='w-full py-4 border rounded-lg px-2 bg-white outline-color_primary'/>
                             
                       
                     </div>

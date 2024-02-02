@@ -97,8 +97,8 @@ const AddProperties = () => {
         const type = form.propertyType.value;
         const listingIn = form.listingIn?.value;
         const rentType = form.rentType?.value || '';
-        const rentAmount = parseInt(form.rentAmount?.value || 0);
-        const salePrice = parseInt(form.salePrice?.value || 0)
+        const rentAmount = parseInt(form.rentAmount?.value)||0;
+        const salePrice = parseInt(form.salePrice?.value ) || 0
         const area = parseInt(form.area.value);
         const bedrooms = parseInt(form.bedrooms.value);
         const bathrooms = parseInt(form.bathrooms.value);
@@ -132,6 +132,17 @@ const AddProperties = () => {
             rentType,
             rentAmount
         }
+
+        const date ={
+            time:{
+              hour: new Date().getHours(),
+              minute: new Date().getMinutes(),
+              second: new Date().getSeconds()
+            },
+            day: new Date().getDate(),
+            month: new Date().getMonth(),
+            year: new Date().getFullYear()
+           }
      
          if(images.length < 4){
             return
@@ -164,7 +175,7 @@ const AddProperties = () => {
          Promise.all(imageUrls)
          .then(urls=>{
             const property = {
-                userEmail:user.email,title,description,images:[...urls],details,propertyStatus
+                userEmail:user.email,title,description,images:[...urls],views:0,details,propertyStatus,date
             }
            AxiosBase().post('/property/add',property)
            .then(res =>{
@@ -290,7 +301,7 @@ setImages([...images,file])
            : 
            <div className='space-y-2'>
            <h1 className='text-black font-semibold'>Sale Price*</h1>
-           <input type="text" name='SalePrice' placeholder='Price of Property' className='w-full py-4 border rounded-lg px-2 outline-color_primary' required />
+           <input type="text" name='salePrice' placeholder='Price of Property' className='w-full py-4 border rounded-lg px-2 outline-color_primary' required />
           
        </div>
   

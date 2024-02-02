@@ -1,13 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar1 from '../../Components/HomeComponents/Navbars/Navbar1';
 import Navbar2 from '../../Components/HomeComponents/Navbars/Navbar2';
 import WidthContainer from '../../Components/Reuse/WidthContainer/WidthContainer';
 import SearchBox from './SearchBox';
 import MainListBox from './MainListBox';
 import Navbar from '../../Components/HomeComponents/Navbars/Navbar';
+import { useLocation } from 'react-router-dom';
 
 const Listings = () => {
     const [isNavbar,setIsNavbar] = useState(false);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search)
+    // const mainListRef = useRef();
+    const [params,setParams] = useState([
+        ['key',searchParams.get('key')?.split(',').filter(val=> val !== '')||[]],
+        ['locations', searchParams.get('locations')?.split(',').filter(val=> val !== '')||[]],
+        ['type',searchParams.get('type')?.split(',').filter(val=> val !== '')||[]],
+        ['status',searchParams.get('status')?.split(',').filter(val=> val !== '')||[]],
+        ['features',searchParams.get('features')?.split(',').filter(val=> val !== '')||[]]
+      ]
+
+    )
+   
+ 
     useEffect(()=>{
         const handleScroll = ()=>{
           if(window.scrollY > 100){
@@ -24,6 +39,13 @@ const Listings = () => {
           window.removeEventListener('scroll', handleScroll);
         };
         },[scrollY])
+
+
+        const handleParams = (value)=>{
+            setParams(value)
+        }
+
+       
     return (
         <div className='min-h-[120vh]'>
          
@@ -43,10 +65,10 @@ const Listings = () => {
 
                     <div className='flex lg:flex-row flex-col gap-5'>
                         <div className='lg:w-[30%]'>
-                            <SearchBox></SearchBox>
+                            <SearchBox params={params} setParams={handleParams}></SearchBox>
                         </div>
                         <div className='lg:w-[70%]'>
-                            <MainListBox></MainListBox>
+                            <MainListBox params={params} setParams={handleParams}></MainListBox>
                         </div>
                     </div>
                 </WidthContainer>

@@ -4,9 +4,12 @@ import { IoBedOutline } from "react-icons/io5";
 import { LuBath } from "react-icons/lu";
 import { TbArrowAutofitHeight } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import AxiosBase from '../../../Axios/AxiosBase';
 const GridCard = ({property}) => {
   
-  
+   const updateViews = ()=>{
+    AxiosBase().put('/listing/view/update',{id:property._id})
+   }
     return (
         <div className='font-jost border rounded-lg'
            >
@@ -29,7 +32,7 @@ const GridCard = ({property}) => {
        </div>
        <div className='pt-2 flex justify-between items-center'>
         <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>
-       <Link to={`/listings/property/details/${property._id}`}> <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button></Link>
+       <Link to={`/listings/property/details/${property._id}`} onClick={updateViews}> <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button></Link>
        </div>
         </div>
         </div>

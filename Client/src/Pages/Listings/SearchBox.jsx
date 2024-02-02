@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import { GoSearch } from "react-icons/go";
 import { AiOutlineMinus,AiOutlinePlus } from "react-icons/ai";
-const SearchBox = () => {
+import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
+const SearchBox = ({params,setParams}) => {
     const [isLocationOpen,setIsLocation] = useState(false);
     const [isProperTypeOpen,setPropertyType]   = useState(false)
     const [isStatusOpen,setStatus]  = useState(false)
     const [isFeatureOpen,setIsFeature] = useState(false);
+    const [searchParams,setSearchparams] = useState([...params])
+    const navigate = useNavigate();
+    const location = useLocation()
+    
      const locations = [
         "Tokyo",
         "New York City",
@@ -23,6 +28,7 @@ const SearchBox = () => {
         "Condos",
         "Denver",
         "House",
+        "Flat",
         "Offices",
         "Rental",
         "Studios",
@@ -44,7 +50,8 @@ const SearchBox = () => {
         "Spa & Massage",
         "Swimming Pool",
         "Window Covering"
-      ]
+    ]
+
     //   lassName={`grid overflow-hidden transition-all duration-${300*index} ease-in-out  ${isLocationOpen ? 'grid-rows-[1fr] ' : 'hidden grid-rows-[0fr] '}`} key={index}
       
       
@@ -60,10 +67,44 @@ const SearchBox = () => {
       const handleFeature = ()=>{
         setIsFeature(!isFeatureOpen)
       }
-     const style={
-        transition: `display  0.${0.3+(1/10)}s ease-in-out`, // Adjust the transition properties
-        display: isLocationOpen ? 'block' : 'none',
+    //  const style={
+    //     transition: `display  0.${0.3+(1/10)}s ease-in-out`, // Adjust the transition properties
+    //     display: isLocationOpen ? 'block' : 'none',
+    //   }
+
+    const paramsArray = [...searchParams];
+       
+
+      const search = ()=>{
+
+      navigate({
+        pathname:'/listings',
+        search:`${createSearchParams(searchParams)}`
+      },{replace:true})
+      setParams(searchParams)
+    //   window.scrollTo(0,0)
       }
+      const selectQueryValue = (index,e)=>{
+        const value = e.target.value;
+        if(e.target.checked){
+            paramsArray[index][1].push(value)
+            console.log(paramsArray[index][1])
+            setSearchparams(paramsArray)
+        }
+        else{
+        const arrIndex =  paramsArray[index][1].indexOf(value);
+       
+        paramsArray[index][1].splice(arrIndex,1)
+        
+        }
+
+      }
+    
+      const checkValue = (index,value)=>{
+       return searchParams[index][1].includes(value)
+      }
+
+
     return (
         <div className='bg-white border rounded-md p-5 font-jost '>
             <div className='p-3 bg-gray-100 flex items-center
@@ -82,10 +123,10 @@ const SearchBox = () => {
                     <div  className={`py-3  overflow-hidden transition-all duration-700 ease-in  ${isLocationOpen ? 'max-h-[3000px] opacity-100' : 'max-h-[0]  transition-[max-height] duration-700 ease-out opacity-100 '}`} >
                     {
                         locations.map((location,index)=>{
-                           return <div c>
+                           return <div    key={index}>
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== locations.length-1 ? 'border-b' : ''}`}
-                       >
-                                <h2>{location}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
+                    >
+                                <h2>{location}</h2> <input type="checkbox" defaultChecked={checkValue(1,location)} value={location} className='accent-color_dark w-4 h-4' onChange={(e)=> selectQueryValue(1,e)}/>
                             </div>
                            </div>
                         })
@@ -104,8 +145,8 @@ const SearchBox = () => {
                        propertyTypes.map((type,index)=>{
                            return <div >
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== propertyTypes.length-1 ? 'border-b' : ''}`}
-                       >
-                                <h2>{type}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
+                      key={index} >
+                                <h2>{type}</h2> <input type="checkbox" value={type} defaultChecked={checkValue(2,type)} className='accent-color_dark w-4 h-4' onChange={(e)=> selectQueryValue(2,e)}/>
                             </div>
                            </div>
                         })
@@ -124,8 +165,8 @@ const SearchBox = () => {
                         propertyStatus.map((status,index)=>{
                            return <div >
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== propertyStatus.length-1 ? 'border-b' : ''}`}
-                       >
-                                <h2>{status}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
+                      key={index} >
+                                <h2>{status}</h2> <input type="checkbox" defaultChecked={checkValue(3,status)} value={status} className='accent-color_dark w-4 h-4' onChange={(e)=> selectQueryValue(3,e)}/>
                             </div>
                            </div>
                         })
@@ -144,8 +185,8 @@ const SearchBox = () => {
                         features.map((feature,index)=>{
                            return <div >
                             <div className={`py-3 flex justify-between items-center  font-semibold ${index !== features.length-1 ? 'border-b' : ''}`}
-                       >
-                                <h2>{feature}</h2> <input type="checkbox" className='accent-color_dark w-4 h-4'/>
+                      key={index} >
+                                <h2>{feature}</h2> <input type="checkbox" defaultChecked={checkValue(4,feature)} value={feature} className='accent-color_dark w-4 h-4' onChange={(e)=> selectQueryValue(4,e)}/>
                             </div>
                            </div>
                         })
@@ -154,10 +195,11 @@ const SearchBox = () => {
                 </div>
             </div>
             <div className='text-center pt-3'>
-            <button className='bg-[#e7faf4] w-full py-3 border-2 border-[#b5efdf] rounded-md  text-color_primary font-semibold text-xl'>Search</button>
+            <button className='bg-[#e7faf4] w-full py-3 border-2 border-[#b5efdf] rounded-md  text-color_primary font-semibold text-xl' onClick={search}>Search</button>
             </div>
         </div>
     );
 }
+
 
 export default SearchBox;
