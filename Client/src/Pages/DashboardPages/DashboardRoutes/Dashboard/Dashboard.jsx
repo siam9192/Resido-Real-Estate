@@ -1,11 +1,11 @@
 import React from 'react';
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
-import { BsCurrencyDollar } from "react-icons/bs";
-import { HiUserGroup } from "react-icons/hi";
 import { LuFileSearch2 } from "react-icons/lu";
 import { BsHouses } from "react-icons/bs";
-import { TbHomeSearch } from "react-icons/tb";
 import { TbHomeStats } from "react-icons/tb";
+import { IoEyeOutline } from "react-icons/io5";
+import { LuBookmarkMinus } from "react-icons/lu";
+import { FaRegHeart } from "react-icons/fa";
 import DivCard from '../../DashboardComponents/Divcard/DivCard';
 import DashBoardLineChart from '../../DashboardComponents/Charts/LineChart';
 const Dashboard = () => {
@@ -17,19 +17,19 @@ const Dashboard = () => {
             icon:<BsHouses></BsHouses>
         },
         {
-            name:'Total Visitor',
+            name:'Total Pending',
             value:50000,
-            icon:<HiUserGroup></HiUserGroup>
+            icon:<LuBookmarkMinus></LuBookmarkMinus>
         },
         {
-            name:'Total Reviews',
+            name:'Total Views',
             value:6300,
-            icon:<LuFileSearch2></LuFileSearch2>
+            icon:<IoEyeOutline></IoEyeOutline>
         },
          {
-            name:'Active Properties',
+            name:'Total Favourite ',
             value:60,
-            icon:<TbHomeStats></TbHomeStats>
+            icon:<FaRegHeart></FaRegHeart>
         },
     ]
     const viewsData = [{by:'Male',value:45},{by:'Female',value:30}]
@@ -42,16 +42,16 @@ const Dashboard = () => {
          <p className=' text-color_secondary font-semibold'>Welcome back!</p>
          </div>
          
-         <div className='space-y-5'>
-          <div className='py-5 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-5'>
+         <div className='space-y-5 mt-5'>
+          <div className='py-5 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-5 bg-white rounded-md'>
           {
             showCards.map((card,index)=>{
-                return <div className='px-5 pt-5 pb-10 text-center bg-white shadow-md flex md:flex-row flex-col-reverse items-center justify-between rounded-md border' key={index}>
+                return <div className='px-5 pt-5 pb-10 text-center bg-white  flex md:flex-row flex-col-reverse items-center justify-between ' key={index}>
                     <div className='space-y-2'>
-                        <h1 className=' text-color_text_normal  font-semibold'>{card.name}</h1>
-                        <h1 className=' text-black text-2xl font-semibold'>{card.value}</h1>
+                        <h1 className=' text-color_text_normal  text-xl'>{card.name}</h1>
+                        <h1 className=' text-black md:text-4xl text-3xl font-semibold'>{(card.value/1000).toFixed(2)}K</h1>
                     </div>
-                   <div className='lg:text-4xl text-6xl text-color_primary p-2 bg-gray-100 rounded-md'> {
+                   <div className='lg:text-4xl text-4xl text-white p-4 bg-black  rounded-full'> {
                         card.icon
                     }
                   
@@ -59,7 +59,7 @@ const Dashboard = () => {
                 </div>
             })
            }
-           <div className='px-5 pt-5 pb-10 text-center bg-white shadow-md lex hidden rounded-md border' >
+           <div className='px-5 pt-5 pb-10 text-center bg-white  hidden rounded-md border' >
                     <div className='space-y-2'>
                        <div className='w-full'>
                        <div className='w-[80%] h-44 border-[40px] border-black rounded-full bg-transparent'>
@@ -73,40 +73,15 @@ const Dashboard = () => {
                 </div>
           </div>
           <div className='md:grid grid-cols-6 gap-5 lg:space-y-0 space-y-5'>
-            <div className=' col-span-4 bg-white p-5 shadow-md rounded-md'>
+            <div className=' col-span-4 bg-white p-5  rounded-md'>
                 <h1 className='text-xl text-color_text_normal font-semibold pb-5'>View Analytics</h1>
              <DashBoardLineChart></DashBoardLineChart>
             </div>
-           <div className='col-span-2 p-5 bg-white shadow-md rounded-md'>
+           <div className='col-span-2 p-5 bg-white  rounded-md'>
         
            <h1 className='text-xl text-color_text_normal font-semibold '>Views Data</h1>
            
-           <div className='pt-3 space-y-2'>
-           <h2 className=' font-semibold text-black pb-1'>Gender</h2>
-            {
-                viewsData.map((item,index)=>{
-                    return <div className='space-y-2' key={index}>
-                       <div className='flex justify-between items-center'> <h1 className=' text-color_secondary'>{item.by}</h1> <h3 className='text-black'>{item.value}%</h3></div>
-                        <div className='bg-gray-200 rounded-full'>
-                            <div className=' bg-color_primary rounded-r-full py-1 rounded-full' style={{width:`${item.value}%`}}></div>
-                        </div>
-                    </div>
-                })
-            }
-           </div>
-           <div className='pt-3 space-y-2'>
-           <h2 className=' font-semibold text-black pb-1'>Age</h2>
-            {
-                viewsByAges.map((item,index)=>{
-                    return <div className='space-y-2'>
-                       <div className='flex justify-between items-center'> <h1 className=' text-color_secondary'>{item.by}</h1> <h3 className='text-black'>{item.value}%</h3></div>
-                        <div className='bg-gray-200 rounded-full'>
-                            <div className=' bg-color_primary rounded-r-full py-1 rounded-full' style={{width:`${item.value}%`}}></div>
-                        </div>
-                    </div>
-                })
-            }
-           </div>
+         
            </div>
           </div>
          </div>

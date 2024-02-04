@@ -13,8 +13,10 @@ const SideComponents = () => {
 
     useEffect(()=>{
       if(user){
-        AxiosBase().get(`/listing/single/isChecked?id=${id}&email=${user.email}'`)
-        .then(res=> setSaveStatus(res.data.status))
+        AxiosBase().get(`/listing/single/isChecked?id=${id}&email=${user.email}`)
+        .then(res=> {
+            setSaveStatus(res.data.status)
+        })
       }
     },[user])
 

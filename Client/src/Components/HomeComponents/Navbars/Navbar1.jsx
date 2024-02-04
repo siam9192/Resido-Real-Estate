@@ -34,7 +34,7 @@ const Navbar1 = ({bg}) => {
         setToggle(!toggle)
     }
 
-    console.log(user)
+    
     return (
      <div className={`border-b border-gray-500 px-10 ${bg?'bg-white' : 'bg-transparent'}`}>
            <div className='py-6 flex justify-between items-center font-pop '>
@@ -59,14 +59,10 @@ const Navbar1 = ({bg}) => {
             !user ?<Link to={'/sign-in'}><button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md'>Sign In</button></Link>
             :
          <div className='flex items-center gap-3 text-white'>
-           
-               <div className='py-3 px-5 text-xl bg-black text-white font-bold rounded-full border-info'>
-                {user.displayName[0].toUpperCase()}
-            </div>
-           <div className='text-xl '>
-           <IoIosArrowDown ></IoIosArrowDown>
-           
-           </div>
+<Link to={'/dashboard'}>
+
+<button className='px-6 py-3 bg-color_text_normal text-white rounded-lg'>Dashboard</button>
+          </Link>
          </div>
           }
         </div>
@@ -77,7 +73,7 @@ const Navbar1 = ({bg}) => {
         </div>
     </div>
     <div className={`${toggle ? 'max-h-[600px]' : 'max-h-0'} overflow-hidden transition-all ease-in duration-500 lg:hidden block z-50`}>
-  <div className='p-10 rounded-md lg:hidden block  bg-white w-full  shadow-lg font-jost'>
+  <div className='p-10 rounded-md lg:hidden block  w-full  text-white shadow-lg font-jost'>
    <ul className='flex flex-col  text-xl gap-2'>
    {
                 navLinks.map((link,index)=>{
@@ -90,10 +86,9 @@ const Navbar1 = ({bg}) => {
             !user ?<Link to={'/sign-in'}><button className=' bg-color_dark text-white px-8 py-3 w-fit rounded-md'>Sign In</button></Link>
             :
             <>
-            <div className='px-4 py-3 bg-black text-white font-bold'>
-                {user.displayName[0].toUpperCase()}
-            </div>
-            <button onClick={logout}>Logout</button>
+          <Link to={'/dashboard'}>  <button className='py-2 px-6 bg-color_text_normal text-white rounded-md'>Dashboard</button>
+            </Link>
+            <button onClick={logout} className=' bg-color_danger text-white px-6 py-2 rounded-md'>Logout</button>
             </>
           }
    </ul>

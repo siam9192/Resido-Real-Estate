@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import axios from 'axios';
+
+import { SlSocialFacebook } from "react-icons/sl";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
+import { LuLinkedin } from "react-icons/lu";
+
 import GridCard from '../../../../Components/Reuse/Cards/GridCard';
 import AxiosBase from '../../../../Axios/AxiosBase';
 import storage from '../../../../Authentication/Firebase/Firebase.storage.config';
@@ -8,6 +14,7 @@ import { v4 } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { updateCurrentUser, updateProfile } from 'firebase/auth';
 import auth from '../../../../Authentication/Firebase/Firebase.config';
+
 
 const Profile = () => {
     const {user} = UserAuth();
@@ -219,11 +226,12 @@ const Profile = () => {
                   <div className='space-y-2'>
                   <h1 className=' text-color_primary text-xl font-semibold'>Social</h1>
                      <div className='flex items-center flex-wrap gap-3'>
-                    {
-                        skills.map((skill,index)=>{
+                    {/* {
+                        profileDetails.details.social.map((skill,index)=>{
                             return <div className=' bg-color_bg_green hover:bg-color_primary text-color_primary hover:text-white px-4 py-1 rounded-full text-center hover:cursor-pointer' key={index}>{skill}</div>
                         })
-                    }
+                    } */}
+                    N/A
                      </div>
                   </div>
                   <div className='space-y-2'>
@@ -347,7 +355,7 @@ const Profile = () => {
                     <h1 className='text-xl font-semibold text-color_text_normal pb-3'>Latest Listing</h1>
                    <div className='md:space-y-3 lg:max-h-[700px] overflow-y-auto lg:grid-cols-none md:grid-cols-2 grid grid-cols-1 gap-5'>
                    {
-                      properties.length-properties.length === 0 ? <div className='py-10'>
+                      properties.length === 0 ? <div className='py-10'>
                       <h2 className='mt-20 text-xl font-bold text-center'>No Recent Listing</h2></div>:  properties.map((property,index)=><GridCard property={property} key={index}></GridCard>)
                     }
                    </div>

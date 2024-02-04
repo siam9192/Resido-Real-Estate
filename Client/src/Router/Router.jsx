@@ -14,11 +14,14 @@ import MyProperties from '../Pages/DashboardPages/DashboardRoutes/MyProperties/M
 import Profile from "../Pages/DashboardPages/DashboardRoutes/Profile/Profile";
 import Membership from "../Pages/DashboardPages/DashboardRoutes/Membership/Membership";
 import PrivateRoutes1 from "../Components/PrivateRoutes/PrivateRoutes1";
+import FavoriteProperties from "../Pages/DashboardPages/DashboardRoutes/FavoriteProperties/FavoriteProperties";
+import Error from "../Pages/Error/Error";
 // https://html.creativegigstf.com/homy/homy/dashboard/dashboard-index.html
 const Router = createBrowserRouter([
     {
         path:'/',
         element:<Routes></Routes>,
+        errorElement: <Error></Error>,
         children:[
             {
                 path:'/',
@@ -68,6 +71,12 @@ const Router = createBrowserRouter([
              element:<AddProperties></AddProperties>
             
             },
+            {
+                path:"/dashboard/favourite-property",
+                element:<FavoriteProperties></FavoriteProperties>
+               
+               },
+            ,
             {
                 path:"/dashboard/profile",
                 element:<Profile></Profile>

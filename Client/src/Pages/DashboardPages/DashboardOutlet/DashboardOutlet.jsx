@@ -17,12 +17,13 @@ const DashboardOutlet = () => {
     return (
         <div>
         <NavbarHandlingContext.Provider value={{toggle,handleToggle}}>
-        <DashNavbar></DashNavbar>
+    
           <div className='flex min-h-[100vh] relative overflow-hidden'>
-            <div className={` lg:w-[30%] lg:max-w-[30%]  ${toggle? 'w-[90%] max-w-[90%]': 'max-w-0 min-w-0 '} overflow-hidden transition-all duration-500 ease-in`}>
+            <div className={` lg:w-[30%] lg:max-w-[30%]  ${toggle? 'w-[80%] max-w-[90%] sticky top-0': 'max-w-0 min-w-0  '} overflow-hidden transition-all duration-500 ease-in`}>
             <DashSideBar></DashSideBar>
             </div>
             <div className={`w-full ${toggle ? '-mr-[200%]' : '-mr-0'} overflow-x-hidden bg-color_bg_green lg:max-h-[95vh] overflow-y-auto transition-all ease-out duration-300 `}>
+            <DashNavbar></DashNavbar>
                 <Outlet></Outlet>
             </div>
           </div>

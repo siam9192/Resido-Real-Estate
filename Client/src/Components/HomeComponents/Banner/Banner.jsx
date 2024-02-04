@@ -7,6 +7,8 @@ const Banner = () => {
     // https://resido-v2.smartdemowp.com/home-layout-2/?header_layout=1_1
     // https://themeforest.net/item/resido-real-estate-wordpress-theme/31804443
     const [isNavbar,setIsNavbar] = useState(false);
+    const [type,setType] = useState('Rent')
+    const types = ['Buy','Rent','Sale']
     useEffect(()=>{
         const handleScroll = ()=>{
           if(window.scrollY > 100){
@@ -23,6 +25,10 @@ const Banner = () => {
           window.removeEventListener('scroll', handleScroll);
         };
         },[scrollY])
+
+        const handleType = (value)=>{
+          setType(value)
+        }
     return (
      <>
      <Navbar isNavbar={isNavbar}></Navbar>
@@ -37,7 +43,7 @@ const Banner = () => {
                 </div>
                 <div className='flex justify-center pt-14'>
                     <form className='md:w-[70%] w-[90%] bg-white p-5 lg:flex items-center font-serif rounded-lg z-10 lg:space-y-0 space-y-2'>
-                        <div className='lg:w-[40%] flex items-center lg:justify-normal justify-between  px-2 font-pop'>
+                        <div className='lg:w-[40%] flex items-center lg:justify-normal justify-between lg:gap-3 px-2 font-pop'>
                             <div className='flex items-center gap-1'>
                                 <input type="checkbox" name='type' className=' accent-color_info w-5 h-5 rounded-full' /> <p className='text-gray-600 text-xl outline-none'>Sale</p>
                             </div>

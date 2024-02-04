@@ -16,9 +16,9 @@ const AgentCard = ({agent}) => {
     <IoMailOutline></IoMailOutline>
    </div>
     </div>
-    <p><span className='font-semibold'>Call: </span>{agent.contact}</p>
+    <p><span className='font-semibold'>Call: </span>{agent.contact_pone}</p>
     <div className='pt-2 mt-2 border-t flex justify-between items-center'>
-        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{agent.location}</h3></p></div>
+        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{agent.address}</h3></p></div>
        <Link to={'/agents/details/name'}> <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button></Link>
        </div>
     </div>

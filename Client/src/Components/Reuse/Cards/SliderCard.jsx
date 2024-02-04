@@ -12,11 +12,11 @@ const SliderCard = ({property,index,slideIndex}) => {
     const getWidth =(e)=>{
        setWidth(e.target.offsetWidth)
     }
-  
+  console.log(slideIndex)
     return (
        <>
         <div className='font-jost lg:block hidden border rounded-lg absolute lg:w-[30%] h-fit transition-transform ease-in duration-300 ' style={{
-            left:`${index*width}px`,transform:`translateX(-${slideIndex*width}px) `
+            left:`${index*35}%`,transform:`translateX(-${slideIndex*100}%) `
             }} ref={cardRef}>
             <img src={property.images[0]} alt="" className='h-72 w-full rounded-t-lg' />
         <div className='p-4 bg-white'>
@@ -36,12 +36,12 @@ const SliderCard = ({property,index,slideIndex}) => {
         <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{1200} Sqft</p></div>
        </div>
        <div className='pt-2 flex justify-between items-center'>
-        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.address}</h3></p></div>
+        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>
         <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button>
        </div>
         </div>
         </div>
-        <div className='font-jost border lg:hidden block rounded-lg absolute w-full h-fit transition-transform ease-in duration-300 ' style={{
+        <div className='font-jost border lg:hidden block rounded-lg  absolute w-full h-fit transition-transform ease-in duration-300 ' style={{
             top:`${index*550}px`,transform:`translateY(-${slideIndex*550}px) `
             }} onLoad={getWidth}>
             <img src={property.images[0]} alt="" className='h-72 w-full rounded-t-lg' />
@@ -62,7 +62,7 @@ const SliderCard = ({property,index,slideIndex}) => {
         <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{1200} Sqft</p></div>
        </div>
        <div className='pt-2 flex justify-between items-center'>
-        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.address}</h3></p></div>
+        <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>
         <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button>
        </div>
         </div>

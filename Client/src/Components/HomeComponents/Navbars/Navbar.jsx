@@ -4,8 +4,9 @@ import { AiOutlineUser } from "react-icons/ai";
 import { BiMenu } from "react-icons/bi";
 import { LuMinus } from "react-icons/lu";
 import WidthContainer from '../../Reuse/WidthContainer/WidthContainer';
+import UserAuth from '../../../Authentication/userAuth/userAuth';
 const Navbar = ({isNavbar}) => {
-    
+    const {user} = UserAuth()
     const navLinks = [
         {
             name:'Home',path:'/'
@@ -39,12 +40,24 @@ const Navbar = ({isNavbar}) => {
         </ul>
         </div>
         <div className='lg:flex items-center justify-between gap-3 lg:block hidden'>
-         <Link className='flex items-center gap-2 text-color_primary font-semibold'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
-         <button className=' bg-color_dark text-white py-4 bg-opacity-70 px-5 rounded-md flex items-center gap-2'><AiOutlineUser></AiOutlineUser><p>Sign in</p> </button>
+         <Link to={'/dashboard'} className='flex items-center gap-2 text-black'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
+         {
+            !user ?<Link to={'/sign-in'}><button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md'>Sign In</button></Link>
+            :
+         <div className='flex items-center gap-3 text-white'>
+{/*            
+               <div className='py-3 px-5 text-xl bg-black text-white font-bold rounded-full border-info'>
+                {user.displayName[0].toUpperCase()}
+            </div> */}
+            <button className='px-6 py-3 bg-color_text_normal text-white rounded-lg'>Dashboard</button>
+           {/* <div className='text-xl '>
+           <IoIosArrowDown ></IoIosArrowDown>
+           
+           </div> */}
+         </div>
+          }
         </div>
-        <div className='text-4xl text-black lg:hidden'>
-            <BiMenu></BiMenu>
-        </div>
+        
     </div>
   
           </WidthContainer>

@@ -31,7 +31,7 @@ const PropertyDetails = () => {
     const [pages,setPages] = useState([1,2,3,4])
     const {id} = useParams()
     useEffect(()=>{
-      
+       window.scrollTo(0,0)
         AxiosBase().get(`/property/single/get/${id}`)
         .then(res =>{
             setProperty(res.data)
@@ -68,7 +68,7 @@ const PropertyDetails = () => {
            <GallerySlider images={property.images}></GallerySlider>
              <WidthContainer>
             
-<div className='flex lg:flex-row flex-col gap-5 py-20 '>
+<div className='flex lg:flex-row flex-col gap-5 lg:py-20 py-10 '>
     <div className='lg:w-[70%]  space-y-10'>
         <div className='p-5 bg-white rounded-md'>
             <div className='space-y-2'>

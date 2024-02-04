@@ -10,6 +10,9 @@ const GridCard = ({property}) => {
    const updateViews = ()=>{
     AxiosBase().put('/listing/view/update',{id:property._id})
    }
+   const makePayment = async()=>{
+    const stripe = await loadStripe()
+   }
     return (
         <div className='font-jost border rounded-lg'
            >

@@ -38,7 +38,7 @@ const GallerySlider = ({images}) => {
     }
     return (
         <>
-        <div className='relative  lg:min-h-[60vh] min-h-[40vh] max-h-[70vh] overflow-x-hidden  md:block hidden'>
+        <div className='relative  lg:min-h-[60vh] min-h-[30vh] max-h-[70vh] overflow-x-hidden  md:block hidden'>
          
          {
              images?.map((image,index)=>{
