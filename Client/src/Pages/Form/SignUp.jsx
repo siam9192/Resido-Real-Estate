@@ -28,6 +28,11 @@ const SignUp = () => {
             isBan: false
         }
         const role = 'client'
+        
+        if(usernameStatus[1]){
+            setError('Please try with another username')
+            return 
+        }
         if(firstName.length < 2 || lastName.length < 2 ){
           setError('First Name & Last Name At least 3 character')
           return;
@@ -40,8 +45,9 @@ const SignUp = () => {
             setError(`Both Password does't match`)
             return;
         }
-      
-        const user = {firstName,lastName,username,role,photo,password,accountStatus}
+       
+        const user = {firstName,lastName,email,username,role,photo,password,accountStatus}
+
         createUser(email,password)
         .then(res =>{
             updateProfile(auth.currentUser,{

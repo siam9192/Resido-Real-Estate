@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import { LuFileSearch2 } from "react-icons/lu";
 import { BsHouses } from "react-icons/bs";
@@ -8,33 +8,45 @@ import { LuBookmarkMinus } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import DivCard from '../../DashboardComponents/Divcard/DivCard';
 import DashBoardLineChart from '../../DashboardComponents/Charts/LineChart';
+import AxiosBase from '../../../../Axios/AxiosBase';
 const Dashboard = () => {
     const {user} = UserAuth();
+    const [data,setData] = useState({})
+    
     const showCards = [
         {
             name:'Total Post',
-            value:230,
+            value:data?.totalPost||0,
             icon:<BsHouses></BsHouses>
         },
         {
             name:'Total Pending',
-            value:50000,
+            value:data?.pending||0,
             icon:<LuBookmarkMinus></LuBookmarkMinus>
         },
         {
             name:'Total Views',
-            value:6300,
+            value:data?.viewTotal||0,
             icon:<IoEyeOutline></IoEyeOutline>
         },
          {
             name:'Total Favourite ',
-            value:60,
+            value:data?.favourite||0,
             icon:<FaRegHeart></FaRegHeart>
         },
     ]
     const viewsData = [{by:'Male',value:45},{by:'Female',value:30}]
     const viewsByAges = [{by:'18-30',value:30},{by:'31-45',value:55},{by:'46-80',value:15}]
     // https://hously-admin-next.vercel.app/
+     useEffect(()=>{
+       if(user){
+        AxiosBase().get(`/dashboard/get-data/${user.email}`)
+        .then(res =>{
+            setData(res.data)
+        })
+       }
+     },[user])
+   
     return (
         <div className='md:p-5 p-2 font-jost'>
          <div className='space-y-2'>
@@ -49,7 +61,7 @@ const Dashboard = () => {
                 return <div className='px-5 pt-5 pb-10 text-center bg-white  flex md:flex-row flex-col-reverse items-center justify-between ' key={index}>
                     <div className='space-y-2'>
                         <h1 className=' text-color_text_normal  text-xl'>{card.name}</h1>
-                        <h1 className=' text-black md:text-4xl text-3xl font-semibold'>{(card.value/1000).toFixed(2)}K</h1>
+                    <h1 className=' text-black md:text-4xl text-3xl font-semibold'>{card.value >= 1000? (card.value/1000).toFixed(2)+'K' : card.value}</h1>
                     </div>
                    <div className='lg:text-4xl text-4xl text-white p-4 bg-black  rounded-full'> {
                         card.icon

@@ -3,7 +3,7 @@ import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import axios from 'axios';
 
 import { SlSocialFacebook } from "react-icons/sl";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaLocationArrow, FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
 import { LuLinkedin } from "react-icons/lu";
 
@@ -23,6 +23,7 @@ const Profile = () => {
     const [profileDetails,setProfileDetails] = useState({});
     const imageInput = useRef();
     const [changedImage,setChangedImage] = useState([])
+    const [isSaving,setSaving] = useState(false);
     const tabs=['About Me','Edit Profile']
     const handleTab = (index)=>{
         setTabIndex(index)
@@ -80,6 +81,7 @@ const Profile = () => {
 
     const handleUpdateProfile = (e)=>{
         e.preventDefault();
+        setSaving(true)
         const form = e.target;
         const firstName = form.firstName.value;
         const lastName = form.lastName.value;
@@ -122,21 +124,26 @@ const Profile = () => {
                         displayName:firstName + ' ' + lastName,photoURL:url
                      
                       })
+
                       .then(res=>{
                         AxiosBase().put('/user/profile/update',{email:user.email,updatedProfile})
                         .then(res =>{
                           if(res.data.modifiedCount)
+
+                          setSaving(false)
                           {
                               window.location.reload();
                           }
 
                         })
                         .catch(err=>{
+                            setSaving(false)
 
                         })
                       })
                       .catch(err=>{
-
+                    
+                    setSaving(false)
                       })
 
                     })
@@ -161,25 +168,29 @@ const Profile = () => {
              
               })
               .then(res=>{
+                
                 AxiosBase().put('/user/profile/update',{email:user.email,updatedProfile})
                 .then(res =>{
                   if(res.data.modifiedCount)
                   {
+                    setSaving(false)
                       window.location.reload();
                   }
 
                 })
                 .catch(err=>{
-
+                 setSaving(false)
                 })
               })
               .catch(err=>{
-
+                 setSaving(false)
               })
 
         }
 
     }
+
+  
     return (
         <div className='lg:p-5 p-2 font-jost space-y-10'>
 
@@ -345,7 +356,7 @@ const Profile = () => {
 
                             </div>
                            <div>
-                           <button type='submit' className='px-8 rounded-md py-3 bg-color_primary  text-white'>Save</button>
+                           <button type='submit' className='px-8 rounded-md py-3 bg-color_primary  text-white'>{isSaving? 'Saving..':'Save' }</button>
                         
                            </div>
                     </form>
@@ -356,7 +367,16 @@ const Profile = () => {
                    <div className='md:space-y-3 lg:max-h-[700px] overflow-y-auto lg:grid-cols-none md:grid-cols-2 grid grid-cols-1 gap-5'>
                    {
                       properties.length === 0 ? <div className='py-10'>
-                      <h2 className='mt-20 text-xl font-bold text-center'>No Recent Listing</h2></div>:  properties.map((property,index)=><GridCard property={property} key={index}></GridCard>)
+                      <h2 className='mt-20 text-xl font-bold text-center'>No Recent Listing</h2></div>:  properties.map((property,index)=>{
+                        return <div className='p-3 flex gap-2 bg-white rounded-md' key={index}>
+                        <img src={property.images[0]} alt="" className='w-32 h-24 rounded-md'/>
+                        <div className='space-y-1'>
+                           <h1 className='text-xl font-semibold text-color_text_normal hover:text-color_primary hover:cursor-pointer'>{property.title}</h1>
+                           <div className='flex items-center gap-2 text-[14px] text-gray-600'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>
+                           <div className='px-4 py-1 w-fit bg-[#e5f6f3] rounded-full text-color_success'>Buy</div>
+                        </div>
+                       </div>
+                      })
                     }
                    </div>
                 </div>

@@ -1,9 +1,32 @@
+import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { IoMdCheckmark } from "react-icons/io";
+import AxiosBase from '../../../Axios/AxiosBase';
+import UserAuth from '../../../Authentication/userAuth/userAuth';
+import { Navigate } from 'react-router-dom';
 const PackageCard = ({pack}) => {
-
+    const {user} = UserAuth();
     const makePayment = async()=>{
-        const stripe = loadStripe('pk_test_51OEFoaF0un34BsUzlCeA1Qjv16j4AbeWpd3AUsVgVxb4JD1DbZ57GjcCYn8sNbeoiHX8svh7iTzqMTc2mmymbdXr00cb9TNfxr')
+      if(!user){
+         return <Navigate to='/sign-in' state={'/'}></Navigate>
+      }
+        const stripe = await loadStripe('pk_test_51OEFoaF0un34BsUzlCeA1Qjv16j4AbeWpd3AUsVgVxb4JD1DbZ57GjcCYn8sNbeoiHX8svh7iTzqMTc2mmymbdXr00cb9TNfxr')
+        const body = {
+         email:user.email,
+         name:pack.package_name,
+         price:pack.price
+        }
+       
+        const response = await AxiosBase().post('/create-checkout-session',body);
+       const session = response.data;
+       console.log(stripe)
+       const result = stripe.redirectToCheckout({
+         sessionId:session.id
+       });
+       if(result.error){
+         console.log(result.error)
+       }
+        
     
        }
     return (
@@ -31,7 +54,7 @@ const PackageCard = ({pack}) => {
        </div>
         </div>
         <div className='text-center pt-5 font-jost'>
-          <button className='bg-[#e7faf4] px-6 py-3 border-2 border-[#b5efdf] rounded-md  text-color_primary font-semibold text-xl'>Chose Plane</button>
+          <button className='bg-[#e7faf4] px-6 py-3 border-2 border-[#b5efdf] rounded-md  text-color_primary font-semibold text-xl' onClick={makePayment}>Chose Plane</button>
         </div>
       </div>
     );

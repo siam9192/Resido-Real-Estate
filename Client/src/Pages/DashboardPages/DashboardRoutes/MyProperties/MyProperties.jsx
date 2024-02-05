@@ -16,6 +16,8 @@ const MyProperties = () => {
         .then(res => setProperties(res.data))
         }
     },[user])
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    console.log(properties)
     return (
         <div className='font-jost lg:p-5 p-2'>
         <h1 className='lg:text-5xl text-3xl text-black'>My Properties</h1>

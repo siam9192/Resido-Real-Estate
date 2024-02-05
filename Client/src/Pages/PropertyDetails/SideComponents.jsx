@@ -5,12 +5,13 @@ import UserAuth from '../../Authentication/userAuth/userAuth';
 import AxiosBase from '../../Axios/AxiosBase';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-const SideComponents = () => {
+import Swal from 'sweetalert2';
+const SideComponents = ({email}) => {
     const {user} = UserAuth();
     const [saveStatus,setSaveStatus] = useState('Save');
     const {id} = useParams();
-
-
+    const [isSending,setSending] = useState(false);
+    
     useEffect(()=>{
       if(user){
         AxiosBase().get(`/listing/single/isChecked?id=${id}&email=${user.email}`)
@@ -23,20 +24,70 @@ const SideComponents = () => {
 
     const sendMessage = (e)=>{
         e.preventDefault()
+        setSending(true)
         const form = e.target;
-        const email = form.email.value;
+        const from = form.email.value;
+        const to = email;
         const phone = form.phone.value;
         const description = form.description.value;
+        const date ={
+            time:{
+              hour: new Date().getHours(),
+              minute: new Date().getMinutes(),
+              second: new Date().getSeconds()
+            },
+            day: new Date().getDate(),
+            month: new Date().getMonth()+1,
+            year: new Date().getFullYear()
+           }
        if(!user){
        toast.error('Please Log in First')
         return;
        }
-        const Message = {
-            email,
-            phone,
-            description
+        const message = {
+            from,
+            to,
+            contact_phone:phone,
+            description,
+            propertyId:id,
+            date
         }
-        console.log(Message)
+    //   AxiosBase().post('/listing/message/send',message)
+    AxiosBase().post('/listing/message/send',message)
+      .then(res=>{
+        if(res.data.insertedId){
+            setSending(false)
+            Swal.fire({
+                title: "Sending Successful",
+                text: "Thank for your response!",
+                icon: "success",
+                iconColor: '#0d6efd',
+                background:'#f3f7fd'
+              });
+
+        }
+        else{
+            Swal.fire({
+                title: "Sending unsuccessful=",
+                text: "Something went wrong!",
+                icon: "error",
+                iconColor: '#0d6efd',
+                background:'#f3f7fd'
+              });
+        }
+      })
+      .catch(err=>{
+      
+        setSending(false);
+        Swal.fire({
+            title: "Sending unsuccessful=",
+            text: "Something went wrong!",
+            icon: "error",
+            iconColor: '#0d6efd',
+            background:'#f3f7fd'
+          });
+      })
+       
     }
   
     const saveProperty = ()=>{
@@ -73,19 +124,19 @@ const SideComponents = () => {
              <form className='bg-white p-5 space-y-3' onSubmit={sendMessage}>
              <div className='space-y-2'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Email</h3>
-                        <input type="text" name='name' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black ' readOnly={user?.email} value={user?.email||''} placeholder='Your Name' required/>
+                        <input type="text" name='email' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black ' readOnly={user?.email} value={user?.email||''} placeholder='Your Name' required/>
                         </div>
                         <div className='space-y-2'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Phone No.</h3>
-                        <input type="text" name='name' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black '  placeholder='+01 990478787' required/>
+                        <input type="text" name='phone' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black '  placeholder='+01 990478787' required/>
                         </div>
                         
                         <div className='space-y-2'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Description</h3>
-                        <textarea type="text" name='name' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black  min-h-[250px]'  placeholder='Im interested in this property'  required></textarea>
+                        <textarea type="text" name='description' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black  min-h-[250px]'  placeholder='Im interested in this property'  required></textarea>
 
                         </div>
-                        <button className='py-4 text-center w-full text-white font-semibold rounded-md bg-color_primary'>Send Message</button>
+                        <button disabled={isSending} className='py-4 text-center w-full text-white font-semibold rounded-md bg-color_primary'>{isSending? 'Sending..': 'Send'}</button>
              </form>
           
             </div>

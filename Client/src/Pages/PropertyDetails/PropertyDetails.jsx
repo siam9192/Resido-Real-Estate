@@ -90,7 +90,7 @@ const PropertyDetails = () => {
         <Details property={property}></Details>
         <Description property={property}></Description>
         <Amenities amenities={property?.details?.amenities||[]}></Amenities>
-        <PropertyVideo></PropertyVideo>
+        {/* <PropertyVideo></PropertyVideo> */}
         <FloorPlane></FloorPlane>
         <Gallery images = {property?.images||[]}></Gallery>
         <PropertyRating></PropertyRating>
@@ -99,7 +99,7 @@ const PropertyDetails = () => {
 
     </div>
     <div className='lg:w-[30%]'>
-      <SideComponents></SideComponents>
+      <SideComponents email = {property?.userEmail}></SideComponents>
     </div>
 </div>
 

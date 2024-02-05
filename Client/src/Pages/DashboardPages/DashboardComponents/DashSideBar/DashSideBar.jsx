@@ -34,7 +34,7 @@ const DashSideBar = () => {
         },
         {
         display:'Message',
-        path:'/message',
+        path:'/dashboard/message',
         icon:<LuMail></LuMail>
         }
 
@@ -123,7 +123,7 @@ profile:[
              {
             dashboardRoutes.dashboard.map((item,index)=>{
               return  <div  className='px-10 'key={index}>
-                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg ${item.path === pathname ? 'bg-black text-white' : 'text-black'} text-xl font-semibold hover:cursor-pointer`} onClick={()=> handleNavigation(item.path)}  >
+                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg ${item.path === pathname ? 'bg-color_primary text-white' : 'text-black'} text-xl font-semibold hover:cursor-pointer`} onClick={()=> handleNavigation(item.path)}  >
                         {item.icon} <h3>{item.display}</h3>
                         </div>
               </div>
@@ -137,7 +137,7 @@ profile:[
              {
             dashboardRoutes.profile.map((item,index)=>{
               return  <div  className='px-10 'key={index}>
-                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg ${item.path === pathname ? 'bg-black text-white' : 'text-black'} text-xl font-semibold hover:cursor-pointer`} onClick={()=> handleNavigation(item.path)}  >
+                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg ${item.path === pathname ? 'bg-color_primary text-white' : 'text-black'} text-xl font-semibold hover:cursor-pointer`} onClick={()=> handleNavigation(item.path)}  >
                         {item.icon} <h3>{item.display}</h3>
                         </div>
               </div>
@@ -151,7 +151,7 @@ profile:[
              {
             dashboardRoutes.listing.map((item,index)=>{
               return  <div  className='px-10 'key={index}>
-                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg  ${item.path === pathname ? 'bg-black text-white' : 'text-black'} text-xl font-semibold hover:cursor-pointer`} onClick={()=> handleNavigation(item.path)}  >
+                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg  ${item.path === pathname ? 'bg-color_primary text-white' : 'text-black'} text-xl font-semibold hover:cursor-pointer`} onClick={()=> handleNavigation(item.path)}  >
                         {item.icon} <h3>{item.display}</h3>
                         </div>
               </div>
