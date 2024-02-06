@@ -11,6 +11,7 @@ const SideComponents = ({email}) => {
     const [saveStatus,setSaveStatus] = useState('Save');
     const {id} = useParams();
     const [isSending,setSending] = useState(false);
+    const [author,setAuthor] = useState({})
     
     useEffect(()=>{
       if(user){
@@ -21,6 +22,15 @@ const SideComponents = ({email}) => {
       }
     },[user])
 
+    useEffect(()=>{
+        if(email){
+            AxiosBase().get(`/find/property/author?email=${email}`,)
+        .then(res =>{
+            setAuthor(res.data)
+        })
+        }
+    },[email])
+
 
     const sendMessage = (e)=>{
         e.preventDefault()
@@ -29,6 +39,7 @@ const SideComponents = ({email}) => {
         const from = form.email.value;
         const to = email;
         const phone = form.phone.value;
+        const sub = form.sub.value;
         const description = form.description.value;
         const date ={
             time:{
@@ -48,8 +59,10 @@ const SideComponents = ({email}) => {
             from,
             to,
             contact_phone:phone,
+            sub,
             description,
             propertyId:id,
+            status:'unread',
             date
         }
     //   AxiosBase().post('/listing/message/send',message)
@@ -64,6 +77,7 @@ const SideComponents = ({email}) => {
                 iconColor: '#0d6efd',
                 background:'#f3f7fd'
               });
+            //   form.reset()
 
         }
         else{
@@ -117,9 +131,9 @@ const SideComponents = ({email}) => {
             <div className='rounded-lg'>
             <div className='bg-color_primary p-5 rounded-t-lg flex items-center gap-4'>
                 <div>
-                    <img src="https://secure.gravatar.com/avatar/2a3143731035ae410bc1f9ac463b7681?s=120&d=mm&r=g" alt="" className='w-14 h-14 rounded-full'/>
+                    <img src={author?.photo||'/images/defaultPic.png'} alt="" className='w-14 h-14 rounded-full'/>
                 </div>
-                <h1 className='text-3xl text-white font-bold'>{user?.displayName}</h1>
+                <h1 className='text-3xl text-white font-bold'>{author?.name}</h1>
             </div>
              <form className='bg-white p-5 space-y-3' onSubmit={sendMessage}>
              <div className='space-y-2'>
@@ -130,13 +144,17 @@ const SideComponents = ({email}) => {
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Phone No.</h3>
                         <input type="text" name='phone' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black '  placeholder='+01 990478787' required/>
                         </div>
+                        <div className='space-y-2'>
+                            <h3 className=' text-color_text_normal font-semibold uppercase'>Subject.</h3>
+                        <input type="text" name='sub' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black '  placeholder='Message Subject' required/>
+                        </div>
                         
                         <div className='space-y-2'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Description</h3>
                         <textarea type="text" name='description' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black  min-h-[250px]'  placeholder='Im interested in this property'  required></textarea>
 
                         </div>
-                        <button disabled={isSending} className='py-4 text-center w-full text-white font-semibold rounded-md bg-color_primary'>{isSending? 'Sending..': 'Send'}</button>
+                        <button disabled={email===user?.email||isSending} className={`py-4 text-center w-full  font-semibold rounded-md ${email===user?.email ? 'bg-gray-200 text-black' : ' bg-color_primary text-white'}`}>{isSending? 'Sending..': 'Send'}</button>
              </form>
           
             </div>
@@ -157,10 +175,7 @@ const SideComponents = ({email}) => {
                     }
                 </div>
              </div>
-             <Toaster
-  position="top-center"
-  reverseOrder={false}
-/>
+           
         </div>
     );
 }

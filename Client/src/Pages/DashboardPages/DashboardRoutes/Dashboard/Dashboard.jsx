@@ -92,8 +92,6 @@ const Dashboard = () => {
            <div className='col-span-2 p-5 bg-white  rounded-md'>
         
            <h1 className='text-xl text-color_text_normal font-semibold '>Views Data</h1>
-           
-         
            </div>
           </div>
          </div>

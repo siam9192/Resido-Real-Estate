@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import UserAuth from '../../../../Authentication/userAuth/userAuth';
+import AxiosBase from '../../../../Axios/AxiosBase';
 
 const Message = () => {
     const [activeIndex,setActiveIndex] = useState(0)
-const messages =    [
+    const [inboxMessages,setInboxMessages] = useState([])
+    const {user} = UserAuth();
+    const messages =    [
         {
           "name": "Elijah Turner",
           "email": "elijah.turner@example.com",
@@ -52,7 +56,17 @@ const messages =    [
           status:'read' 
         }
         ]
-              
+    
+     useEffect(()=>{
+      if(user){
+      AxiosBase().get(`/users/inbox/messages/get?email=${user.email}`)
+      .then(res =>{
+        setInboxMessages(res.data);
+      })
+    
+      }
+     },[user])
+    console.log(inboxMessages)
     return (
         <div className='py-10 px-5 font-jost'>
             <h1 className='text-2xl text-black font-semibold'>Message</h1>
@@ -65,13 +79,13 @@ const messages =    [
                    </div>
                    <div className='pt-2 space-y-3 h-[450px] overflow-y-auto'>
                     {
-                        messages.map((message,index)=>{
+                        inboxMessages.map((message,index)=>{
                             return <div className={`space-y-2 hover:cursor-pointer ${index === activeIndex ? 'bg-gray-100 border-l-4 border-l-black' : 'bg-white'} p-5`} onClick={()=>setActiveIndex(index)} key={index} >
                                  <div className='flex justify-between items-center'>
                                     <div className='space-y-1'>
                                     <div className='flex items-center gap-2'>
                                     <div className={`w-3 h-3 rounded-full ${message.status=='read'? ' bg-color_success': ' bg-color_danger'}`}></div>
-                                    <h2 className=' font-semibold text-black'>{message.name}</h2>
+                                    <h2 className=' font-semibold text-black'>{message.sender.name}</h2>
                                     </div>
                                    
                                  <h3 className='text-gray-600'>{message.email}</h3>
@@ -86,23 +100,25 @@ const messages =    [
                    </div>
                 </div>
                 <div className='lg:w-[60%] '>
-                    <div className='py-6 px-3 border-b'>
+                  {
+                    inboxMessages.length ?
+                    <>
+                      <div className='py-6 px-3 border-b'>
                      <div className='flex items-center gap-2'>
-                        <img src="https://html.creativegigstf.com/homy/homy/dashboard/images/logo_02.png" alt="" className='w-14 h-14 rounded-full' />
+                        <img src={inboxMessages[activeIndex]?.sender?.photo||"/images/defaultPic.png"} alt="" className='w-14 h-14 rounded-full' />
                         <div className='space-y-1'>
-                            <h1 className='text-xl text-black font-semibold'>{messages[activeIndex].name}</h1>
-                            <h3>{messages[activeIndex].email}</h3>
+                            <h1 className='text-xl text-black font-semibold'>{inboxMessages[activeIndex].sender.name}</h1>
+                            <h3>{inboxMessages[activeIndex].from}</h3>
                         </div>
                      </div>
                   
                     </div>
                     <div className='space-y-4 px-2 pt-3 border-t'>
-                        <h1 className='text-2xl text-black font-semibold'>Payment Verification</h1>
-                        <p>{messages[activeIndex].description} Lorem ipsum dolor sit amet consectetur adipisicing elit. Est officia tempore ex dolor rerum at harum maxime, velit nihil id unde deserunt ipsam ad nam accusamus hic necessitatibus eius eos asperiores? Consectetur aliquam hic delectus ipsa similique velit, expedita sunt. Magnam, ut molestiae quod laboriosam illum, sed, dolore maxime corrupti itaque necessitatibus soluta excepturi ducimus ab architecto ratione cum unde. Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias illum sapiente beatae eum optio voluptates minus facere nam necessitatibus voluptatem asperiores quae a tenetur vitae error minima expedita dolores nihil, deleniti doloremque! In illum obcaecati quia aut inventore voluptate illo adipisci tempore molestiae nesciunt libero exercitationem numquam, est provident velit. Quasi ut corporis ipsa nostrum nulla impedit molestiae ab voluptates unde iste earum mollitia sunt minus, cum porro assumenda sit hic culpa provident autem. Nostrum sequi esse minus exercitationem mollitia. </p>
-
+                        <h1 className='text-2xl text-black font-semibold'>{inboxMessages[activeIndex].sub}</h1>
+                        <p>{inboxMessages[activeIndex].description}</p>
                         <div className=' w-full border rounded-md'>
                             <div className='p-2 border-b'>
-                                <h1>To : {messages[activeIndex].email}</h1>
+                                <h1>To : {inboxMessages[activeIndex].email}</h1>
                                
                             </div>
                             <div className='py-5 px-2'>
@@ -114,6 +130,10 @@ const messages =    [
                                    
                         </div>
                      </div>
+                    </>
+                    :
+                    <div className='No Messages'></div>
+                  }
                 </div>
             </div>
             

@@ -82,10 +82,10 @@ const SignIn = () => {
                         </div>
                         <div className='space-y-1'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Password</h3>
-                       <div className='relative'><input type={toggle ? 'password' : 'text'} name='password' className='w-full py-6 px-2 border rounded-md bg-color_bg_green text-black ' placeholder='Password' required/>
-                    <div className='absolute right-2 top-1/3 text-2xl' onClick={handleToggle}>
+                       <div className='relative'><input type={!toggle ? 'password' : 'text'} name='password' className='w-full py-6 px-2 border rounded-md bg-color_bg_green text-black ' placeholder='Password' required/>
+                    <div className='absolute right-2 top-1/3 text-2xl hover:cursor-pointer' onClick={handleToggle}>
                         {
-                            toggle? <FaRegEyeSlash></FaRegEyeSlash> : <SlEye></SlEye>
+                            !toggle? <FaRegEyeSlash></FaRegEyeSlash> : <SlEye></SlEye>
                         }
                     
                     </div>

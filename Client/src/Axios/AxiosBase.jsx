@@ -9,7 +9,7 @@ const AxiosBase = () => {
     // https://resido888-3u959ag2i-siam-hasans-projects.vercel.app
     // http://localhost:5000
    
-    baseURL:'http://localhost:5000'
+    baseURL:'https://resido888-ajgxlpfcx-siam-hasans-projects.vercel.app'
   })
   return base;
 }

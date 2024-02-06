@@ -8,7 +8,8 @@ const MyProperties = () => {
     const [properties,setProperties] = useState([]);
     const shortBy = ['Newest','Views H-L','Views L-H','Price H-L','Price L-H']
     const [pages,setPages] = useState([1,2,3,4,5,6,7,8])
-    const [currentPage,setCurrentPage] = useState(1)
+    const [currentPage,setCurrentPage] = useState(1);
+    const [activeOptionBar,setActiveOptionBar] = useState(null);
     const {user} = UserAuth()
     useEffect(()=>{
         if(user){
@@ -17,16 +18,18 @@ const MyProperties = () => {
         }
     },[user])
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    console.log(properties)
+   const handleOptionBar = (value)=>{
+   setActiveOptionBar(value)
+   }
     return (
         <div className='font-jost lg:p-5 p-2'>
         <h1 className='lg:text-5xl text-3xl text-black'>My Properties</h1>
         <div className='pt-10 space-y-10'>
-            <div className='flex justify-between items-center'>
-                <p>Showing 1–5 of 40 results</p>
-                <div className='flex items-center gap-2'><p>Short by</p> <select className='border border-black p-2 rounded-full'>
+            <div className='flex md:justify-between md:flex-row flex-col lg:gap-0 gap-4 md:items-center'>
+                <p className='lg:text-normal text-xl'>Showing 1-5 of 40 results</p>
+                <div className='flex items-center gap-2'><p className=''>Short by</p> <select className='border border-black p-2 rounded-full'>
                     {
-                        shortBy.map((item,index)=><option value={item} key={index}>{item}</option>)
+                     shortBy.map((item,index)=><option value={item} key={index}>{item}</option>)
                     }
                     </select></div>
             </div>
@@ -40,13 +43,13 @@ const MyProperties = () => {
         <th>Date</th>
         <th>Views</th>
         <th>Status</th>
-        <th>Action</th>
+        <th>Action</th>r
       </tr>
     </thead>
     <tbody>
       {
         properties.map((property,index)=>{
-          return <tr>
+          return <tr className='relative'>
        
           <td className='flex md:flex-row flex-col gap-2'>
             <img src={property.images[0]} className='w-32 rounded-lg' alt="" />
@@ -56,10 +59,18 @@ const MyProperties = () => {
             <h1 className='text-xl text-black font-semibold'>${property?.propertyStatus.salePrice||property?.propertyStatus.rentAmount}</h1>
             </div>
           </td>
-          <td>13 Jan,2023</td>
+          <td>{property.date.day} {monthNames[property.date.month]},{property.date.year}</td>
           <td>{property.views||0}</td>
           <td><h2 className='py-1 px-3 bg-[#bef3cb]  text-color_success text-center rounded-full capitalize'>{property.details.approveStatus.approve_status||'pending'}</h2></td>
-           <td className='text-gray-700 hover:text-color_danger  text-end text-xl hover:cursor-pointer'><SlOptionsVertical></SlOptionsVertical> </td>
+           <td ><div className='text-gray-700 hover:text-color_danger  text-end text-xl hover:cursor-pointer ' onClick={()=>activeOptionBar===index ? setActiveOptionBar(null) : handleOptionBar(index)} >
+           <SlOptionsVertical ></SlOptionsVertical> 
+           </div>
+           <div className={`bg-white absolute top-20 h-fit right-4 z-40 shadow-md flex flex-col gap-3 p-3 -bottom-2 ${activeOptionBar===index?'block' : 'hidden'}`}>
+           <button>View</button>
+            <button>Pause</button>
+            <button>Delete Request</button>
+           </div>
+           </td>
         </tr>
         
         })

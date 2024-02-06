@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CgArrowsExpandDownLeft } from "react-icons/cg";
 import { BiSolidHomeSmile } from "react-icons/bi"
 import { MdAddHomeWork } from "react-icons/md";
@@ -84,6 +84,8 @@ profile:[
     ]
   
 }
+
+
     
 
 
@@ -94,7 +96,7 @@ profile:[
         navigate(path)
     }
     return (
-        <div className='bg-white h-[100vh] overflow-y-scroll  py-3  font-jost '>
+        <div className='bg-white h-[100vh] overflow-y-scroll  py-3  font-jost ' >
             <div className='    border-b py-2 px-10 lg:flex justify-between items-center '>
             <h1 className='text-5xl font-bold text-black'>Resido</h1>
             <div className='lg:hidden block'>
@@ -159,7 +161,7 @@ profile:[
              }
                
               <div  className='px-10 '>
-                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg  text-black text-xl  hover:cursor-pointer`} onClick={()=> logout()}  >
+                <div className={`flex items-center gap-2 py-3 px-4 rounded-lg  text-black font-semibold text-xl  hover:cursor-pointer`} onClick={()=> logout()}  >
                         <BiLogOutCircle></BiLogOutCircle> <h3>Logout</h3>
                         </div>
             </div>
