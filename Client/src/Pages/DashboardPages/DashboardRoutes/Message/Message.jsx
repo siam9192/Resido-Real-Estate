@@ -68,7 +68,19 @@ const Message = () => {
     
       }
      },[user])
-    
+    const updateStatus = (status,id,index)=>{
+      if(status === 'unread'){
+        AxiosBase().put('/update/messages/status',{id})
+      .then(res =>{
+       if(res.data.modifiedCount  > 0){
+        const arr = [...inboxMessages];
+       arr[index].status = 'read';
+       setInboxMessages(arr)
+       }
+      
+      })
+      }
+    }
     return (
     <>
     <Helmet>
@@ -86,7 +98,12 @@ const Message = () => {
                    <div className='pt-2 space-y-3 h-[450px] overflow-y-auto'>
                     {
                         inboxMessages.map((message,index)=>{
-                            return <div className={`space-y-2 hover:cursor-pointer ${index === activeIndex ? 'bg-gray-100 border-l-4 border-l-black' : 'bg-white'} p-5`} onClick={()=>setActiveIndex(index)} key={index} >
+                            return <div className={`space-y-2 hover:cursor-pointer ${index === activeIndex ? 'bg-gray-100 border-l-4 border-l-black' : 'bg-white'} p-5`} onClick={()=>
+                              {
+                                setActiveIndex(index)
+                              updateStatus(message.status,message._id,index)
+                              }
+                            } key={index} >
                                  <div className='flex justify-between items-center'>
                                     <div className='space-y-1'>
                                     <div className='flex items-center gap-2'>
