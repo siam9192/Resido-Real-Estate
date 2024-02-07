@@ -21,13 +21,15 @@ const DashboardOutlet = () => {
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-  },[])
+  },[toggle])
 
   const handleScroll = ()=>{
+    console.log(toggle)
     if(toggle){
     window.scrollTo(0,0)
     } 
  }
+ 
     return (
         <div>
         <NavbarHandlingContext.Provider value={{toggle,handleToggle}}>

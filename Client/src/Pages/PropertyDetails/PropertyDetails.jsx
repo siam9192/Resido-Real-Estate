@@ -24,6 +24,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import AxiosBase from '../../Axios/AxiosBase';
 import SideComponents from './SideComponents';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet';
 
 const PropertyDetails = () => {
     const [isNavbar,setIsNavbar] = useState(false);
@@ -62,6 +63,10 @@ const PropertyDetails = () => {
         }
       })
     return (
+        <>
+        <Helmet>
+          <title>{property?.title|| ''}</title>
+        </Helmet>
         <div className='min-h-[120vh] font-jost bg-color_bg_green'>
          <div className=''><Navbar2 isNavbar={isNavbar}></Navbar2></div>
            <Navbar isNavbar={isNavbar}></Navbar>
@@ -106,6 +111,7 @@ const PropertyDetails = () => {
              </WidthContainer>
              <Footer></Footer>
     </div>
+        </>
     )}
 
     export default PropertyDetails

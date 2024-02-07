@@ -35,7 +35,7 @@ const GridCard = ({property}) => {
        </div>
        <div className='pt-2 flex justify-between items-center'>
         <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>
-       <Link to={`/listings/property/details/${property._id}`} onClick={updateViews}> <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button></Link>
+       <Link to={`/listings/property/details/${property._id}`}  onClick={updateViews}> <button className='px-6 py-2 bg-color_primary text-white rounded-full'>View</button></Link>
        </div>
         </div>
         </div>

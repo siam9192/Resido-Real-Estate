@@ -4,6 +4,7 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import AxiosBase from '../../../../Axios/AxiosBase'
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
+import { Helmet } from 'react-helmet';
 const MyProperties = () => {
     const [properties,setProperties] = useState([]);
     const shortBy = ['Newest','Views H-L','Views L-H','Price H-L','Price L-H']
@@ -22,7 +23,12 @@ const MyProperties = () => {
    setActiveOptionBar(value)
    }
     return (
-        <div className='font-jost lg:p-5 p-2'>
+     <>
+     <Helmet>
+        <title>Dashboard || {user?.displayName}'s Properties</title>
+     </Helmet>
+     
+     <div className='font-jost lg:p-5 p-2'>
         <h1 className='lg:text-5xl text-3xl text-black'>My Properties</h1>
         <div className='pt-10 space-y-10'>
             <div className='flex md:justify-between md:flex-row flex-col lg:gap-0 gap-4 md:items-center'>
@@ -59,7 +65,12 @@ const MyProperties = () => {
             <h1 className='text-xl text-black font-semibold'>${property?.propertyStatus.salePrice||property?.propertyStatus.rentAmount}</h1>
             </div>
           </td>
-          <td>{property.date.day} {monthNames[property.date.month]},{property.date.year}</td>
+          {
+            property.date ? 
+            <td>{property.date.day} {monthNames[property.date.month]},{property.date.year}</td>
+            :
+            <td>Missing</td>
+          }
           <td>{property.views||0}</td>
           <td><h2 className='py-1 px-3 bg-[#bef3cb]  text-color_success text-center rounded-full capitalize'>{property.details.approveStatus.approve_status||'pending'}</h2></td>
            <td ><div className='text-gray-700 hover:text-color_danger  text-end text-xl hover:cursor-pointer ' onClick={()=>activeOptionBar===index ? setActiveOptionBar(null) : handleOptionBar(index)} >
@@ -92,6 +103,7 @@ const MyProperties = () => {
         </div>
             
         </div>
+     </>
     );
 }
 

@@ -6,6 +6,7 @@ import SearchBox from './SearchBox';
 import MainListBox from './MainListBox';
 import Navbar from '../../Components/HomeComponents/Navbars/Navbar';
 import { useLocation } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 const Listings = () => {
     const [isNavbar,setIsNavbar] = useState(false);
@@ -47,6 +48,10 @@ const Listings = () => {
 
        
     return (
+        <>
+        <Helmet>
+            <title>Listings</title>
+        </Helmet>
         <div className='min-h-[120vh]'>
          
            <div className=''><Navbar2 isNavbar={isNavbar}></Navbar2></div>
@@ -74,6 +79,7 @@ const Listings = () => {
                 </WidthContainer>
             </div>
         </div>
+        </>
     );
 }
 

@@ -31,7 +31,7 @@ const ListCard = ({property}) => {
         <div className='flex items-center gap-2'>
         <div className='p-2 bg-gray-200 rounded-full'><LuBath></LuBath></div><p>{property.details.features.bathrooms} Baths</p></div>
         <div className='flex items-center gap-2'>
-        <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{1200} Sqft</p></div>
+        <div className='p-2 bg-gray-200 rounded-full'><TbArrowAutofitHeight></TbArrowAutofitHeight></div><p>{property.details.area} Sqft</p></div>
        </div>
        <div className='pt-2 flex justify-between items-center'>
         <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property.details.address.address}</h3></p></div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import AxiosBase from '../../../../Axios/AxiosBase';
+import { Helmet } from 'react-helmet';
 
 const Message = () => {
     const [activeIndex,setActiveIndex] = useState(0)
@@ -56,6 +57,7 @@ const Message = () => {
           status:'read' 
         }
         ]
+        const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     
      useEffect(()=>{
       if(user){
@@ -66,9 +68,13 @@ const Message = () => {
     
       }
      },[user])
-    console.log(inboxMessages)
+    
     return (
-        <div className='py-10 px-5 font-jost'>
+    <>
+    <Helmet>
+     <title>Dashboard || Messages</title>
+    </Helmet>
+    <div className='py-10 px-5 font-jost'>
             <h1 className='text-2xl text-black font-semibold'>Message</h1>
 
             <div className='my-5  bg-white rounded-lg lg:flex '>
@@ -90,10 +96,10 @@ const Message = () => {
                                    
                                  <h3 className='text-gray-600'>{message.email}</h3>
                                     </div>
-                                    <h2 className='text-[14px]'>10Jun 2024</h2>
+                                    <h2 className='text-[14px]'>{message.date.day}-{monthNames[message.date.month]}-{message.date.year}</h2>
                                  
                                  </div>
-                                 <p>{message.description}</p>
+                                 <p>{message.description.slice(0,90)}...</p>
                             </div>
                         })
                     }
@@ -116,7 +122,12 @@ const Message = () => {
                     <div className='space-y-4 px-2 pt-3 border-t'>
                         <h1 className='text-2xl text-black font-semibold'>{inboxMessages[activeIndex].sub}</h1>
                         <p>{inboxMessages[activeIndex].description}</p>
-                        <div className=' w-full border rounded-md'>
+                        <div className='space-y-1 py-2'>
+                          <p className='font font-semibold'>{inboxMessages[activeIndex].sender.name}</p>
+                          <p className='font font-semibold'>{inboxMessages[activeIndex].from}</p>
+                          <p className='font font-semibold'>{inboxMessages[activeIndex].contact_phone}</p>
+                        </div>
+                        {/* <div className=' w-full border rounded-md'>
                             <div className='p-2 border-b'>
                                 <h1>To : {inboxMessages[activeIndex].email}</h1>
                                
@@ -128,16 +139,19 @@ const Message = () => {
                                     </div>
                                     </div>
                                    
-                        </div>
+                        </div> */}
                      </div>
                     </>
                     :
-                    <div className='No Messages'></div>
+                    <div className=''>
+                      No Messages
+                    </div>
                   }
                 </div>
             </div>
             
         </div>
+    </>
     );
 }
 

@@ -9,6 +9,7 @@ import { FaRegHeart } from "react-icons/fa";
 import DivCard from '../../DashboardComponents/Divcard/DivCard';
 import DashBoardLineChart from '../../DashboardComponents/Charts/LineChart';
 import AxiosBase from '../../../../Axios/AxiosBase';
+import { Helmet } from 'react-helmet';
 const Dashboard = () => {
     const {user} = UserAuth();
     const [data,setData] = useState({})
@@ -48,7 +49,11 @@ const Dashboard = () => {
      },[user])
    
     return (
-        <div className='md:p-5 p-2 font-jost'>
+       <>
+       <Helmet>
+        <title>Dashboard || {user?.displayName}</title>
+       </Helmet>
+       <div className='md:p-5 p-2 font-jost'>
          <div className='space-y-2'>
          <h1 className='text-2xl font-semibold'>Hello,{user?.displayName.split(' ')[0]}</h1>
          <p className=' text-color_secondary font-semibold'>Welcome back!</p>
@@ -96,6 +101,7 @@ const Dashboard = () => {
           </div>
          </div>
         </div>
+       </>
     );
 }
 

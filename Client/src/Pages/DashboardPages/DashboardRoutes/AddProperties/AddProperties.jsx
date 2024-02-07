@@ -6,6 +6,7 @@ import LoadingPart from './LoadingPart';
 import AxiosBase from '../../../../Axios/AxiosBase';
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const AddProperties = () => {
     const [amenities,setAmenities] = useState([]);
@@ -242,7 +243,11 @@ setImages([...images,file])
     setImages([...arr])
   }
     return (
-        <div className='font-jost md:p-5 p-2'>
+      <>
+      <Helmet>
+        <title>Dashboard || Add Property</title>
+      </Helmet>
+      <div className='font-jost md:p-5 p-2'>
             <h1 className='lg:text-5xl text-3xl  text-black'>Add New Property</h1>
 
            <form onSubmit={handleSubmit}>
@@ -476,6 +481,7 @@ setImages([...images,file])
            </form>
             <LoadingPart></LoadingPart>
         </div>
+      </>
     );
 }
 
