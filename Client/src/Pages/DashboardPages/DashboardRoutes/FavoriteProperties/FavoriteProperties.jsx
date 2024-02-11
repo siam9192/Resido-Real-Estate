@@ -30,11 +30,12 @@ const FavoriteProperties = () => {
           }
         })
     }
+   
     return (
         <div className='p-5 font-jost'>
             <h1 className='text-3xl text-black font-semibold'>Favourites</h1>
             {
-              FavoriteProperties.length === 0 ?
+              listings.length === 0 ?
               <div className='min-h-[50] py-32'>
                 <h1 className='text-4xl text-gray-700 font-semibold  text-center'>You have no favourites</h1>
               </div>

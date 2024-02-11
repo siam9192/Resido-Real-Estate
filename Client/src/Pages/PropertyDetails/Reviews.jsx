@@ -4,12 +4,7 @@ import AxiosBase from '../../Axios/AxiosBase';
 import { useParams } from 'react-router-dom';
 const Reviews = ({reviews}) => {
     const [toggle,setToggle] = useState(true);
-   
-
-    const {id} = useParams();
-   
-  
-
+     const {id} = useParams();
       
 const handler = ()=>{
   setToggle(!toggle)
@@ -24,7 +19,8 @@ const handler = ()=>{
         </div>
         </div>
         <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[700px] opacity-100 overflow-y-scroll' : 'max-h-[0]  opacity-100 '}`}>
-       <div className='space-y-3 '>
+      {
+        reviews.length ?  <div className='space-y-3 '>
         {
             reviews.map((review,index)=>{
                 return <div className='p-5 bg-white' key={index}>
@@ -42,6 +38,11 @@ const handler = ()=>{
             })
         }
        </div>
+       :
+       <div className=' text-center py-20 '>
+        <h1 className='text text-xl text-color_dark'>No Reviews</h1>
+       </div>
+      }
         </div>
         
         </div>

@@ -84,7 +84,7 @@ const Footer = () => {
                             <p>Get it Now</p>
                         </div>
                     </div>
-                    <div className='flex items-center gap-1 border rounded-md p-3 lg:w-1/2'>
+                    <div className='flex items-center gap-1 border rounded-md p-3 '>
                         <div className='text-4xl text-color_primary'>
                         <FaApple></FaApple>
                         </div>

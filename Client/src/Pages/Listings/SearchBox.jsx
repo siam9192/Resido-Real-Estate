@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { GoSearch } from "react-icons/go";
 import { AiOutlineMinus,AiOutlinePlus } from "react-icons/ai";
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
-const SearchBox = ({params,setParams}) => {
-    const [isLocationOpen,setIsLocation] = useState(false);
+const SearchBox = ({params,setParams,setCurrentPage}) => {
+    const [isLocationOpen,setIsLocation] = useState(true);
     const [isProperTypeOpen,setPropertyType]   = useState(false)
     const [isStatusOpen,setStatus]  = useState(false)
     const [isFeatureOpen,setIsFeature] = useState(false);
@@ -74,7 +74,7 @@ const SearchBox = ({params,setParams}) => {
 
     const paramsArray = [...searchParams];
        
-
+    
       const search = ()=>{
 
       navigate({
@@ -82,13 +82,14 @@ const SearchBox = ({params,setParams}) => {
         search:`${createSearchParams(searchParams)}`
       },{replace:true})
       setParams(searchParams)
-    //   window.scrollTo(0,0)
+
+     setCurrentPage(1)
       }
       const selectQueryValue = (index,e)=>{
         const value = e.target.value;
         if(e.target.checked){
             paramsArray[index][1].push(value)
-            console.log(paramsArray[index][1])
+           
             setSearchparams(paramsArray)
         }
         else{

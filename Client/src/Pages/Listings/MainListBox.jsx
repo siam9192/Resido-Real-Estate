@@ -7,12 +7,11 @@ import GridCard from '../../Components/Reuse/Cards/GridCard';
 import ListCard from '../../Components/Reuse/Cards/ListCard';
 import AxiosBase from '../../Axios/AxiosBase';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-const MainListBox = ({params}) => {
+const MainListBox = ({params,currentPage,setCurrentPage}) => {
     const [cardType,setCardType] = useState('grid') ;
     const[ properties,setProperties ] = useState([])
     const [isLoading,setLoading] = useState(false)
     const [pages,setPages] = useState([]);
-    const [currentPage,setCurrentPage] = useState(1);
     const [perPage,setPerPage] = useState(10);
     const [propertyCount,setPropertyCount] = useState(0)
     const [error,setError] = useState('')

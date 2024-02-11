@@ -34,26 +34,20 @@ const Navbar = ({isNavbar}) => {
         <ul className='lg:flex items-center gap-3 font-semibold mt-3 lg:block hidden'>
             {
                 navLinks.map((link,index)=>{
-                   return <Link to={link.path}>{link.name}</Link>
+                   return <Link to={link.path} key={index}>{link.name}</Link>
                 })
             }
         </ul>
         </div>
         <div className='lg:flex items-center justify-between gap-3 lg:block hidden'>
-         <Link to={'/dashboard'} className='flex items-center gap-2 text-black'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
+         <Link to={'/dashboard/add-property'} className='flex items-center gap-2 text-black'><img src="https://resido-v2.smartdemowp.com/wp-content/themes/resido/assets/images/submit.svg" alt="" className='w-5 text-white'/><h3>Add to property</h3></Link>
          {
             !user ?<Link to={'/sign-in'}><button className=' bg-color_dark text-white px-8 py-2 w-fit rounded-md'>Sign In</button></Link>
             :
          <div className='flex items-center gap-3 text-white'>
-{/*            
-               <div className='py-3 px-5 text-xl bg-black text-white font-bold rounded-full border-info'>
-                {user.displayName[0].toUpperCase()}
-            </div> */}
-            <button className='px-6 py-3 bg-color_text_normal text-white rounded-lg'>Dashboard</button>
-           {/* <div className='text-xl '>
-           <IoIosArrowDown ></IoIosArrowDown>
-           
-           </div> */}
+
+          <Link to={'/dashboard'}><button className='px-6 py-3 bg-color_text_normal text-white rounded-lg'>Dashboard</button></Link>
+         
          </div>
           }
         </div>

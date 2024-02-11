@@ -11,7 +11,8 @@ import { Helmet } from 'react-helmet';
 const Listings = () => {
     const [isNavbar,setIsNavbar] = useState(false);
     const location = useLocation();
-    const searchParams = new URLSearchParams(location.search)
+    const searchParams = new URLSearchParams(location.search);
+    const [currentPage,setCurrentPage] = useState(1);
     // const mainListRef = useRef();
     const [params,setParams] = useState([
         ['key',searchParams.get('key')?.split(',').filter(val=> val !== '')||[]],
@@ -46,7 +47,9 @@ const Listings = () => {
             setParams(value)
         }
 
-       
+       const handelCurrentPage = (value)=>{
+        setCurrentPage(value)
+       }
     return (
         <>
         <Helmet>
@@ -70,10 +73,10 @@ const Listings = () => {
 
                     <div className='flex lg:flex-row flex-col gap-5'>
                         <div className='lg:w-[30%]'>
-                            <SearchBox params={params} setParams={handleParams}></SearchBox>
+                            <SearchBox params={params} setParams={handleParams} setCurrentPage={setCurrentPage}></SearchBox>
                         </div>
                         <div className='lg:w-[70%]'>
-                            <MainListBox params={params} setParams={handleParams}></MainListBox>
+                            <MainListBox params={params} setParams={handleParams} currentPage={currentPage} setCurrentPage={handelCurrentPage}></MainListBox>
                         </div>
                     </div>
                 </WidthContainer>

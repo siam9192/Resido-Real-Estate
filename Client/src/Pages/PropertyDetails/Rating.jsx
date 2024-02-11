@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { TiStarFullOutline, TiStarOutline } from 'react-icons/ti';
 import Rating from 'react-rating';
+import { useParams } from 'react-router-dom';
+import AxiosBase from '../../Axios/AxiosBase';
 const PropertyRating = ({property}) => {
+    const [reviews,setReviews] = useState([])
     const [toggle,setToggle] = useState(true);
+    const {id} = useParams();
     const handler = ()=>{
         setToggle(!toggle)
     }
+    
     const rattingStatus = [{
         type:'Property',
         value:60
@@ -20,6 +25,13 @@ const PropertyRating = ({property}) => {
         type:'Support',
         value:95
     }]
+
+    useEffect(()=>{
+        AxiosBase().get(`/listing/reviews/get/${id}`)
+        .then(res =>{
+         setReviews(res.data)
+        })
+    },[])
     return (
         <div className='p-5 bg-white rounded-md'>
         <div className='flex justify-between items-center'>

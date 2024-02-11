@@ -3,7 +3,7 @@ import { TbShare3 } from "react-icons/tb";
 import { FaLocationArrow, FaRegHeart } from "react-icons/fa";
 import UserAuth from '../../Authentication/userAuth/userAuth';
 import AxiosBase from '../../Axios/AxiosBase';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 const SideComponents = ({email}) => {
@@ -12,6 +12,7 @@ const SideComponents = ({email}) => {
     const {id} = useParams();
     const [isSending,setSending] = useState(false);
     const [author,setAuthor] = useState({})
+    const [featured,setFeatured] = useState([])
     
     useEffect(()=>{
       if(user){
@@ -22,6 +23,12 @@ const SideComponents = ({email}) => {
       }
     },[user])
 
+    useEffect(()=>{
+        AxiosBase().get('/property/recent')
+        .then(res =>{
+           setFeatured(res.data)
+        })
+    },[])
     useEffect(()=>{
         if(email){
             AxiosBase().get(`/find/property/author?email=${email}`,)
@@ -162,15 +169,17 @@ const SideComponents = ({email}) => {
                 <h1 className='text-xl font-semibold text-color_text_normal'>Featured Property</h1>
                 <div className='space-y-2'>
                     {
-                        arr.map((item,index)=>{
-                            return <div className='p-3 flex gap-2 bg-white rounded-md' key={index}>
-                             <img src="https://resido-v2.smartdemowp.com/wp-content/uploads/2022/07/p-4.jpg" alt="" className='w-32 h-24 rounded-md'/>
+                        featured.map((item,index)=>{
+                            return<Link to={`/listings/property/details/${item._id}`}>
+                             <div className='p-3 flex gap-2 bg-white rounded-md' key={index}>
+                             <img src={item.images[0]} alt="" className='w-32 h-24 rounded-md'/>
                              <div className='space-y-1'>
-                                <h1 className='text-xl font-semibold text-color_text_normal hover:text-color_primary hover:cursor-pointer'>Westchester Village</h1>
-                                <div className='flex items-center gap-2 text-[14px] text-gray-600'><FaLocationArrow></FaLocationArrow><p><h3>{'3599 Huntz Lane '}</h3></p></div>
+                                <h1 className='text-xl font-semibold text-color_text_normal hover:text-color_primary hover:cursor-pointer'>{item.title}</h1>
+                                <div className='flex items-center gap-2 text-[14px] text-gray-600'><FaLocationArrow></FaLocationArrow><p><h3>{item.details.address.address}</h3></p></div>
                                 <div className='px-4 py-1 w-fit bg-[#e5f6f3] rounded-full text-color_success'>Buy</div>
                              </div>
                             </div>
+                            </Link>
                         })
                     }
                 </div>
