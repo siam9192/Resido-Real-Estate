@@ -25,6 +25,7 @@ import AxiosBase from '../../Axios/AxiosBase';
 import SideComponents from './SideComponents';
 import { useQuery } from '@tanstack/react-query';
 import { Helmet } from 'react-helmet';
+import GallerySlider2 from './GallerySlider2';
 
 const PropertyDetails = () => {
     const [isNavbar,setIsNavbar] = useState(false);
@@ -70,7 +71,22 @@ const PropertyDetails = () => {
         <div className='min-h-[120vh] font-jost bg-color_bg_green'>
          <div className=''><Navbar2 isNavbar={isNavbar}></Navbar2></div>
            <Navbar isNavbar={isNavbar}></Navbar>
-           <GallerySlider images={property.images}></GallerySlider>
+           {/* <GallerySlider images={property.images}></GallerySlider> */}
+       <WidthContainer>
+        <div className='md:flex justify-between  py-5'>
+         <div className=' space-y-2 flex-1'>
+         <div className=' text lg:text-5xl text-3xl text-color_dark font-semibold '>{property?.title}</div>
+        <div className=' flex items-center gap-2'>
+        <p className=' bg-[#f8cbcb] text-color_danger px-4 py-1 text-[14px] rounded-full w-fit fle items-center gap-2'>For {property?.propertyStatus?.listingIn}</p>
+          <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property?.details?.address.address}</h3></p></div>
+        </div>
+         </div>
+         <div className=' space-y-2 flex-1  text-end'>
+         <div className=' text md:text-5xl text-3xl text-color_dark font-semibold'>Price: ${property?.propertyStatus?.listingIn==='Rent' ? property?.propertyStatus?.rentAmount : property?.propertyStatus?.salePrice}</div>
+         </div>
+        </div>
+       <GallerySlider2 images={property.images||[]}></GallerySlider2>
+       </WidthContainer>
              <WidthContainer>
             
 <div className='flex lg:flex-row flex-col gap-5 lg:py-20 py-10 '>

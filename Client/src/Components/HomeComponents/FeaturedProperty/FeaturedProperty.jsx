@@ -8,9 +8,10 @@ import AxiosBase from '../../../Axios/AxiosBase';
 const FeaturedProperty = () => {
     const[ properties,setProperties ] = useState([])
     useEffect(()=>{
-        AxiosBase().get('/property/recent')
+        AxiosBase().get('/property/featured')
         .then(res =>{
             setProperties(res.data)
+            console.log(res.data)
         })
     },[])
     return (

@@ -31,7 +31,7 @@ const Achievement = () => {
                     }
     ]
     return (
-        <div className='py-10 bg-[#d9f4e4] font-jost'>
+        <div className='py-20 bg-[#d9f1e4] font-jost'>
           <WidthContainer>
           <SectionHeading heading={'Achievement '} title={'Unveiling Unprecedented Heights: A Chronicle of Achievements in Real Estate Innovation on Our Website'}></SectionHeading>
 

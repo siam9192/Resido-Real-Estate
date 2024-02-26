@@ -5,7 +5,7 @@ import { FcPrevious,FcNext } from "react-icons/fc";
 import WidthContainer from '../../Components/Reuse/WidthContainer/WidthContainer';
 const Gallery = ({images}) => {
     const [toggle,setToggle] = useState(true);
-    const [galleryActiveIndex,setGallery] = useState(0);
+    const [galleryActiveIndex,setGallery] = useState(null);
     const handler = ()=>{
         setToggle(!toggle)
     }

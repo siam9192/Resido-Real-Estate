@@ -26,7 +26,7 @@ const MainListBox = ({params,currentPage,setCurrentPage}) => {
         .then(res =>{
             setProperties(res.data.properties)
             const document = res.data.document;
-            const pageCount = Math.ceil(document/4);
+            const pageCount = Math.ceil(document/6);
             const array = [];
             for(let i = 1; i <= pageCount; i++){
                 array.push(i)
@@ -114,16 +114,18 @@ const MainListBox = ({params,currentPage,setCurrentPage}) => {
       }
    </div>
            
-         <div className='pt-5 flex justify-center items-center'>
-            <div className='flex items-center gap-2'>
-            {
-                pages.map((page,index)=>{
-                    return <div className={`px-4 py-2 hover:cursor-pointer ${currentPage === page ? 'bg-color_primary': 'bg-black'}  text-white shadow-lg rounded-md`} key={index} onClick={()=>setCurrentPage(page)}>{page}</div>
-                })
-            }
-            </div>
-           
-         </div>
+      {
+        properties.length &&    <div className='pt-5 flex justify-center items-center'>
+        <div className='flex items-center gap-2'>
+        {
+            pages.map((page,index)=>{
+                return <div className={`px-4 py-2 hover:cursor-pointer ${currentPage === page ? 'bg-color_primary': 'bg-black'}  text-white shadow-lg rounded-md`} key={index} onClick={()=>setCurrentPage(page)}>{page}</div>
+            })
+        }
+        </div>
+       
+     </div>
+      }
          
         </div>
     );

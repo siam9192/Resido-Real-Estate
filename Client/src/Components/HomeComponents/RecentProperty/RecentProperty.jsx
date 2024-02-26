@@ -49,7 +49,7 @@ const RecentProperty = () => {
         setSlideIndex(prev);
         
     }
-    console.log(slideIndex)
+   
    
     return (
         <div className='py-10 font-jost '>

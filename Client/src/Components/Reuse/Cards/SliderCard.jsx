@@ -12,7 +12,7 @@ const SliderCard = ({property,index,slideIndex}) => {
     const getWidth =(e)=>{
        setWidth(e.target.offsetWidth)
     }
-  console.log(slideIndex)
+  
     return (
        <>
         <div className='font-jost lg:block hidden border rounded-lg absolute lg:w-[30%] h-fit transition-transform ease-in duration-300 ' style={{
@@ -24,7 +24,7 @@ const SliderCard = ({property,index,slideIndex}) => {
         <div> <p>{'Rent'}</p>
         <h2 className='text-gray-800 font-semibold text-xl'>{property.title}</h2></div>
         <div>
-            <h1 className='text-2xl text-color_primary font-bold'>${property.price}</h1>
+            <h1 className='text-2xl text-color_primary font-bold'>${`${property.propertyStatus.listingIn==='Rent' ? property.propertyStatus.rentAmount  : property.propertyStatus.salePrice}`}</h1>
         </div>
        </div>
        <div className='flex justify-end gap-2 items-center py-3 border-b'>
@@ -50,7 +50,7 @@ const SliderCard = ({property,index,slideIndex}) => {
         <div> <p>{'Rent'}</p>
         <h2 className='text-gray-800 font-semibold text-xl'>{property.title}</h2></div>
         <div>
-            <h1 className='text-2xl text-color_primary font-bold'>${property.price}</h1>
+            <h1 className='text-2xl text-color_primary font-bold'>${`${property.propertyStatus.listingIn==='Rent' ? property.propertyStatus.rentAmount  : property.propertyStatus.salePrice}`}</h1>
         </div>
        </div>
        <div className='flex lg:flex-row flex-col lg:justify-end gap-2 lg:items-center py-3 border-b'>

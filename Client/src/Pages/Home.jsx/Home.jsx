@@ -9,6 +9,8 @@ import DownloadApp from '../../Components/HomeComponents/DownloadApp/DownloadApp
 import WantToBeAgent from '../../Components/HomeComponents/WantoBeAgent/WantToBeAgent';
 import CustomerReview from '../../Components/HomeComponents/CustomersReview/CustomerReview';
 import { Helmet } from 'react-helmet';
+import Banner2 from '../../Components/HomeComponents/Banner/Banner2';
+import PopularLocations from '../../Components/HomeComponents/PopularLocations/PopularLocations';
 
 const Home = () => {
     return (
@@ -16,8 +18,9 @@ const Home = () => {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <Banner></Banner>
+            <Banner2></Banner2>
             <Achievement></Achievement>
+            <PopularLocations></PopularLocations>
             <RecentProperty></RecentProperty>
             <FeaturedProperty></FeaturedProperty>
             <FeaturedAgents></FeaturedAgents>
