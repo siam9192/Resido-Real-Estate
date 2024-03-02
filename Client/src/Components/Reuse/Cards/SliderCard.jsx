@@ -16,7 +16,7 @@ const SliderCard = ({property,index,slideIndex}) => {
     return (
        <>
         <div className='font-jost lg:block hidden border rounded-lg absolute lg:w-[30%] h-fit transition-transform ease-in duration-300 ' style={{
-            left:`${index*35}%`,transform:`translateX(-${slideIndex*100}%) `
+            left:`${index*35}%`,transform:`translateX(-${slideIndex*35}%) `
             }} ref={cardRef}>
             <img src={property.images[0]} alt="" className='h-72 w-full rounded-t-lg' />
         <div className='p-4 bg-white'>

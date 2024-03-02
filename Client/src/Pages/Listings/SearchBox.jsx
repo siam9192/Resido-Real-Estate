@@ -3,7 +3,7 @@ import { GoSearch } from "react-icons/go";
 import { AiOutlineMinus,AiOutlinePlus } from "react-icons/ai";
 import { createSearchParams, useLocation, useNavigate } from 'react-router-dom';
 const SearchBox = ({params,setParams,setCurrentPage}) => {
-    const [isLocationOpen,setIsLocation] = useState(true);
+    const [isLocationOpen,setIsLocation] = useState(false);
     const [isProperTypeOpen,setPropertyType]   = useState(false)
     const [isStatusOpen,setStatus]  = useState(false)
     const [isFeatureOpen,setIsFeature] = useState(false);

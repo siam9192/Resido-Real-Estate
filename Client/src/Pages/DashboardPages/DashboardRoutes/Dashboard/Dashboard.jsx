@@ -3,13 +3,23 @@ import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import { LuFileSearch2 } from "react-icons/lu";
 import { BsHouses } from "react-icons/bs";
 import { TbHomeStats } from "react-icons/tb";
-import { IoEyeOutline } from "react-icons/io5";
 import { LuBookmarkMinus } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
+import { FaList,FaStar} from "react-icons/fa";
+import { AiFillMessage } from "react-icons/ai";
+import { FaHeart } from "react-icons/fa";
+import { MdOutlineModeEdit } from "react-icons/md";
+import { IoEyeOutline } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
+import { TiStarFullOutline,TiStarOutline } from "react-icons/ti";
 import DivCard from '../../DashboardComponents/Divcard/DivCard';
 import DashBoardLineChart from '../../DashboardComponents/Charts/LineChart';
 import AxiosBase from '../../../../Axios/AxiosBase';
 import { Helmet } from 'react-helmet';
+import Rating from 'react-rating';
+import DashboardListing from '../../DashboardComponents/DashboardListing/DashboardListing';
+import DashboardMessage from '../../DashboardMessage/DashboardMessage';
+import DashboardReviews from '../../DashboardComponents/DashboardReviews/DashboardReviews';
 const Dashboard = () => {
     const {user} = UserAuth();
     const [data,setData] = useState({})
@@ -60,7 +70,7 @@ const Dashboard = () => {
          </div>
          
          <div className='space-y-5 mt-5'>
-          <div className='py-5 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-5 bg-white rounded-md'>
+          <div className='py-5 grid lg:grid-cols-4 md:grid-cols-2 grid-cols-2 gap-5 bg-white rounded-md shadow-lg'>
           {
             showCards.map((card,index)=>{
                 return <div className='px-5 pt-5 pb-10 text-center bg-white  flex md:flex-row flex-col-reverse items-center justify-between ' key={index}>
@@ -89,7 +99,7 @@ const Dashboard = () => {
                   
                 </div>
           </div>
-          <div className='md:grid grid-cols-6 gap-5 lg:space-y-0 space-y-5'>
+          {/* <div className='md:grid grid-cols-6 gap-5 lg:space-y-0 space-y-5'>
             <div className=' col-span-4 bg-white p-5  rounded-md'>
                 <h1 className='text-xl text-color_text_normal font-semibold pb-5'>View Analytics</h1>
              <DashBoardLineChart></DashBoardLineChart>
@@ -98,7 +108,13 @@ const Dashboard = () => {
         
            <h1 className='text-xl text-color_text_normal font-semibold '>Views Data</h1>
            </div>
-          </div>
+          </div> */}
+          <DashboardListing></DashboardListing>
+          {/* <DashboardMessage></DashboardMessage> */}
+          <DashboardReviews></DashboardReviews>
+           
+        
+
          </div>
         </div>
        </>

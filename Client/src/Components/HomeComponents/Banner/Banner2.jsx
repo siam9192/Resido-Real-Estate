@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import Navbar from '../Navbars/Navbar';
 import Navbar2 from '../Navbars/Navbar2';
 import Navbar1 from '../Navbars/Navbar1';
+import BannerNavbar from '../Navbars/BannerNavbar';
 const Banner2 = () => {
     const [propertyStatus,setPropertyStatus] = useState('Rent');
     const [activeBanner,setActiveBanner] = useState(1)
@@ -40,14 +41,43 @@ const Banner2 = () => {
     useEffect(()=>{
         AOS.init()
     },[])
-
+    const locations = [
+        "Tokyo",
+        "New York City",
+        "London",
+        "Paris",
+        "Sydney",
+        "Dubai",
+        "Rio de Janeiro",
+        "Delhi",
+        "Beijing",
+        "Los Angeles"
+      ];
+     const propertyTypes = [
+        "Apartment",
+        "Condos",
+        "Denver",
+        "House",
+        "Flat",
+        "Offices",
+        "Rental",
+        "Studios",
+        "Villas"
+      ];
+    
     const search = (e)=>{
         e.preventDefault();
         const form = e.target;
         const keyword = form.keyword.value;
         const location = form.location.value;
         const propertyType = form.propertyType.value;
-        navigate(`/properties?key=${keyword}&location=${location}&status=${propertyStatus}&bedrooms=${null}&bathrooms=${null} `)
+        if(!location || !propertyType){
+            return;
+        }
+
+
+        
+        navigate(`/listings?key=${keyword}&locations=${location}&status=${propertyStatus}`)
        
     }
     const [text,Cursor] = useTypewriter({
@@ -79,8 +109,8 @@ const Banner2 = () => {
     },[activeBanner])
     return (
         <>
-        <Navbar2></Navbar2>
-        <div className='banner min-h-[95vh]' style={{ background: `url(${images[activeBanner]}),linear-gradient(rgb(58, 57, 57,0.5),rgba(66, 65, 63, 0.6))`, backgroundBlendMode: 'overlay',
+        <BannerNavbar></BannerNavbar>
+        <div className='banner min-h-[95vh]' style={{ background: `url(${images[1]}),linear-gradient(rgb(58, 57, 57,0.5),rgba(66, 65, 63, 0.6))`, backgroundBlendMode: 'overlay',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'}}>
@@ -108,9 +138,9 @@ const Banner2 = () => {
                            <input type="text" name='keyword' placeholder='Enter your keyword...' className='w-full px-2 py-3  border-[1px] outline-none rounded-lg border-gray-500 text-black bg-white'></input> 
                           {/* <input type="text"  placeholder='Enter keyword' className='min-w-[250px] p-2 b border-2 border-black text-black'/> */}
                           <select type="text" name='location'  placeholder='Location' className='w-full px-2 py-3  border-[1px] rounded-lg border-gray-500 text-black bg-white'>
-                          <option value="null">Location</option>
+                          <option value="">Location</option>
                            {
-                               locationValues.map(location=>{
+                               locations.map(location=>{
                                    return  <option value={location}>{location}</option>
                                })
                            }
@@ -118,18 +148,15 @@ const Banner2 = () => {
                           
                            </select>
                           <select type="text" name='propertyType'  placeholder='Property type' className='w-full px-2 py-3 border-[1px] rounded-lg border-gray-500  text-black bg-white'>
-                           <option value="Property type">Property type</option>
-                           <option value="House">House</option>
-                           <option value="Apartment">Apartment</option>
+                          <option value="null">Property Type</option>
+                         {
+                            propertyTypes.map(type=>{
+                                return <option value={type}>{type}</option>
+                            })
+                         }
                            
                           </select>
-                          {/* <select type="text"  placeholder='Location' className='w-full px-2 py-3 border-[1px] rounded-lg border-gray-500 bg-w '>
-                           <option value="Property type">Property type</option>
-                           <option value="Family house">Family house</option>
-                           <option value="Apartment">Apartment</option>
-                           <option value="Condo">Condo</option>
-                          </select> */}
-                          {/* <input type="text"  placeholder='Advance Search' className='min-w-[250px] p-2 b border-2 '/> */}
+                         
                           <button type='submit' className='min-w-[250px] py-3  bg-color_primary text-white hover:bg-[#0f0f0f] rounded-lg font-semibold '>Search Now</button>
                        </div>
                        </div>

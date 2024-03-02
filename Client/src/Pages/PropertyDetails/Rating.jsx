@@ -11,19 +11,27 @@ const PropertyRating = ({property}) => {
     const handler = ()=>{
         setToggle(!toggle)
     }
-    
+    // ratting: {
+    //     property: 3,
+    //     location: 3,
+    //     cost: 3,
+    //     support: 3,
+    //     averageRatting: 3
+    //   }
+   
+    // console.log((reviews.reduce((p,c)=>p + c.ra..property,0))/(reviews.length*5))
     const rattingStatus = [{
         type:'Property',
-        value:60
+        value:parseInt((reviews.reduce((p,c)=>p + c.ratting.property,0))/(reviews.length*5)*100)||0
     },{
         type:'Value for Money',
-        value:90
+        value:parseInt((reviews.reduce((p,c)=>p + c.ratting.cost,0))/(reviews.length*5)*100)||0
     },,{
         type:'Location',
-        value:80
+        value:parseInt((reviews.reduce((p,c)=>p + c.ratting.location,0))/(reviews.length*5)*100)||0
     },{
         type:'Support',
-        value:95
+        value:parseInt((reviews.reduce((p,c)=>p + c.ratting.support,0))/(reviews.length*5)*100)||0
     }]
 
     useEffect(()=>{
@@ -32,6 +40,8 @@ const PropertyRating = ({property}) => {
          setReviews(res.data)
         })
     },[])
+
+    console.log(reviews)
     return (
         <div className='p-5 bg-white rounded-md'>
         <div className='flex justify-between items-center'>
@@ -43,9 +53,9 @@ const PropertyRating = ({property}) => {
         <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[700px] opacity-100' : 'max-h-[0]  opacity-100 '}`}>
          <div className='px-5 py-5 md:py-10 md:flex gap-5'>
             <div className='md:w-1/2 md:px-5 border-r-2 border-color_text_normal flex flex-col items-center '>
-                <h1 className='text-6xl font-semibold'>{4.8}</h1>
+                <h1 className='text-6xl font-semibold'>{(reviews.reduce((p,c)=>p + c.ratting.averageRatting,0)||0/reviews.length).toFixed(1)}</h1>
                 <p>out of 5</p>
-                <Rating initialRating={4.5} 
+                <Rating initialRating={reviews.reduce((p,c)=>p + c.ratting.averageRatting,0)/reviews.length} 
                  emptySymbol={<TiStarOutline className='text-color_warning text-xl hover:cursor-pointer'/>}
                  fullSymbol={<TiStarFullOutline className=' text-color_warning text-xl hover:cursor-pointer'/>}
                             readonly

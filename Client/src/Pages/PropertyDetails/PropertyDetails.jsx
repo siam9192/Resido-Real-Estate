@@ -38,9 +38,13 @@ const PropertyDetails = () => {
         .then(res =>{
             setProperty(res.data)
         })
-    },[])
-  
+    },[id])
+    if(id==undefined||id.length<24){
+      throw new Error('Page not found');
+      
+            }
     useEffect(()=>{
+     
         const handleScroll = ()=>{
           if(window.scrollY > 100){
             setIsNavbar(true);
@@ -59,6 +63,10 @@ const PropertyDetails = () => {
       const {data:reviews=[],isLoading,refetch:refetchReviews} = useQuery({
         queryKey:['Reviews'],
         queryFn:async()=>{
+          if(id==undefined||id.length<24){
+           return
+            
+                  }
          const res = await AxiosBase().get(`/listing/reviews/get/${id}`)
          return res.data;
         }
@@ -76,13 +84,13 @@ const PropertyDetails = () => {
         <div className='md:flex justify-between  py-5'>
          <div className=' space-y-2 flex-1'>
          <div className=' text lg:text-5xl text-3xl text-color_dark font-semibold '>{property?.title}</div>
-        <div className=' flex items-center gap-2'>
+        <div className=' lg:flex items-center gap-2'>
         <p className=' bg-[#f8cbcb] text-color_danger px-4 py-1 text-[14px] rounded-full w-fit fle items-center gap-2'>For {property?.propertyStatus?.listingIn}</p>
           <div className='flex items-center gap-2'><FaLocationArrow></FaLocationArrow><p><h3>{property?.details?.address.address}</h3></p></div>
         </div>
          </div>
          <div className=' space-y-2 flex-1  text-end'>
-         <div className=' text md:text-5xl text-3xl text-color_dark font-semibold'>Price: ${property?.propertyStatus?.listingIn==='Rent' ? property?.propertyStatus?.rentAmount : property?.propertyStatus?.salePrice}</div>
+         <div className=' text md:text-5xl text-2xl text-color_dark font-semibold'>Price: ${property?.propertyStatus?.listingIn==='Rent' ? property?.propertyStatus?.rentAmount : property?.propertyStatus?.salePrice} {property?.propertyStatus?.rentType && <span>(per {property?.propertyStatus?.rentType})</span>}</div>
          </div>
         </div>
        <GallerySlider2 images={property.images||[]}></GallerySlider2>
@@ -112,7 +120,7 @@ const PropertyDetails = () => {
         <Description property={property}></Description>
         <Amenities amenities={property?.details?.amenities||[]}></Amenities>
         {/* <PropertyVideo></PropertyVideo> */}
-        <FloorPlane></FloorPlane>
+        <FloorPlane floorPlaneImg={property?.floorPlane}></FloorPlane>
         <Gallery images = {property?.images||[]}></Gallery>
         <PropertyRating></PropertyRating>
         <WriteReview refetch={refetchReviews}></WriteReview>

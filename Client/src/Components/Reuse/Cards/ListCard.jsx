@@ -19,10 +19,10 @@ const ListCard = ({property}) => {
        <div className='flex gap-3 items-center'>
         <div> 
         <h2 className='text-gray-800 font-semibold text-xl'>{property.title}</h2>
-        <p className=' bg-[#ffb1b1] px-4 py-1 text-[14px] rounded-full w-fit '>{'Rent'}</p>
+        <p className=' bg-[#ffb1b1] px-4 py-1 text-[14px] rounded-full w-fit '>{property.propertyStatus.listingIn}</p>
         </div>
         <div>
-            <h1 className='text-2xl text-color_primary font-bold'>${property.propertyStatus.listingIn==='Rent' ? property.propertyStatus.rentAmount : property.propertyStatus.salePrice}</h1>
+        <h1 className='text-xl text-color_primary font-bold'>${property.propertyStatus.listingIn==='Rent' ? property.propertyStatus.rentAmount : property.propertyStatus.salePrice} <span className=' text-[12px]'>{property.propertyStatus.listingIn==='Rent' ? '/'+property.propertyStatus.rentType : ''}</span></h1>
         </div>
        </div>
        <div className='flex md:flex-row flex-col md:justify-end gap-2 md:items-center py-3 border-b'>

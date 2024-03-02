@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import DashNavbar from '../DashboardComponents/DashNavbar/DashNavbar';
 import DashSideBar from '../DashboardComponents/DashSideBar/DashSideBar';
 import './Dashboard.css'
+import ResponsiveDashBar from '../DashboardComponents/DashSideBar/ResponsiveDashBar';
 // lg:static absolute -left-[200%]
 export const NavbarHandlingContext = createContext('')
 const DashboardOutlet = () => {
@@ -35,6 +36,7 @@ const DashboardOutlet = () => {
         <NavbarHandlingContext.Provider value={{toggle,handleToggle}}>
     
           <div className='flex min-h-[100vh] relative overflow-hidden'>
+            
             <div className={` lg:w-[30%] lg:max-w-[30%]  ${toggle? 'lg:w-[30%] w-[80%] max-w-[90%] sticky top-0': 'max-w-0 min-w-0  '} overflow-hidden transition-all duration-500 ease-in`}>
             <DashSideBar></DashSideBar>
             </div>

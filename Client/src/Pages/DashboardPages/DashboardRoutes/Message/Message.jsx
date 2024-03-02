@@ -116,7 +116,7 @@ const Message = () => {
                                     <h2 className='text-[14px]'>{message.date.day}-{monthNames[message.date.month]}-{message.date.year}</h2>
                                  
                                  </div>
-                                 <p>{message.description.slice(0,90)}...</p>
+                                 <p>{message.description.slice(0,30)}...</p>
                             </div>
                         })
                     }
@@ -160,7 +160,7 @@ const Message = () => {
                      </div>
                     </>
                     :
-                    <div className=''>
+                    <div className=' pt-32 text-center font-semibold text-color_text_normal text-xl'>
                       No Messages
                     </div>
                   }

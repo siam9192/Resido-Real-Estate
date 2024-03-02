@@ -27,7 +27,7 @@ const Footer = () => {
     
     ]
     return (
-        <div className=' bg-color_dark text-gray-300 font-jost py-10'>
+        <div className=' bg-color_dark text-gray-300 font-jost py-32'>
             <WidthContainer>
              <div className='flex justify-between lg:flex-row flex-col lg:gap-0 gap-5'>
 

@@ -19,7 +19,7 @@ const FeaturedAgents = () => {
             <SectionHeading heading={'Explore Featured Agents '} title={`"Top Real Estate Experts: Discover Trusted Agents for Your Property Needs – Meet Our Featured Agents Today!"`}></SectionHeading>
             <div className='py-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
                 {
-                    agents.map((agent,index)=>{
+                    agents.slice(0,4).map((agent,index)=>{
                        return <AgentCard agent={agent} key={index}></AgentCard>
                     })
                 }

@@ -11,6 +11,7 @@ import CustomerReview from '../../Components/HomeComponents/CustomersReview/Cust
 import { Helmet } from 'react-helmet';
 import Banner2 from '../../Components/HomeComponents/Banner/Banner2';
 import PopularLocations from '../../Components/HomeComponents/PopularLocations/PopularLocations';
+import RecentProperty2 from '../../Components/HomeComponents/RecentProperty/RecentProperty2';
 
 const Home = () => {
     return (
@@ -21,8 +22,10 @@ const Home = () => {
             <Banner2></Banner2>
             <Achievement></Achievement>
             <PopularLocations></PopularLocations>
-            <RecentProperty></RecentProperty>
+            {/* <RecentProperty></RecentProperty> */}
+            <RecentProperty2></RecentProperty2>
             <FeaturedProperty></FeaturedProperty>
+           
             <FeaturedAgents></FeaturedAgents>
             <CustomerReview></CustomerReview>
             <Packages></Packages>

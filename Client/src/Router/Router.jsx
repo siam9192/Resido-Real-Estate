@@ -17,6 +17,8 @@ import PrivateRoutes1 from "../Components/PrivateRoutes/PrivateRoutes1";
 import FavoriteProperties from "../Pages/DashboardPages/DashboardRoutes/FavoriteProperties/FavoriteProperties";
 import Error from "../Pages/Error/Error";
 import Message from "../Pages/DashboardPages/DashboardRoutes/Message/Message";
+import Contact from "../Pages/Contact/Contact";
+import AccountSetting from "../Pages/AccountSetting/AccountSetting";
 // https://html.creativegigstf.com/homy/homy/dashboard/dashboard-index.html
 const Router = createBrowserRouter([
     {
@@ -55,6 +57,10 @@ const Router = createBrowserRouter([
         element:<SignUp></SignUp>
     },
     {
+        path:'/contact',
+        element:<Contact></Contact>
+    },
+    {
         path:'/dashboard',
         element:<PrivateRoutes1><DashboardOutlet></DashboardOutlet></PrivateRoutes1>,
         children:[
@@ -86,6 +92,11 @@ const Router = createBrowserRouter([
             {
                 path:"/dashboard/profile",
                 element:<Profile></Profile>
+               
+               },
+               {
+                path:"/dashboard/account-setting",
+                element:<AccountSetting></AccountSetting>
                
                },
                {

@@ -3,7 +3,7 @@ import { TbShare3 } from "react-icons/tb";
 import { FaLocationArrow, FaRegHeart } from "react-icons/fa";
 import UserAuth from '../../Authentication/userAuth/userAuth';
 import AxiosBase from '../../Axios/AxiosBase';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 const SideComponents = ({email}) => {
@@ -13,6 +13,7 @@ const SideComponents = ({email}) => {
     const [isSending,setSending] = useState(false);
     const [author,setAuthor] = useState({})
     const [featured,setFeatured] = useState([])
+    const navigate = useNavigate();
     
     useEffect(()=>{
       if(user){
@@ -60,6 +61,9 @@ const SideComponents = ({email}) => {
            }
        if(!user){
        toast.error('Please Log in First')
+
+       navigate('/login')
+       
         return;
        }
         const message = {
@@ -136,16 +140,21 @@ const SideComponents = ({email}) => {
                 <button className='w-full flex items-center justify-center gap-2 py-3 bg-[#feeee5] rounded-md  border border-color_danger text-color_danger' disabled={saveStatus==='Saved'} onClick={saveProperty}><FaRegHeart></FaRegHeart><p>{saveStatus}</p></button>
             </div>
             <div className='rounded-lg'>
-            <div className='bg-color_primary p-5 rounded-t-lg flex items-center gap-4'>
-                <div>
-                    <img src={author?.photo||'/images/defaultPic.png'} alt="" className='w-14 h-14 rounded-full'/>
-                </div>
-                <h1 className='text-3xl text-white font-bold'>{author?.name}</h1>
-            </div>
+
+          <div className=' bg-color_primary p-5 rounded-t-lg'>
+         
+          <div className=' flex items-center gap-4'>
+               
+               <div>
+                   <img src={author?.photo||'/images/defaultPic.png'} alt="" className='w-14 h-14 rounded-full'/>
+               </div>
+               <h1 className='text-3xl text-white font-bold'>{author?.name}</h1>
+           </div>
+          </div>
              <form className='bg-white p-5 space-y-3' onSubmit={sendMessage}>
              <div className='space-y-2'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Email</h3>
-                        <input type="text" name='email' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black ' readOnly={user?.email} value={user?.email||''} placeholder='Your Name' required/>
+                        <input type="text" name='email' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black '  value={user?.email||''} placeholder='Your Contact email' required/>
                         </div>
                         <div className='space-y-2'>
                             <h3 className=' text-color_text_normal font-semibold uppercase'>Phone No.</h3>
@@ -161,7 +170,7 @@ const SideComponents = ({email}) => {
                         <textarea type="text" name='description' className='w-full py-4 px-2 border rounded-md bg-color_bg_green text-black  min-h-[250px]'  placeholder='Im interested in this property'  required></textarea>
 
                         </div>
-                        <button disabled={email===user?.email||isSending} className={`py-4 text-center w-full  font-semibold rounded-md ${email===user?.email ? 'bg-gray-200 text-black' : ' bg-color_primary text-white'}`}>{isSending? 'Sending..': 'Send'}</button>
+                        <button disabled={email===user?.email||isSending} className={`py-4 text-center w-full  font-semibold rounded-md ${email===user?.email ? 'bg-gray-200 text-black' : ' bg-color_primary text-white'}`}>{isSending? 'Just a moment..': 'Request Inquery'}</button>
              </form>
           
             </div>

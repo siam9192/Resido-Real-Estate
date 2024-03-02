@@ -15,7 +15,7 @@ const Navbar = ({isNavbar}) => {
             name:'Listings',path:'/listings'
         },
         {
-            name:'Agencies and Agents',path:'/features'
+            name:'Contact',path:'/contact'
         }
     ]
    

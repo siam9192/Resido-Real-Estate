@@ -24,7 +24,7 @@ const PopularLocations = () => {
         .then((res)=>{
             const data = res.data;
            setProperties(data)
-         console.log(data)
+       
         })
     },[])
 

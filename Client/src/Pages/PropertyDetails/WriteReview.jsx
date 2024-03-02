@@ -126,11 +126,11 @@ const WriteReview = ({refetch}) => {
             </div>
             <form className='space-y-4 text-normal font-normal pt-5' onSubmit={handleSubmit}>
             <textarea  className='w-full h-72 bg-color_bg_green border p-2' name='message' placeholder='Message'></textarea>
-            <div className='grid lg:grid-cols-2 gap-5'>
+            {/* <div className='grid lg:grid-cols-2 gap-5'>
                
                 <input className='w-full py-3 bg-color_bg_green  border rounded-md px-2' name='name' readOnly value={user?.displayName||''} placeholder='Your Name'/>
                 <input className='w-full py-3 bg-color_bg_green  border rounded-md px-2' value={user?.email||''} placeholder='Your Email'/>
-            </div>
+            </div> */}
             <button className='bg-[#e7faf4] px-6 py-3 border-2 border-[#b5efdf] rounded-md  text-color_primary font-semibold text-xl'>Submit Review</button>
             </form>
         </div>

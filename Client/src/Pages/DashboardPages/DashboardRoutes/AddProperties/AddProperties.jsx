@@ -7,11 +7,12 @@ import AxiosBase from '../../../../Axios/AxiosBase';
 import UserAuth from '../../../../Authentication/userAuth/userAuth';
 import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
 const AddProperties = () => {
     const [amenities,setAmenities] = useState([]);
     const [images,setImages] = useState([]);
-    const [selectedLocation,setSelectedLocation] = useState('');
+    const [selectedLocation,setSelectedLocation] = useState(null);
     const [selectedListingIn,setSelectedListingIn] = useState('Sale')
     const imageInput = useRef();
     const {user} = UserAuth();
@@ -111,6 +112,9 @@ const AddProperties = () => {
         const address = form.address.value;
         const country = form.country.value;
         const city = form.city.value;
+        const floorPlane = form.floorPlane.files[0];
+        console.log(floorPlane)
+
         const details = {
             propertyType:type,listingIn,area,features:{bedrooms,bathrooms,kitchens,garages,garageSize,},yearBuild,floorNumber,amenities,
             
@@ -146,8 +150,35 @@ const AddProperties = () => {
            }
      
          if(images.length < 4){
+            Swal.fire({
+                title: "Error!",
+                text: "You have to attach minimum 4 property image",
+                icon: "error",
+                background:'#000000',
+                color:'#ffffff'
+              });
             return
         }
+        else  if(form.floorPlane.files.length === 0){
+           Swal.fire({
+               title: "Error!",
+               text: "Please attach floor plane image of the property",
+               icon: "error",
+               background:'#000000',
+               color:'#ffffff'
+             });
+           return
+       }
+       else if(!selectedLocation){
+        Swal.fire({
+            title: "Error!",
+            text: "Please select location",
+            icon: "error",
+            background:'#000000',
+            color:'#ffffff'
+          });
+        return
+       }
         document.getElementById('add_property').showModal()
         
         const imageUrls = []
@@ -174,9 +205,20 @@ const AddProperties = () => {
             
          })
          Promise.all(imageUrls)
-         .then(urls=>{
+         .then( async urls=>{
+            const response = await axios.post(`https://api.imgbb.com/1/upload?key=c9c302a9d5cee64c8eb4dde4d9803027`,{image:floorPlane},{
+                headers: {
+                'content-type': 'multipart/form-data'
+              }});
+          
+              const imageUrl= response.data.data.display_url;
+            
+
+          
+
+
             const property = {
-                userEmail:user.email,title,description,images:[...urls],views:0,details,propertyStatus,date
+                userEmail:user.email,title,description,images:[...urls],floorPlane:imageUrl,views:0,details,propertyStatus,date
             }
            AxiosBase().post('/property/add',property)
            .then(res =>{
@@ -410,11 +452,11 @@ setImages([...images,file])
                             }
                         </div>
                         <input ref={imageInput} type="file" placeholder='Photos' className='w-full hidden py-4 border rounded-lg px-2 outline-color_primary' onChange={handleImage} />
-
-                        <input type="text" placeholder='Video Url' className='w-full py-4 border rounded-lg px-2 outline-color_primary ' />
+                        <h3 className=' text-color_dark font-semibold'>Floor Planes image</h3>
+                        <input type="file"  name='floorPlane' placeholder='Floor planes photo' className='w-full py-4 border rounded-lg px-2 outline-color_primary ' />
                         <div className='lg:flex items-center gap-4 pt-3 '>
                             <div className='bg-black text-white py-2 px-6 rounded-md w-fit hover:cursor-pointer' onClick={openImageInput}>+ Upload File</div>
-                            <h3>Upload file .jpg, .png, .mp4</h3> <h2 className='text-color_primary'>Image Selected <span className='px-3 py-1 bg-black rounded-full text-white'>{images.length}</span> </h2>
+                            <h3>Upload file .jpg, .png</h3> <h2 className='text-color_primary'>Image Selected <span className='px-3 py-1 bg-black rounded-full text-white'>{images.length}</span> </h2>
                         </div>
                     </div>
                     
@@ -464,6 +506,7 @@ setImages([...images,file])
                     <div className='space-y-2'>
                         <h1 className='text-black font-semibold'>City*</h1>
                         <select type="text" name='city' className='w-full py-4 bg-white border rounded-lg px-2 outline-color_primary'  onChange={(e)=>setSelectedLocation(e.target.value)}>
+                            <option value={null}>Select City</option>
                         {
                                 locations.map((item,index)=>{
                                     return <option value={item} key={index}>{item}</option>

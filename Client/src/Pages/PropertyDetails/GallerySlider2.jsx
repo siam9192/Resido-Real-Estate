@@ -22,7 +22,7 @@ const GallerySlider2 = ({images}) => {
         }
       }
         else{
-            const array = [...images];
+          setSlideNo(images.length-1)
             
         }
         
@@ -33,7 +33,7 @@ const GallerySlider2 = ({images}) => {
             setSlideNo(x)
         }
         else{
-            const array = [...images];
+            setSlideNo(images.length-1)
            
             // setImages(array.concat(images))
         }
@@ -48,7 +48,7 @@ const GallerySlider2 = ({images}) => {
                   
                     {
                         images.map((img,index)=>{
-                      return <img src={img} key={index} style={{left:`${index*100}%`,transform:`translateX(${slideNo*100})%`}} className='h-full w-full rounded-lg absolute transition-transform duration-200 ease-in-out' alt="" />
+                      return <img src={images[slideNo]} key={index}  className='h-full w-full rounded-lg absolute transition-transform duration-200 ease-in-out' alt="" style={{left:`${index*100}%`,transform:`translateX(${slideNo*100})%`}} />
                         })
                     }
         
@@ -59,9 +59,9 @@ const GallerySlider2 = ({images}) => {
                     <button className='md:text-xl text-white bg-color_primary hover:bg-black p-4 rounded-full' onClick={prev}><GrPrevious></GrPrevious></button> <button className='md:text-xl text-white  bg-color_primary hover:bg-black  p-4 rounded-full' onClick={next}><GrNext></GrNext></button>
                     </div></div>
 
-                    <div className=' flex gap-3 max-h-[80vh] lg:flex-col flex-row overflow-y-auto p-5 bg-white rounded-lg'>
+                    <div className={`flex gap-3 max-h-[80vh] lg:flex-col flex-row overflow-y-auto p-5 bg-white rounded-lg`}>
                         {
-                            images.map((image,index)=><img src={image} className='md:max-h-40 h-20 rounded-lg hover:cursor-pointer' key={index}/>)
+                            images.map((image,index)=><img src={image} className={`  ${slideNo === index ? ' border-4 border-color_danger' : ''} md:max-h-40 h-20 rounded-lg hover:cursor-pointer`} onClick={()=>setSlideNo(index)} key={index}/>)
                         }
                     </div>
                 </div>

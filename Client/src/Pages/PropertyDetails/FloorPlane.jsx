@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-const FloorPlane = () => {
+const FloorPlane = ({floorPlaneImg}) => {
     
     const [toggle,setToggle] = useState(true);
     const handler = ()=>{
@@ -15,7 +15,7 @@ const FloorPlane = () => {
         <IoIosArrowDown className={`transition-transform duration-300 ${toggle?'rotate-180' : ' rotate-0'}`}></IoIosArrowDown>
         </div>
         </div>
-        <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[700px] opacity-100' : 'max-h-[0]  opacity-100 '}`}>
+        {/* <div className={`space-y-4 pt-3 font-semibold overflow-hidden transition-all duration-500 ease-in-out  ${toggle ? 'max-h-[700px] opacity-100' : 'max-h-[0]  opacity-100 '}`}>
         <div className='border-2'>
            {
             planes.map((item,index)=>{
@@ -25,6 +25,9 @@ const FloorPlane = () => {
             })
            }
         </div>
+        </div> */}
+        <div className=' flex justify-center items-center'>
+        <img src={floorPlaneImg || "https://i.ibb.co/PQP9H36/What-is-a-floor-plan-with-dimensions.png"} className='max-h-[500px]' alt="" />
         </div>
         </div>
     );

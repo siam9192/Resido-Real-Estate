@@ -11,7 +11,7 @@ const FeaturedProperty = () => {
         AxiosBase().get('/property/featured')
         .then(res =>{
             setProperties(res.data)
-            console.log(res.data)
+          
         })
     },[])
     return (

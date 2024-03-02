@@ -34,7 +34,7 @@ const DashNavbar = () => {
                 toggle ? <RxCross1 ></RxCross1> : <HiOutlineMenuAlt3></HiOutlineMenuAlt3>
                 }
                 </div>
-                <div className='lg:block hidden lg:flex items-center gap-2  border border-gray-700 p-2 rounded-lg' >
+                {/* <div className='lg:block hidden lg:flex items-center gap-2  border border-gray-700 p-2 rounded-lg' >
                  <AiOutlineSearch></AiOutlineSearch> <input type="text" className='w-60   bg-transparent outline-none' placeholder='Search..' />
                 </div>
                 <div className='flex items-center gap-2' onClick={handleNotificationBar}>
@@ -52,7 +52,7 @@ const DashNavbar = () => {
                                 })
                             }
 
-                        </div>
+                        </div> */}
             </div>
         </div>
     );
